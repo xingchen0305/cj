@@ -169,7 +169,7 @@ public class AuthServerApplication {
 
 	@Bean
 	public JdbcUserDetailsManager jdbcUserDetailsManager() {
-		JdbcUserDetailsManager jdbcUserDetailsManager = new QingYuanUserDetailsManager();
+		JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager();
 		jdbcUserDetailsManager.setDataSource(dataSource);
 		return jdbcUserDetailsManager;
 	}

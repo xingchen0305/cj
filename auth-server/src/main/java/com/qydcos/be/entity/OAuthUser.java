@@ -26,7 +26,6 @@ public class OAuthUser implements UserDetails, Serializable {
     private Long id;
     private String username;
     private String password;
-    private String iaasUserId;
     private boolean enabled;
     private Collection<? extends GrantedAuthority> authorities = AuthorityUtils.NO_AUTHORITIES;
 
@@ -48,15 +47,6 @@ public class OAuthUser implements UserDetails, Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    @Column(name = "iaas_user_id")
-    public String getIaasUserId() {
-        return this.iaasUserId;
-    }
-
-    public void setIaasUserId(String iaasUserId) {
-        this.iaasUserId = iaasUserId;
     }
 
     @Override

@@ -70,7 +70,6 @@ public class UserApi {
 
             OAuthUser oauthUser = new OAuthUser(user.getUsername(), user.getPassword());
             oauthUser.setEnabled(user.isEnabled());
-            oauthUser.setIaasUserId(user.getIaasUserId());
             jdbcUserDetailsManager.createUser(oauthUser);
         } catch (Exception e) {
             Map<String, Object> result = new LinkedHashMap<>();
@@ -81,8 +80,6 @@ public class UserApi {
     }
 
     private static class UserForm {
-
-        private String iaasUserId;
         private String password;
         private String username;
         private boolean accountNonExpired = true;
@@ -92,13 +89,6 @@ public class UserApi {
 
         private boolean passwordHashed = false;
 
-        public String getIaasUserId() {
-            return iaasUserId;
-        }
-
-        public void setIaasUserId(String iaasUserId) {
-            this.iaasUserId = iaasUserId;
-        }
 
         public String getPassword() {
             return password;
