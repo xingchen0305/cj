@@ -15,7 +15,7 @@
 		<groupId>com.bupt626</groupId>
 		<artifactId>asm-parent</artifactId>
 		<version>1.0.0</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/> <!-- lookup parent from com.bupt626.repository -->
 	</parent>
 
 	<dependencies>
