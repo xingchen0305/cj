@@ -19,6 +19,7 @@ public class EquipmentController {
     @Autowired
     private EquipmentServiceImpl equipmentService;
 
+    //todo  add exception return to the client , think whether or not save the file
     @PostMapping("/upload")
     public void uploadFile(@RequestParam("file") MultipartFile multipartFile) {
 

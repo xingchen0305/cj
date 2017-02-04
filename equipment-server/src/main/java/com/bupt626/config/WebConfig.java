@@ -1,13 +1,12 @@
 package com.bupt626.config;
 
+import com.bupt626.entity.Equipment;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
+import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapter;
 import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -18,27 +17,21 @@ import java.io.IOException;
  * Created by hexiuyu on 2017/1/19.
  */
 @Configuration
-public class WebConfig extends WebMvcConfigurerAdapter {
+public class WebConfig extends RepositoryRestConfigurerAdapter {
+
+    /**
+     * export Id for Equipment class
+     * @param config
+     */
+    @Override
+    public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
+        config.exposeIdsFor(Equipment.class);
+    }
+
     /**
      *  todo
      * to permit csrf , but it will move to api gateway in the future
      */
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(new CorsInterceptor()).addPathPatterns("/**");
-//    }
-//
-//    class CorsInterceptor extends HandlerInterceptorAdapter {
-//        @Override
-//        public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-//            response.setHeader("Access-Control-Allow-Origin", "*");
-//            response.setHeader("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS, DELETE, PATCH");
-//            response.setHeader("Access-Control-Allow-Headers", "X-XSRF-TOKEN, Origin, X-Requested-With, Content-Type, Accept, Authorization");
-//            response.setHeader("Access-Control-Max-Age", "3600");
-//            return true;
-//        }
-//    }
-
     @Component
     @Order(Ordered.HIGHEST_PRECEDENCE)
     class CorsFilter implements Filter {
