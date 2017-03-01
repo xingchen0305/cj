@@ -12,11 +12,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-/**
- * This guy is lazy, nothing left.
- *
- * @author John Zhang
- */
 @Entity
 @Table(name = "users")
 public class OAuthUser implements UserDetails, Serializable {

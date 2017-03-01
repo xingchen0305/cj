@@ -3,14 +3,9 @@ package com.qydcos.be.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 
-/**
- * This guy is lazy, nothing left.
- *
- * @author John Zhang
- */
 @Entity
 @Table(name = "role_authorities")
-public class RoleAuthority implements Serializable {
+public class    RoleAuthority implements Serializable {
 
     private static final long serialVersionUID = 8133285489854655043L;
 

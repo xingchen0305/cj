@@ -5,11 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * This guy is lazy, nothing left.
- *
- * @author John Zhang
- */
+
 @Entity
 @Table
 public class Role implements Serializable {

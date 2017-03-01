@@ -3,11 +3,6 @@ package com.qydcos.be.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 
-/**
- * This guy is lazy, nothing left.
- *
- * @author John Zhang
- */
 @Entity
 @Table(name = "user_role")
 public class UserRole implements Serializable {

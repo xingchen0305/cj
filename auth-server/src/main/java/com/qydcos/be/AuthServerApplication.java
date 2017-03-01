@@ -38,7 +38,7 @@ import java.security.KeyPair;
  * After you launch the app, you can seek a bearer token like this:
  *
  * <pre>
- * curl localhost:9999/uaa/oauth/token -d "grant_type=password&scope=read&username=juntest&password=123456" -u qy-client:123456
+ *     curl localhost:9999/uaa/oauth/token -d "grant_type=password&scope=read&username=hexiuyu&password=123456" -u bupt-client:bupt626
  * </pre>
  *
  * <ul>
@@ -169,7 +169,7 @@ public class AuthServerApplication {
 
 	@Bean
 	public JdbcUserDetailsManager jdbcUserDetailsManager() {
-		JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager();
+		JdbcUserDetailsManager jdbcUserDetailsManager = new MyDetailManager();
 		jdbcUserDetailsManager.setDataSource(dataSource);
 		return jdbcUserDetailsManager;
 	}
