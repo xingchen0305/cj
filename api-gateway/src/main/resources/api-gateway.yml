@@ -1,0 +1,23 @@
+server:
+  port: 5555
+
+# zuul
+# if not use discovery service , use zuul.routes.demo.url=http://localhost:8080/
+# if not with eurka, change serviceId to url: http://localhost:8484
+zuul:
+  ignoredServices: '*'
+  routes:
+    demo:
+      sensitiveHeaders:
+      path: /demo/**
+      serviceId: demo
+#    oauth2:
+#      sensitiveHeaders:
+#      path: /sso/**
+#      serviceId: oauth2-server
+#      stripPrefix: false
+  add-proxy-headers: true
+  ignored-headers: Access-Control-Allow-Origin,
+                   Access-Control-Allow-Methods,
+                   Access-Control-Allow-Headers,
+                   Access-Control-Max-Age
