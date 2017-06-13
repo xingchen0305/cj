@@ -35,4 +35,10 @@
 npm uninstall -g angular-cli
 npm cache clean
 npm install -g angular-cli
+
+## 一般构建问题
+删除整个node_modules
+npm cache clean
+npm install
+
             
