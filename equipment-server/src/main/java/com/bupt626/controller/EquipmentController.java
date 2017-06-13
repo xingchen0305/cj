@@ -36,4 +36,9 @@ public class EquipmentController {
             file.delete();
         }
     }
+
+    @RequestMapping("/getUserInfo")
+    public String getUserInfo(){
+        return "棒极了！哈哈";
+    }
 }
