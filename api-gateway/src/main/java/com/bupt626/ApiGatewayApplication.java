@@ -9,6 +9,7 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 @EnableZuulProxy
 @EnableDiscoveryClient
 public class ApiGatewayApplication {
+	//Todo: 转发请求的时候带上 access token
 
 	public static void main(String[] args) {
 		SpringApplication.run(ApiGatewayApplication.class, args);

@@ -30,6 +30,7 @@
             ng g component father
             ng g component father/son
             
+<<<<<<< HEAD
 
 ## angular-cli 出問題
 npm uninstall -g angular-cli
@@ -42,3 +43,5 @@ npm cache clean
 npm install
 
             
+=======
+>>>>>>> bea731dda7ea0746b0d9311a1a7709bbcf05a389

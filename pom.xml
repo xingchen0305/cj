@@ -7,11 +7,10 @@
     <groupId>com.bupt626</groupId>
     <artifactId>asm-parent</artifactId>
     <version>1.0.0</version>
-    <modules>
-        <module>demo</module>
-        <module>config-server</module>
-        <module>discovery-server</module>
-    </modules>
+    <!--<modules>-->
+        <!--<module>config-server</module>-->
+        <!--<module>discovery-server</module>-->
+    <!--</modules>-->
     <packaging>pom</packaging>
 
     <name>asm-parent</name>
@@ -45,7 +44,5 @@
 
         </dependencies>
     </dependencyManagement>
-
-
 
 </project>
