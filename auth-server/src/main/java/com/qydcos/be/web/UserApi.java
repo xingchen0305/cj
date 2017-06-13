@@ -40,6 +40,11 @@ public class UserApi {
         return user;
     }
 
+    @GetMapping("/userInfo")
+    public OAuthUser userInfo() {
+        return new OAuthUser("test", "aaa");
+    }
+
     @GetMapping("/check-admin")
     @PreAuthorize("hasRole('ADMIN')")
     public String checkAdmin() {

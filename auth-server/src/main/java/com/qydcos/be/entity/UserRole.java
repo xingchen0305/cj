@@ -11,7 +11,6 @@ public class UserRole implements Serializable {
 
     private OAuthUser user;
     private Role role;
-
     public UserRole(OAuthUser user, Role role) {
         this.user = user;
         this.role = role;

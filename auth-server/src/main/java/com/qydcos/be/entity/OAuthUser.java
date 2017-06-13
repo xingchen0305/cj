@@ -22,6 +22,8 @@ public class OAuthUser implements UserDetails, Serializable {
     private String username;
     private String password;
     private boolean enabled;
+    private String displayName;
+
     private Collection<? extends GrantedAuthority> authorities = AuthorityUtils.NO_AUTHORITIES;
 
     private List<UserRole> userRoles = new ArrayList<>(0);
@@ -97,6 +99,15 @@ public class OAuthUser implements UserDetails, Serializable {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    @Column(name = "display_name")
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
     @OneToMany(mappedBy = "user")
