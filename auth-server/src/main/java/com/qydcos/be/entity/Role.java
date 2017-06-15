@@ -1,5 +1,7 @@
 package com.qydcos.be.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -54,6 +56,7 @@ public class Role implements Serializable {
     }
 
     @OneToMany(mappedBy = "role")
+    @JsonIgnore
     public List<RoleAuthority> getRoleAuthorities() {
         return roleAuthorities;
     }

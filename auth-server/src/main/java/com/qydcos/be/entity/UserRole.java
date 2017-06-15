@@ -1,5 +1,8 @@
 package com.qydcos.be.entity;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -31,6 +34,7 @@ public class UserRole implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     public OAuthUser getUser() {
         return user;
     }
@@ -41,6 +45,7 @@ public class UserRole implements Serializable {
 
     @ManyToOne
     @JoinColumn(name =  "role_id")
+    @JsonIgnore
     public Role getRole() {
         return role;
     }
