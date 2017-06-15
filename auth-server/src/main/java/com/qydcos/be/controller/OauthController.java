@@ -1,11 +1,8 @@
-package com.qydcos.be.web;
+package com.qydcos.be.controller;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.oracle.tools.packager.Log;
-import com.qydcos.be.entity.*;
-import com.qydcos.be.vo.UserForm;
+import com.qydcos.be.entity.OAuthUser;
 import com.qydcos.be.repository.UserRepository;
-import com.qydcos.be.vo.UserInfo;
+import com.qydcos.be.vo.UserForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,11 +13,12 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 @RestController
 @SessionAttributes("authorizationRequest")
-public class UserApi {
+public class OauthController {
 
     @Autowired
     private JdbcUserDetailsManager jdbcUserDetailsManager;
@@ -32,25 +30,6 @@ public class UserApi {
     @GetMapping("/user")
     public Principal user(Principal user) {
         return user;
-    }
-
-    @GetMapping("/currentUser")
-    public UserInfo currentUser(Principal user) {
-        Log.info("UserApi get oauthUser: username = " + user.getName());
-        OAuthUser currentUser = (OAuthUser) userRepository.findByUsername(user.getName()).get(0);
-        UserInfo userInfo = new UserInfo();
-        userInfo.setUser(currentUser);
-        ArrayList<Role> roles = new ArrayList<>();
-        Set<Authority> authorities = new HashSet<>();
-        for (UserRole role : currentUser.getUserRoles()) {
-            roles.add(role.getRole());
-            for (RoleAuthority ra : role.getRole().getRoleAuthorities()) {
-                authorities.add(ra.getAuthority());
-            }
-        }
-        userInfo.setRoles(roles);
-        userInfo.setAuthorities(authorities);
-        return userInfo;
     }
 
     @GetMapping("/check-admin")

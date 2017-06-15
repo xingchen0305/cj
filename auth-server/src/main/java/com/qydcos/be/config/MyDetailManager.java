@@ -1,4 +1,4 @@
-package com.qydcos.be;
+package com.qydcos.be.config;
 
 import com.qydcos.be.entity.OAuthUser;
 import com.qydcos.be.entity.Role;
