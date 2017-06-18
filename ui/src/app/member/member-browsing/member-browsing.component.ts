@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DemoService } from '../../common/service/demo.service';
+import {HttpInterceptor} from "../../common/auth/HttpInterceptor";
 
 @Component({
   selector: 'app-member-browsing',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MemberBrowsingComponent implements OnInit {
 
-  constructor() { }
+  constructor(private demoService: DemoService,private http: HttpInterceptor) { }
 
   ngOnInit() {
+    this.getDemos();
   }
-
+  data:any;
+  getDemos(){
+    this.demoService.getDemo().subscribe(
+      (response)=>{
+        this.data=response.json();
+      }
+    );
+}
 }
