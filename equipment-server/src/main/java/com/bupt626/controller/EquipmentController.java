@@ -1,6 +1,6 @@
 package com.bupt626.controller;
 
-import com.bupt626.entity.Equipment;
+import com.bupt626.domain.Equipment;
 import com.bupt626.service.EquipmentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
