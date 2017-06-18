@@ -1,8 +1,8 @@
 package com.qydcos.be.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
@@ -10,7 +10,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -47,6 +46,7 @@ public class OAuthUser implements UserDetails, Serializable {
     }
 
     @Override
+    @JsonIgnore
     public String getPassword() {
         return this.password;
     }
@@ -111,6 +111,7 @@ public class OAuthUser implements UserDetails, Serializable {
     }
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     public List<UserRole> getUserRoles() {
         return userRoles;
     }

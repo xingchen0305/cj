@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  * @author John Zhang
  */
-public interface AuthorityRepositry extends JpaRepository<Authority, Long> {
+public interface AuthorityRepository extends JpaRepository<Authority, Long> {
 }

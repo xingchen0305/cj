@@ -1,4 +1,4 @@
-package com.qydcos.be.web;
+package com.qydcos.be.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

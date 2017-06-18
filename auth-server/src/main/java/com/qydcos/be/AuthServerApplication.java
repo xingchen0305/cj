@@ -1,5 +1,7 @@
 package com.qydcos.be;
 
+import com.qydcos.be.config.MyDetailManager;
+import com.qydcos.be.config.WebMvcConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -39,7 +41,7 @@ import java.security.KeyPair;
  * After you launch the app, you can seek a bearer token like this:
  *
  * <pre>
- *     curl localhost:9999/uaa/oauth/token -d "grant_type=password&scope=read&username=hexiuyu&password=123456" -u bupt-client:bupt626
+ *     curl localhost:9999/uaa/controller/token -d "grant_type=password&scope=read&username=hexiuyu&password=123456" -u bupt-client:bupt626
  * </pre>
  *
  * <ul>
@@ -82,7 +84,7 @@ public class AuthServerApplication {
 			http
 					.formLogin().loginPage("/login").permitAll()
 					.and()
-					.requestMatchers().antMatchers("/login", "/oauth/authorize", "/oauth/confirm_access")
+					.requestMatchers().antMatchers("/login", "/controller/authorize", "/controller/confirm_access")
 					.and()
 					.authorizeRequests().anyRequest().authenticated();
 		}
