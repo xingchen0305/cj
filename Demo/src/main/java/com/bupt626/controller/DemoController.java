@@ -2,12 +2,14 @@ package com.bupt626.controller;
 
 import com.bupt626.domain.Demo;
 import com.bupt626.service.DemoService;
+import com.bupt626.service.UserClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
+import java.security.Principal;
 import java.util.List;
 
 /**
@@ -18,6 +20,9 @@ import java.util.List;
 public class DemoController {
     @Autowired
     private DemoService demoService;
+
+    @Autowired
+    private UserClient userClient;
 
 
     /**

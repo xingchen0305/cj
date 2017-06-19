@@ -1,3 +1,42 @@
-<p>
-  login works!
-</p>
+<div class="login">
+  <div class="canvas-bg" id="canvas-container">
+    <div id="canvas_full"></div>
+  </div>
+  <div class="login-container">
+    <div class="login-title">
+      <h5>
+        <a>
+          <img src="assets/images/logo.png" alt="Logo" height="50">
+        </a>
+      </h5>
+    </div>
+    <div class="login-body">
+      <form (ngSubmit)="loginUsr()" name="loginForm" role="form">
+        <div class="form-content">
+          <div class="form-group">
+            <input type="text" name="username" placeholder="用户名" autofocus autocomplete="off"
+                   class="form-control input-underline input-lg"
+                   [(ngModel)]="user.username" [disabled]="isSubmitting">
+          </div>
+
+          <div class="form-group">
+            <input type="password" name="password" placeholder="密码"
+                   class="form-control input-underline input-lg"
+                   [(ngModel)]="user.password" [disabled]="isSubmitting">
+          </div>
+          <div class="form-group text-center">
+            <button type="submit" class="btn btn-primary"
+                    [disabled]="(user.username.length < 3) || user.password.length < 3 || isSubmitting">
+              <i class="fa fa-spin fa-spinner" *ngIf="isSubmitting"></i> 登&nbsp;&nbsp;录
+            </button>
+          </div>
+          <div class="form-group text-sm">
+            <p class="text-muted text-xs-center">
+              <a href="javascript:void(0)" class="forgot-btn">忘记密码？</a>
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

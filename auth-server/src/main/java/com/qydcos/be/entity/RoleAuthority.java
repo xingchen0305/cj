@@ -1,11 +1,13 @@
 package com.qydcos.be.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "role_authorities")
-public class    RoleAuthority implements Serializable {
+public class RoleAuthority implements Serializable {
 
     private static final long serialVersionUID = 8133285489854655043L;
 
@@ -24,6 +26,7 @@ public class    RoleAuthority implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "role_id")
+    @JsonIgnore
     public Role getRole() {
         return role;
     }
@@ -34,6 +37,7 @@ public class    RoleAuthority implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "auth_id")
+    @JsonIgnore
     public Authority getAuthority() {
         return authority;
     }

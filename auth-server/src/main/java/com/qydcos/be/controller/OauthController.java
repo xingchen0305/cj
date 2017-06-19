@@ -1,32 +1,24 @@
-package com.qydcos.be.web;
+package com.qydcos.be.controller;
 
 import com.qydcos.be.entity.OAuthUser;
-import com.qydcos.be.entity.UserRole;
 import com.qydcos.be.repository.UserRepository;
+import com.qydcos.be.vo.UserForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
-/**
- * This guy is lazy, nothing left.
- *
- * @author John Zhang
- */
 @RestController
 @SessionAttributes("authorizationRequest")
-public class UserApi {
+public class OauthController {
 
     @Autowired
     private JdbcUserDetailsManager jdbcUserDetailsManager;
@@ -38,11 +30,6 @@ public class UserApi {
     @GetMapping("/user")
     public Principal user(Principal user) {
         return user;
-    }
-
-    @GetMapping("/userInfo")
-    public OAuthUser userInfo() {
-        return new OAuthUser("test", "aaa");
     }
 
     @GetMapping("/check-admin")
@@ -84,71 +71,5 @@ public class UserApi {
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
 
-    private static class UserForm {
-        private String password;
-        private String username;
-        private boolean accountNonExpired = true;
-        private boolean accountNonLocked = true;
-        private boolean credentialsNonExpired = true;
-        private boolean enabled = true;
 
-        private boolean passwordHashed = false;
-
-
-        public String getPassword() {
-            return password;
-        }
-
-        public void setPassword(String password) {
-            this.password = password;
-        }
-
-        public String getUsername() {
-            return username;
-        }
-
-        public void setUsername(String username) {
-            this.username = username;
-        }
-
-        public boolean isAccountNonExpired() {
-            return accountNonExpired;
-        }
-
-        public void setAccountNonExpired(boolean accountNonExpired) {
-            this.accountNonExpired = accountNonExpired;
-        }
-
-        public boolean isAccountNonLocked() {
-            return accountNonLocked;
-        }
-
-        public void setAccountNonLocked(boolean accountNonLocked) {
-            this.accountNonLocked = accountNonLocked;
-        }
-
-        public boolean isCredentialsNonExpired() {
-            return credentialsNonExpired;
-        }
-
-        public void setCredentialsNonExpired(boolean credentialsNonExpired) {
-            this.credentialsNonExpired = credentialsNonExpired;
-        }
-
-        public boolean isEnabled() {
-            return enabled;
-        }
-
-        public void setEnabled(boolean enabled) {
-            this.enabled = enabled;
-        }
-
-        public boolean isPasswordHashed() {
-            return passwordHashed;
-        }
-
-        public void setPasswordHashed(boolean passwordHashed) {
-            this.passwordHashed = passwordHashed;
-        }
-    }
 }
