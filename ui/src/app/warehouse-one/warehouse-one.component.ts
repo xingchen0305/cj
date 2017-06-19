@@ -4,6 +4,8 @@ import {observableToBeFn} from "rxjs/testing/TestScheduler";
 import { DemoService } from '../common/service/demo.service';
 import {HttpInterceptor} from "../common/auth/HttpInterceptor";
 import { Http, Request,URLSearchParams, RequestOptionsArgs, Response, RequestOptions, ConnectionBackend, Headers } from '@angular/http';
+import {WarehouseService} from "../common/service/warehouse.service";
+import {warehouse} from "../create-warehouse/warehouse";
 
 @Component({
   selector: 'app-warehouse-one',
@@ -13,13 +15,21 @@ import { Http, Request,URLSearchParams, RequestOptionsArgs, Response, RequestOpt
 export class WarehouseOneComponent implements OnInit {
   warehouse_id:string;
 
-  constructor(private activatedRoute:ActivatedRoute,private demoService: DemoService,private http: HttpInterceptor) { }
+  constructor(private activatedRoute:ActivatedRoute,private warehouseService: WarehouseService,private http: HttpInterceptor) { }
 
   ngOnInit() {
     this.warehouse_id=this.activatedRoute.snapshot.params['id'];
-    this.editInfo(this.warehouse_id);
+    this.getWareHouse(this.warehouse_id);
   }
   data:any;
+
+  getWareHouse(index){
+    this.warehouseService.getWareHouseById(index).subscribe(
+      (res) =>{
+        this.data = res.json().data;
+      }
+    )
+  }
 
   editInfo(index){
     /*    let body= JSON.stringify({id: index});

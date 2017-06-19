@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DemoService } from '../common/service/demo.service';
 import {HttpInterceptor} from "../common/auth/HttpInterceptor";
 import { Http, Request,URLSearchParams, RequestOptionsArgs, Response, RequestOptions, ConnectionBackend, Headers } from '@angular/http';
+import {WarehouseService} from "../common/service/warehouse.service";
 @Component({
   selector: 'app-edit-info',
   templateUrl: './edit-info.component.html',
@@ -11,13 +12,27 @@ import { Http, Request,URLSearchParams, RequestOptionsArgs, Response, RequestOpt
 export class EditInfoComponent implements OnInit {
 
   warehouse_id:string;
+  data:any ={};
 
-  constructor(private activatedRoute:ActivatedRoute,private demoService: DemoService,private http: HttpInterceptor) { }
+  constructor(private activatedRoute:ActivatedRoute,private warehouseService: WarehouseService,private http: HttpInterceptor) { }
   ngOnInit() {
     this.warehouse_id=this.activatedRoute.snapshot.params['id'];
-    this.editInfo(this.warehouse_id);
+    this.getWareHouse(this.warehouse_id);
   }
-  data:any;
+
+  getWareHouse(index){
+    this.warehouseService.getWareHouseById(index).subscribe(
+      (res) =>{
+        this.data = res.json().data;
+      }
+    )
+  }
+
+  onSubmit(value){
+    this.warehouseService.editWareHouse(value).subscribe(
+      res=> {alert(" edit success")}
+      )
+  }
   editInfo(index){
 /*    let body= JSON.stringify({id: index});
     console.log(body);
@@ -38,14 +53,5 @@ export class EditInfoComponent implements OnInit {
      /* console.log(this.data);*/
     });
   }
-
-/*  编辑的提交方法
-  submit(obj:any):void{
-    alert(obj + '已经被提交!');
-    console.log(obj)
-    this.http.post("http://10.101.164.248:8755/baseWarehouse/saveOrUpdate", this.data).subscribe(res=> {
-      console.log(res);
-    });
-  }*/
 
 }

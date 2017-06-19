@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Http, Request, RequestOptionsArgs, Response, RequestOptions, ConnectionBackend, Headers } from '@angular/http';
 import {HttpInterceptor} from "../common/auth/HttpInterceptor";
 import {warehouse} from "./warehouse";
+import {WarehouseService} from "../common/service/warehouse.service";
 
 @Component({
   selector: 'app-create-warehouse',
@@ -10,20 +11,15 @@ import {warehouse} from "./warehouse";
 })
 export class CreateWarehouseComponent implements OnInit {
 
-  constructor(private http: HttpInterceptor) {
+  constructor(private warehouseService: WarehouseService,private http: HttpInterceptor) {
   }
-  data :any=warehouse;
+  data :any={};
   ngOnInit() {
-
-
   }
-
-  submit(data) {
-    let body = JSON.stringify(data);
-    let headers = new Headers({'Content-Type': 'application/json'});
-    let options = new RequestOptions({headers: headers});
-    return this.http.post('http://10.101.164.248:8755/baseWarehouse/findById', body, options).map(res => res.json());
-  };
-
+  onSubmit(value){
+    this.warehouseService.editWareHouse(value).subscribe(
+      res=> {alert(" edit success")}
+    )
+  }
 
 }

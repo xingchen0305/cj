@@ -26,6 +26,7 @@ import { WarehouseOneComponent } from './warehouse-one/warehouse-one.component';
 import { WarehouseTwoComponent } from './warehouse-two/warehouse-two.component';
 import { EditInfoComponent } from './edit-info/edit-info.component';
 import { CreateWarehouseComponent } from './create-warehouse/create-warehouse.component';
+import {WarehouseService} from "./common/service/warehouse.service";
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { CreateWarehouseComponent } from './create-warehouse/create-warehouse.co
     provideAppConfig(),
     UnauthenticatedGuard,
     HomeRootComponentGuard,
-    DemoService
+    DemoService,
+    WarehouseService
   ],
   bootstrap: [AppComponent]
 })
