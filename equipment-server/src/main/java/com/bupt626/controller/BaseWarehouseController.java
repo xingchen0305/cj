@@ -49,21 +49,22 @@ public class BaseWarehouseController extends BaseCommonController {
         if (StringUtils.isNotBlank(entity.getLocation())){
             parameterMap.put("location", entity.getLocation());
         }
+        if (StringUtils.isNotBlank(entity.getUsername())){
+            parameterMap.put("username", entity.getUsername());
+        }
         return parameterMap;
     }
 
     @RequestMapping("/deleteById")
-    public String deleteById(String ids){
-        if (StringUtils.isNotBlank(ids)){
-            baseWarehouseService.deleteById(ids);
+    public String deleteById(String id){
+
+            baseWarehouseService.deleteById(id);
             return sendSuccessMessage();
-        }else {
-            return sendFailMessage();
-        }
+
     }
 
     @RequestMapping("/demo")
-    public String demoPage(){
+    public String demo(){
         return "demo";
     }
 }
