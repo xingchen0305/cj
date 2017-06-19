@@ -16,7 +16,7 @@ export class MemberBrowsingComponent implements OnInit {
   }
   data:any;
   getDemos(){
-    this.demoService.getDemo().subscribe(
+    this.demoService.getDemoL().subscribe(
       (response)=>{
         this.data=response.json();
       }

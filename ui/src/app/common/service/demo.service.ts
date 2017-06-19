@@ -13,11 +13,20 @@ export class DemoService {
       return this.http.get(this.demourl+'/page?start=0');
   }
 
-/*  getDemo(): Observable<any> {
-    return this.http.get('http://localhost:3000/cangku');
-  }*/
+  getDemoL(): Observable<any> {
+    return this.http.get('http://localhost:3000/allasset');
+  }
   getDemo(): Observable<any> {
-    return this.http.get('http://10.105.242.74:8755/page?start=0');
+    return this.http.get('http://10.101.164.248:8755/baseWarehouse/page?start=0');
+  }
+  checkDemo(): Observable<any> {
+    return this.http.get('http://10.101.164.248:8755/baseWarehouse/findById?id=1');
+  }
+  editDemo(): Observable<any> {
+    return this.http.get('http://10.101.164.248:8755/baseWarehouse/findById?id=1');
+  }
+ deleteDemo(): Observable<any> {
+    return this.http.get('http://10.101.164.248:8755/baseWarehouse/deleteById?id=1');
   }
 
 }
