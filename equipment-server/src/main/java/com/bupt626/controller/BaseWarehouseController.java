@@ -31,12 +31,12 @@ public class BaseWarehouseController extends BaseCommonController {
         baseWarehouseService.save(entity);
         return sendSuccessMessage();
     }
-    @RequestMapping(value = "/findById",method = RequestMethod.POST )
+    @RequestMapping("/findById" )
     public String findById(String id){
         BaseWarehouse baseWarehouse = baseWarehouseService.findOne(id);
         return sendSuccessMessage(baseWarehouse);
     }
-    @RequestMapping("/find/{id}")
+    @RequestMapping(value = "/find/{id}",method = RequestMethod.GET)
     public String find(@PathVariable("id") String id){
         BaseWarehouse baseWarehouse = baseWarehouseService.findOne(id);
         return sendSuccessMessage(baseWarehouse);
@@ -61,12 +61,14 @@ public class BaseWarehouseController extends BaseCommonController {
     }
 
     @RequestMapping("/deleteById")
-    public String deleteById(String ids){
-        if (StringUtils.isNotBlank(ids)){
-            baseWarehouseService.deleteById(ids);
-            return sendSuccessMessage();
-        }else {
-            return sendFailMessage();
-        }
+    public String deleteById(String id){
+        baseWarehouseService.deleteById(id);
+        return sendSuccessMessage();
+    }
+
+    @RequestMapping(value = "/find/{id}",method = RequestMethod.DELETE)
+    public String delete(@PathVariable ("id") String id) {
+        baseWarehouseService.deleteById(id);
+        return sendSuccessMessage();
     }
 }
