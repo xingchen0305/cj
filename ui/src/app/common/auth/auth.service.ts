@@ -18,9 +18,22 @@ export class UserService {
   }
 
   login(user) {
-    return this.http.post(this._config.loginUrl, user)
-              .map((res: Response) => res.json())
-              .catch(this.handleError);
+    // return this.http.post(this._config.loginUrl, user)
+    //           .map((res: Response) => res.json())
+    //           .catch(this.handleError);
+    // let data  =
+    // {
+    //   username:user.username,
+    //
+    // }
+    // this.http.post('http://user/token',data,{authorization: Basic YnVwdC1jbGllbnQ6YnVwdDYyNg==}).subscribe(
+    //   (response) => {
+    //     logstarage.save(responce.accesscstoken),
+    //     logstarage.save(responce.accesscstoken),
+    //     logstarage.save(responce.accesscstoken),
+    //     logstarage.save(responce.accesscstoken),
+    //   }
+    // )
   }
 
   authenticated() {

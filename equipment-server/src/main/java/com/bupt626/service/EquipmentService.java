@@ -1,6 +1,6 @@
 package com.bupt626.service;
 
-import com.bupt626.entity.Equipment;
+import com.bupt626.domain.Equipment;
 
 import java.io.File;
 import java.util.List;

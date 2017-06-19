@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="GBK" standalone="yes"?>
 <excel>
     <cache>false</cache>
-    <class>com.bupt626.entity.Equipment</class>
+    <class>com.bupt626.domain.Equipment</class>
     <sheetNum>0</sheetNum>
     <startRow>2</startRow>
     <columns>

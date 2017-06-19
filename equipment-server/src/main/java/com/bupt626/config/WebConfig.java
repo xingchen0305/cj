@@ -1,6 +1,6 @@
 package com.bupt626.config;
 
-import com.bupt626.entity.Equipment;
+import com.bupt626.domain.Equipment;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
