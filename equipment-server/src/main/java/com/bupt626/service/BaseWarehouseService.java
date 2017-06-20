@@ -48,10 +48,16 @@ public class BaseWarehouseService extends BasePageService<BaseWarehouse,String> 
         translate(pageEntity.getResults());
     }
 
-    @Override
+   /* @Override
     protected void translate(List<BaseWarehouse> list) {
         super.translate(list);
         for (BaseWarehouse baseWarehouse:list ) {
+            if (StringUtils.isNotBlank(baseWarehouse.getorgId())) {
+                BaseOrganization baseOrganization = baseOrganizationService.findOne(baseWarehouse.getorgId());
+                if (baseOrganization != null) {
+                    baseWarehouse.setOrgName(baseOrganization.getName());
+                }
+            }
         }
-    }
+    }*/
 }
