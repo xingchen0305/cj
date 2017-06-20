@@ -1,27 +1,26 @@
-<section class="content" style="padding: 0px">
-  <h3 style="display:inline;margin-left:1%;">
-    总资产列表---
-    <small>资产信息管理</small>
+<section class="content" style="padding: 0px" >
+  <h3 style="display:inline;margin-left:1%;" >
+    教三资产列表---<small>资产信息管理</small>
   </h3>
   <form class="form-inline" style="margin:10px;padding: 10px;  ">
     <div class="form-group">
-      <label for="exampleInputName2">物品名称:</label>
+      <label for="exampleInputName2" >物品名称:</label>
       <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
     </div>
     <div class="form-group">
-      <label>所属仓库:</label>
+      <label for="exampleInputEmail2">所属仓库:</label>
       <select class="select" style="width: 221px;height: 38px">
-        <option value="volvo">Volvo</option>
-        <option value="saab">Saab</option>
+        <option value ="volvo">Volvo</option>
+        <option value ="saab">Saab</option>
         <option value="opel">Opel</option>
         <option value="audi">Audi</option>
       </select>
     </div>
     <div class="form-group">
-      <label>状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态:</label>
+      <label for="exampleInputEmail2" >状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态:</label>
       <select class="select" style="width: 221px;height: 38px">
-        <option value="volvo">Volvo</option>
-        <option value="saab">Saab</option>
+        <option value ="volvo">Volvo</option>
+        <option value ="saab">Saab</option>
         <option value="opel">Opel</option>
         <option value="audi">Audi</option>
       </select>
@@ -30,7 +29,7 @@
 
   </form>
   <hr>
-  <table class="table table-hover"  *ngIf="data">
+  <table class="table table-hover" *ngIf="data" >
     <tr>
       <th>
         <input type="checkbox">
@@ -43,7 +42,7 @@
       <th>状态</th>
       <th>操作</th>
     </tr>
-    <tr *ngFor="let item of data; let idx=index">
+    <tr *ngFor="let item of data">
       <th>
         <input type="checkbox">
       </th>
@@ -53,8 +52,18 @@
       <td>{{item.number}}</td>
       <td>{{item.location}}</td>
       <td>{{item.status}}</td>
-      <td><a routerLink="/warehouseOne" class="btn btn-info btn-sm">查看</a></td>
-    </tr>
+      <td><a routerLink="/heroes" class="btn btn-info btn-sm">查看</a></td></tr>
+ <!--   <tr>
+      <th>
+        <input type="checkbox">
+      </th>
+      <td>2</td>
+      <td>javaWeb教程</td>
+      <td>book</td>
+      <td>2</td>
+      <td>626</td>
+      <td>未发布</td>
+      <td><a routerLink="/heroes" class="btn btn-info btn-sm">查看</a></td></tr>-->
 
   </table>
   <div class="center">
@@ -64,8 +73,7 @@
     </button>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
-         aria-hidden="true">
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -84,12 +92,12 @@
         </div>
       </div>
     </div>
-    <button type="button" class="btn btn-info">删除人员</button>
+    <button  type="button" class="btn btn-info">删除人员</button>
   </div>
   <div class="center">
-    <a href="#">上一页</a>
-    <a href="#">下一页</a>
-    <a href="#">首页</a>
-    <a href="#">末页</a>
+    <a href="#" >上一页</a>
+    <a href="#" >下一页</a>
+    <a href="#" >首页</a>
+    <a href="#" >末页</a>
   </div>
 </section>

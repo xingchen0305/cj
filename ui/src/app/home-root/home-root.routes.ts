@@ -4,6 +4,10 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 import { StationBrowsingComponent } from '../station/station-browsing/station-browsing.component';
 import { MemberBrowsingComponent } from '../member/member-browsing/member-browsing.component';
 import { AttendanceRecordComponent } from '../member/attendance-record/attendance-record.component';
+import {WarehouseOneComponent } from '../warehouse-one/warehouse-one.component';
+import {EditInfoComponent } from '../edit-info/edit-info.component';
+import {WarehouseTwoComponent } from '../warehouse-two/warehouse-two.component';
+import { CreateWarehouseComponent } from '../create-warehouse/create-warehouse.component';
 import {HomeRootComponentGuard} from "./home-root.guard";
 export const HomeRootRoutes: Routes = [
   {
@@ -13,9 +17,16 @@ export const HomeRootRoutes: Routes = [
     children: [
       { path: '', component: DashboardComponent },
       { path: 'dashboard', component: DashboardComponent },
-      {path:'stationBrowsing',component:StationBrowsingComponent},
+      {path:'stationBrowsing',component:StationBrowsingComponent,children:[
+/*        {path:'warehouseOne',component:WarehouseOneComponent},
+        {path:'warehouseTwo',component:WarehouseTwoComponent}*/
+      ]},
       {path:'memberBrowsing',component:MemberBrowsingComponent},
-      {path:'attendanceRecord',component:AttendanceRecordComponent}
+      {path:'attendanceRecord',component:AttendanceRecordComponent},
+      {path:'warehouseOne/:id',component:WarehouseOneComponent},
+      {path:'editInfo/:id',component:EditInfoComponent},
+      {path:'createWarehouse',component: CreateWarehouseComponent},
+      //{path:'warehouseTwo',component:WarehouseTwoComponent}
 
     ]
   }
