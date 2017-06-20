@@ -9,11 +9,19 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { routes } from './app.routes';
 import { RouterModule } from '@angular/router';
-import { HomeRootModule } from './home-root/home-root.module';
 import { BsDropdownModule, AlertModule, ModalModule } from 'ngx-bootstrap';
 import { StationBrowsingComponent } from './station/station-browsing/station-browsing.component';
 import { MemberBrowsingComponent } from './member/member-browsing/member-browsing.component';
 import { AttendanceRecordComponent } from './member/attendance-record/attendance-record.component';
+import {UserService} from "./common/auth/auth.service";
+import {LocalStorageService} from "./common/local-storage.service";
+import {provideHttpInterceptor} from "./common/auth/http-interceptor-provider";
+import {UnauthenticatedGuard} from "./login/unauthenticated.guard";
+import {HomeRootComponentGuard} from "./home-root/home-root.guard";
+import {TopnavComponent} from "./home-root/topnav/topnav.component";
+import {SidebarComponent} from "./home-root/sidebar/sidebar.component";
+import {DemoService} from "./common/service/demo.service";
+import {provideAppConfig} from "./app.config";
 
 @NgModule({
   declarations: [
@@ -24,6 +32,8 @@ import { AttendanceRecordComponent } from './member/attendance-record/attendance
     StationBrowsingComponent,
     MemberBrowsingComponent,
     AttendanceRecordComponent,
+    TopnavComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -35,10 +45,24 @@ import { AttendanceRecordComponent } from './member/attendance-record/attendance
     ModalModule.forRoot(),
 
     // app
-    HomeRootModule,
+    // RouterModule.forRoot([
+    //   {
+    //     path: 'login',
+    //     component: LoginComponent,
+    //     //canActivate:[UnauthenticatedGuard]
+    //   }
+    // ]),
     RouterModule.forRoot(routes),
   ],
-  providers: [],
+  providers: [
+    UserService,
+    LocalStorageService,
+    provideHttpInterceptor(),
+    provideAppConfig(),
+    UnauthenticatedGuard,
+    HomeRootComponentGuard,
+    DemoService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
