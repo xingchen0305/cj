@@ -29,7 +29,7 @@ public class BookInfo extends BaseUuidEntity{
     private String deleteStatus;
     private String remark;
     private String businessType;
-    private String warehouseInfoID;
+//    private String warehouseInfoID;
 
     @Column(name = "USER_NAME")
     public String getUserName() {
@@ -157,12 +157,12 @@ public class BookInfo extends BaseUuidEntity{
         this.businessType = businessType;
     }
 
-    @Column(name = "WAREHOUSE_INFO_ID")
-    public String getWarehouseInfoID() {
-        return warehouseInfoID;
-    }
-
-    public void setWarehouseInfoID(String warehouseInfoID) {
-        this.warehouseInfoID = warehouseInfoID;
-    }
+//    @Column(name = "WAREHOUSE_INFO_ID")
+//    public String getWarehouseInfoID() {
+//        return warehouseInfoID;
+//    }
+//
+//    public void setWarehouseInfoID(String warehouseInfoID) {
+//        this.warehouseInfoID = warehouseInfoID;
+//    }
 }
