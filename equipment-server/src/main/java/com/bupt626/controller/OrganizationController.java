@@ -1,6 +1,6 @@
 package com.bupt626.controller;
 
-import com.bupt626.entity.Organization;
+import com.bupt626.domain.Organization;
 import com.bupt626.service.OrganizationServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

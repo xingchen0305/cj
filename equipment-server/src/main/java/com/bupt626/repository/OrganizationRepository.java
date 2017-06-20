@@ -1,6 +1,6 @@
 package com.bupt626.repository;
 
-import com.bupt626.entity.Organization;
+import com.bupt626.domain.Organization;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 

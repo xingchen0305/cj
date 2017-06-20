@@ -1,12 +1,7 @@
-package com.bupt626.entity;
+package com.bupt626.domain;
 import com.bupt626.common.BaseUuidEntity;
-import com.bupt626.common.base.BasePageService;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
-import java.util.Date;
 
 /**
  * Created by CJ on 2017/6/18.

@@ -1,9 +1,8 @@
 package com.bupt626.service;
 
 import com.bupt626.common.base.BasePageService;
-import com.bupt626.entity.Organization;
+import com.bupt626.domain.Organization;
 import com.bupt626.repository.OrganizationRepository;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
