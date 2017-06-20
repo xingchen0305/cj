@@ -17,6 +17,9 @@ public class BaseWarehouse {
     private String username;
     private Timestamp createTime;
     private Timestamp lastUpdate;
+    private String orgId;
+    //游离态字段
+    private String orgName;
 
     @Id
     @GeneratedValue(generator = "uuid")
@@ -61,4 +64,15 @@ public class BaseWarehouse {
     public void setLastUpdate(Timestamp lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
+
+    @Basic
+    @Column(name = "ORG_ID")
+    public String getorgId() { return orgId; }
+    public void setOrgId(String orgId) {
+        this.orgId = orgId;
+    }
+
+    @Transient
+    public String getOrgName() { return orgName; }
+    public void setOrgName(String orgName) { this.orgName = orgName; }
 }

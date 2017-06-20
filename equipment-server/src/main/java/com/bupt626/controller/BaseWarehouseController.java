@@ -8,7 +8,6 @@ import com.bupt626.service.BaseWarehouseService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -28,8 +27,18 @@ public class BaseWarehouseController extends BaseCommonController {
         baseWarehouseService.save(entity);
         return sendSuccessMessage();
     }
-    @RequestMapping("/findById")
+    @RequestMapping("/save")
+    public String save(@RequestBody BaseWarehouse entity){
+        baseWarehouseService.save(entity);
+        return sendSuccessMessage();
+    }
+    @RequestMapping("/findById" )
     public String findById(String id){
+        BaseWarehouse baseWarehouse = baseWarehouseService.findOne(id);
+        return sendSuccessMessage(baseWarehouse);
+    }
+    @RequestMapping(value = "/find/{id}",method = RequestMethod.GET)
+    public String find(@PathVariable("id") String id){
         BaseWarehouse baseWarehouse = baseWarehouseService.findOne(id);
         return sendSuccessMessage(baseWarehouse);
     }
@@ -49,22 +58,18 @@ public class BaseWarehouseController extends BaseCommonController {
         if (StringUtils.isNotBlank(entity.getLocation())){
             parameterMap.put("location", entity.getLocation());
         }
-        if (StringUtils.isNotBlank(entity.getUsername())){
-            parameterMap.put("username", entity.getUsername());
-        }
         return parameterMap;
     }
 
     @RequestMapping("/deleteById")
     public String deleteById(String id){
-
-            baseWarehouseService.deleteById(id);
-            return sendSuccessMessage();
-
+        baseWarehouseService.deleteById(id);
+        return sendSuccessMessage();
     }
 
-    @RequestMapping("/demo")
-    public String demo(){
-        return "demo";
+    @RequestMapping(value = "/find/{id}",method = RequestMethod.DELETE)
+    public String delete(@PathVariable ("id") String id) {
+        baseWarehouseService.deleteById(id);
+        return sendSuccessMessage();
     }
 }
