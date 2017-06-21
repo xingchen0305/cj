@@ -1,8 +1,11 @@
 package com.bupt626.controller;
 
-import com.bupt626.common.BaseCommonController;
-import com.bupt626.common.Constants;
-import com.bupt626.common.PageEntity;
+
+
+
+import com.bupt626.common.base.BaseCommonController;
+import com.bupt626.common.base.Constants;
+import com.bupt626.common.base.PageEntity;
 import com.bupt626.domain.Asset;
 import com.bupt626.service.AssetService;
 
@@ -10,9 +13,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 import java.util.HashMap;
 import java.util.Map;
 

@@ -1,7 +1,9 @@
 package com.bupt626.service;
 
-import com.bupt626.common.BasePageService;
-import com.bupt626.common.PageEntity;
+
+
+import com.bupt626.common.base.BasePageService;
+import com.bupt626.common.base.PageEntity;
 import com.bupt626.domain.Asset;
 
 import com.bupt626.repository.AssetRepository;
@@ -13,9 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Map;
 
-/**
+/*
  * Created by bupt626 on 17-4-12.
- */
+*/
+
 @Service
 @Transactional
 public class AssetService extends BasePageService<Asset, String> {
