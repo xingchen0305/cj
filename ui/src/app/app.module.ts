@@ -22,6 +22,10 @@ import {TopnavComponent} from "./home-root/topnav/topnav.component";
 import {SidebarComponent} from "./home-root/sidebar/sidebar.component";
 import {DemoService} from "./common/service/demo.service";
 import {provideAppConfig} from "./app.config";
+import { WarehouseOneComponent } from './warehouse-one/warehouse-one.component';
+import { WarehouseTwoComponent } from './warehouse-two/warehouse-two.component';
+import { EditInfoComponent } from './edit-info/edit-info.component';
+import { CreateWarehouseComponent } from './create-warehouse/create-warehouse.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +37,11 @@ import {provideAppConfig} from "./app.config";
     MemberBrowsingComponent,
     AttendanceRecordComponent,
     TopnavComponent,
-    SidebarComponent
+    SidebarComponent,
+    WarehouseOneComponent,
+    WarehouseTwoComponent,
+    EditInfoComponent,
+    CreateWarehouseComponent
   ],
   imports: [
     BrowserModule,
