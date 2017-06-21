@@ -49,7 +49,7 @@ public class BaseWarehouse  {
 
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
-    @Column(name= "CREATE_TIME")
+    @Column(name= "CREATE_TIME", updatable = false)
     public Date getCreateTime(){
         return createTime;
     }
