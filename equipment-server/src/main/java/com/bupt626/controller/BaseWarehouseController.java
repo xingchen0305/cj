@@ -7,7 +7,9 @@ import com.bupt626.domain.BaseWarehouse;
 import com.bupt626.service.BaseWarehouseService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -22,8 +24,8 @@ public class BaseWarehouseController extends BaseCommonController {
     @Autowired
     private BaseWarehouseService baseWarehouseService;
 
-    @RequestMapping("/saveOrUpdate")
-    public String saveOrUpdate(BaseWarehouse entity){
+    @RequestMapping( path = "/saveOrUpdate", method = RequestMethod.POST)
+    public String saveOrUpdate(@RequestBody BaseWarehouse entity){
         baseWarehouseService.save(entity);
         return sendSuccessMessage();
     }
