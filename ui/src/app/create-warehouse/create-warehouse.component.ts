@@ -18,7 +18,9 @@ export class CreateWarehouseComponent implements OnInit {
   }
   onSubmit(value){
     this.warehouseService.editWareHouse(value).subscribe(
-      res=> {alert(" edit success")}
+      res=> {
+        console.log(res);
+        /*alert(" edit success")*/}
     )
   }
 

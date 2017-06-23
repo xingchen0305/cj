@@ -1,8 +1,9 @@
 package com.bupt626.controller;
 
-import com.bupt626.common.BaseCommonController;
-import com.bupt626.common.Constants;
-import com.bupt626.common.PageEntity;
+
+import com.bupt626.common.base.BaseCommonController;
+import com.bupt626.common.base.Constants;
+import com.bupt626.common.base.PageEntity;
 import com.bupt626.domain.Asset;
 import com.bupt626.service.AssetService;
 
@@ -28,12 +29,12 @@ public class AssetController extends BaseCommonController {
 
 
     @RequestMapping(value="/testAsset", method= RequestMethod.POST)
-    public String save(Asset entity) {
+    public String save(@RequestBody Asset entity) {
         assetService.save(entity);
         return sendSuccessMessage();
     }
     @RequestMapping(value="/testAsset", method= RequestMethod.PUT)
-    public String update(Asset entity) {
+    public String update(@RequestBody Asset entity) {
         assetService.save(entity);
         return sendSuccessMessage();
     }

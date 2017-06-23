@@ -27,6 +27,8 @@ import { WarehouseTwoComponent } from './warehouse-two/warehouse-two.component';
 import { EditInfoComponent } from './edit-info/edit-info.component';
 import { CreateWarehouseComponent } from './create-warehouse/create-warehouse.component';
 import {WarehouseService} from "./common/service/warehouse.service";
+import {AssetService} from "./common/service/asset.service";
+import { EditAssetComponent } from './edit-asset/edit-asset.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import {WarehouseService} from "./common/service/warehouse.service";
     WarehouseOneComponent,
     WarehouseTwoComponent,
     EditInfoComponent,
-    CreateWarehouseComponent
+    CreateWarehouseComponent,
+    EditAssetComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +74,8 @@ import {WarehouseService} from "./common/service/warehouse.service";
     UnauthenticatedGuard,
     HomeRootComponentGuard,
     DemoService,
-    WarehouseService
+    WarehouseService,
+    AssetService
   ],
   bootstrap: [AppComponent]
 })
