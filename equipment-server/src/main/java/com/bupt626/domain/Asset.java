@@ -1,6 +1,6 @@
 package com.bupt626.domain;
 
-import com.bupt626.common.BaseUuidEntity;
+import com.bupt626.common.base.BaseUuidEntity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;

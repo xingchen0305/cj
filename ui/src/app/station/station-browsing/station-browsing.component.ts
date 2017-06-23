@@ -15,8 +15,6 @@ import {WarehouseService} from "../../common/service/warehouse.service";
   styleUrls: ['./station-browsing.component.scss']
 })
 export class StationBrowsingComponent implements OnInit {
-  isAdd: boolean;
-  contact: any = {};
 
   constructor(private warehouseService: WarehouseService, private http: HttpInterceptor, private _router: Router,) {
   }
@@ -24,9 +22,7 @@ export class StationBrowsingComponent implements OnInit {
   ngOnInit(): void {
     this.getWarehouses();
   }
-
   data: any;
-
   getWarehouses() {
     this.warehouseService.getWareHouses().subscribe(
       (response) => {

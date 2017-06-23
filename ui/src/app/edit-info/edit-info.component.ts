@@ -30,28 +30,11 @@ export class EditInfoComponent implements OnInit {
 
   onSubmit(value){
     this.warehouseService.editWareHouse(value).subscribe(
-      res=> {alert(" edit success")}
+      res=> {
+        alert(" edit success");
+      }
       )
   }
-  editInfo(index){
-/*    let body= JSON.stringify({id: index});
-    console.log(body);
-    var headers = new Headers();
-    headers.append('Content-Type','application/json');
 
-     return this.http.post('http://10.101.164.248:8755/baseWarehouse/findById',body, {
-      headers: headers
-    }).map(res =>this.data=res.json())
-      .subscribe(
-      );*/
-    let params: URLSearchParams = new URLSearchParams();
-    params.set('id',index);
-    this.http.get("http://10.101.164.248:8755/baseWarehouse/findById",{search:params})
-    /*  .map(rsp=>rsp.json())*/.subscribe(
-    res=> {
-      this.data =res.json().data;
-     /* console.log(this.data);*/
-    });
-  }
 
 }
