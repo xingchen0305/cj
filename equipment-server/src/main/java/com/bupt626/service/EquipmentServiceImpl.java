@@ -1,6 +1,6 @@
 package com.bupt626.service;
 
-import com.bupt626.entity.Equipment;
+import com.bupt626.domain.Equipment;
 import com.bupt626.repository.EquipmentRepository;
 import com.github.abel533.easyxls.EasyXls;
 import org.springframework.beans.factory.annotation.Autowired;

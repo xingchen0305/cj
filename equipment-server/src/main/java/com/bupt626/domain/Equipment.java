@@ -1,4 +1,4 @@
-package com.bupt626.entity;
+package com.bupt626.domain;
 
 import javax.persistence.*;
 import java.util.Date;
