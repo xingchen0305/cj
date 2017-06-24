@@ -27,3 +27,6 @@
 `systemctl stop firewalld `先关掉防火墙
 ` vi /etc/sysctl.conf`  追加  `net.ipv6.conf.all.forwarding = 1`
 `sysctl -p`    //  使其生效
+`sysctl -w net.ipv4.ip_forward=1`
+
+`iptables -F`
