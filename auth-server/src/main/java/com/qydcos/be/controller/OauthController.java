@@ -8,6 +8,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.common.OAuth2AccessToken;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
+import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
+import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
+import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +29,12 @@ public class OauthController {
     private JdbcUserDetailsManager jdbcUserDetailsManager;
 
     @Autowired UserRepository userRepository;
+
+    @Autowired
+    private AuthorizationServerTokenServices authorizationServerTokenServices;
+
+    @Autowired
+    private ConsumerTokenServices consumerTokenServices;
 
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
@@ -71,5 +82,12 @@ public class OauthController {
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
 
+    @GetMapping("/oauth/revoke-token")
+    public ResponseEntity logout(Principal principal){
+        OAuth2Authentication oAuth2Authentication = (OAuth2Authentication) principal;
+        OAuth2AccessToken accessToken = authorizationServerTokenServices.getAccessToken(oAuth2Authentication);
+        consumerTokenServices.revokeToken(accessToken.getValue());
+        return new ResponseEntity(HttpStatus.OK);
+    }
 
 }
