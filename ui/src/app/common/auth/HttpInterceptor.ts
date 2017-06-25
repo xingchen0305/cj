@@ -57,20 +57,20 @@ export class HttpInterceptor extends Http {
   }
 
   getRequestOptionArgs(options?: RequestOptionsArgs): RequestOptionsArgs {
-    // if (options == null) {
-    //   options = new RequestOptions();
-    // }
-    // if (options.headers == null) {
-    //   options.headers = new Headers();
-    // }
-    // if (options.headers.get('Content-Type') == null) {
-    //   options.headers.append('Content-Type', 'application/json');
-    // }
-    // let token = this._localStorageService.getAuth('access_token');
-    //
-    // options.headers.append('Accept', 'application/json');
-    // options.headers.append('Authorization', 'Bearer ' + token);
-    // options.withCredentials = false;
+    if (options == null) {
+      options = new RequestOptions();
+    }
+    if (options.headers == null) {
+      options.headers = new Headers();
+    }
+    if (options.headers.get('Content-Type') == null) {
+      options.headers.append('Content-Type', 'application/json');
+    }
+    let token = this._localStorageService.getAuth('access_token');
+
+    options.headers.append('Accept', 'application/json');
+    options.headers.append('Authorization', 'Bearer ' + token);
+    options.withCredentials = false;
     return options;
   }
 
