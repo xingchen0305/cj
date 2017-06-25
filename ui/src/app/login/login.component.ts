@@ -73,35 +73,4 @@ export class LoginComponent implements OnInit {
   }
 
 
-  /* public user: any;
-
-   private isSubmitting: boolean = false;
-
-   constructor(private _http: Http, private router: Router, private _userService: UserService) {
-
-   }
-
-   ngOnInit() {
-     // this.user = {username: '', password: ''};
-     // document.getElementById('canvas_full').oncontextmenu = () => { return false; };
-     // backgroundShaking('canvas-container', 'canvas_full', '#006691', '#005173');
-   }
-
-
-   loginSuccess(data) {
-     if (data.error) {
-       alert(data.error);
-       return false;
-     }
-     localStorage.setItem('access_token', data.token.access_token);
-     localStorage.setItem('refresh_token', data.token.access_token);
-     localStorage.setItem('username', data.user.username);
-     localStorage.setItem('isAuthenticated', 'true');
-     let redirectUrl = localStorage.getItem('lastVisitUrl');
-     if (!redirectUrl || '/login' === redirectUrl) {
-       redirectUrl = '/';
-     }
-     localStorage.removeItem('lastVisitUrl');
-     this.router.navigate([redirectUrl]);
-   }*/
 }

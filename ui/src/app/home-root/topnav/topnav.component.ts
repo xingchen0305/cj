@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {LocalStorageService} from "../../common/local-storage.service";
 import {UserService} from "../../common/auth/auth.service";
 import {Router} from "@angular/router";
+import {AuthWithTokenService} from "../../common/auth/auth-with-token.service";
 
 @Component({
   selector: 'app-topnav',
@@ -10,7 +11,7 @@ import {Router} from "@angular/router";
 })
 export class TopnavComponent implements OnInit {
 
-  constructor(private _localStorageService: LocalStorageService, private _userService: UserService, private _router: Router) { }
+  constructor(private _localStorageService: LocalStorageService, private authWithTokenService: AuthWithTokenService, private _router: Router) { }
 
   user: any = {
     username: ''
@@ -20,7 +21,7 @@ export class TopnavComponent implements OnInit {
   }
 
   logout(){
-    this._userService.logout();
+    this.authWithTokenService.logout();
     this._router.navigate(['/login']);
   }
 }

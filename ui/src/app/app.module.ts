@@ -29,6 +29,8 @@ import { CreateWarehouseComponent } from './create-warehouse/create-warehouse.co
 import {WarehouseService} from "./common/service/warehouse.service";
 import {AssetService} from "./common/service/asset.service";
 import { EditAssetComponent } from './edit-asset/edit-asset.component';
+import {AuthWithTokenService} from "./common/auth/auth-with-token.service";
+
 
 @NgModule({
   declarations: [
@@ -75,7 +77,8 @@ import { EditAssetComponent } from './edit-asset/edit-asset.component';
     HomeRootComponentGuard,
     DemoService,
     WarehouseService,
-    AssetService
+    AssetService,
+    AuthWithTokenService
   ],
   bootstrap: [AppComponent]
 })

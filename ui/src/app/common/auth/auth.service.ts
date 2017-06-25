@@ -1,9 +1,11 @@
-import { Injectable, Inject } from '@angular/core';
-import { Http, Response, Headers, RequestOptions, RequestOptionsArgs } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/throw';
-import { LocalStorageService } from '../local-storage.service';
+import {Injectable, Inject} from "@angular/core";
+import {Http, Response, Headers, RequestOptions} from "@angular/http";
+import {Observable} from "rxjs/Observable";
+import "rxjs/add/observable/throw";
+import {LocalStorageService} from "../local-storage.service";
 import {OAUTH_TOKEN_URI} from "../backen-const";
+import {AuthWithTokenService} from "./auth-with-token.service";
+
 
 /**
  * Import interfaces that service depends on
@@ -32,14 +34,7 @@ export class UserService {
     return true === this._localStorageService.getAuth('isAuthenticated');
   }
 
-  logout() {
-    // localStorage.removeItem('access_token');
-    // localStorage.removeItem('refresh_token');
-    // localStorage.removeItem('username');
-    // localStorage.removeItem('isAuthenticated');
-    this._localStorageService.clearAuth();
-    return true;
-  }
+
 
   register(user) {
     return this.http.post(this._config.registerUrl, user)
