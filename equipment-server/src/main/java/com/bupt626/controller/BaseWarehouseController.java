@@ -7,10 +7,7 @@ import com.bupt626.domain.BaseWarehouse;
 import com.bupt626.service.BaseWarehouseService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,13 +21,23 @@ public class BaseWarehouseController extends BaseCommonController {
     @Autowired
     private BaseWarehouseService baseWarehouseService;
 
-    @RequestMapping( path = "/saveOrUpdate", method = RequestMethod.POST)
-    public String saveOrUpdate(@RequestBody BaseWarehouse entity){
+    @RequestMapping("/saveOrUpdate")
+    public String saveOrUpdate(BaseWarehouse entity){
         baseWarehouseService.save(entity);
         return sendSuccessMessage();
     }
-    @RequestMapping("/findById")
+    @RequestMapping("/save")
+    public String save(@RequestBody BaseWarehouse entity){
+        baseWarehouseService.save(entity);
+        return sendSuccessMessage();
+    }
+    @RequestMapping(value = "/findById",method = RequestMethod.POST )
     public String findById(String id){
+        BaseWarehouse baseWarehouse = baseWarehouseService.findOne(id);
+        return sendSuccessMessage(baseWarehouse);
+    }
+    @RequestMapping("/find/{id}")
+    public String find(@PathVariable("id") String id){
         BaseWarehouse baseWarehouse = baseWarehouseService.findOne(id);
         return sendSuccessMessage(baseWarehouse);
     }

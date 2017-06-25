@@ -47,7 +47,6 @@ public class BaseCommonController {
 	}
 	
 
-	
 	public static String Object2Json(Object obj, String dateFormat) {
 		Gson gson = null;
 		if (null != dateFormat) {

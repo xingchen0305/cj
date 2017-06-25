@@ -4,10 +4,12 @@ import com.bupt626.common.base.BasePageService;
 import com.bupt626.common.base.PageEntity;
 import com.bupt626.domain.BaseWarehouse;
 import com.bupt626.repository.BaseWarehouseRepository;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,6 +20,8 @@ import java.util.Map;
 public class BaseWarehouseService extends BasePageService<BaseWarehouse,String> {
     @Autowired
     private BaseWarehouseRepository baseWarehouseRepository;
+    @Autowired
+    private BaseWarehouseRepository cod;
 
     public void save(BaseWarehouse entity){
         baseWarehouseRepository.save(entity);
@@ -41,5 +45,13 @@ public class BaseWarehouseService extends BasePageService<BaseWarehouse,String> 
             sql.append(" and username =:username ");
         }
         super.pageByHql(sql.toString(),pageEntity,paramaMap);
+        translate(pageEntity.getResults());
+    }
+
+    @Override
+    protected void translate(List<BaseWarehouse> list) {
+        super.translate(list);
+        for (BaseWarehouse baseWarehouse:list ) {
+        }
     }
 }
