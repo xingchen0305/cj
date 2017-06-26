@@ -8,7 +8,7 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 
 
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
-@EnableDiscoveryClient
+//@EnableDiscoveryClient
 @EnableFeignClients
 public class EbookApplication {
 

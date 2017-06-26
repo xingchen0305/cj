@@ -24,7 +24,7 @@ public class BaseWarehouseController extends BaseCommonController {
     private BaseWarehouseService baseWarehouseService;
 
     @RequestMapping("/saveOrUpdate")
-    public String saveOrUpdate(BaseWarehouse entity){
+    public String saveOrUpdate(@RequestBody BaseWarehouse entity){
         baseWarehouseService.save(entity);
         return sendSuccessMessage();
     }

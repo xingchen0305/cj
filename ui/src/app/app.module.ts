@@ -22,6 +22,15 @@ import {TopnavComponent} from "./home-root/topnav/topnav.component";
 import {SidebarComponent} from "./home-root/sidebar/sidebar.component";
 import {DemoService} from "./common/service/demo.service";
 import {provideAppConfig} from "./app.config";
+import { WarehouseOneComponent } from './warehouse-one/warehouse-one.component';
+import { WarehouseTwoComponent } from './warehouse-two/warehouse-two.component';
+import { EditInfoComponent } from './edit-info/edit-info.component';
+import { CreateWarehouseComponent } from './create-warehouse/create-warehouse.component';
+import {WarehouseService} from "./common/service/warehouse.service";
+import {AssetService} from "./common/service/asset.service";
+import { EditAssetComponent } from './edit-asset/edit-asset.component';
+import {AuthWithTokenService} from "./common/auth/auth-with-token.service";
+
 
 @NgModule({
   declarations: [
@@ -33,7 +42,12 @@ import {provideAppConfig} from "./app.config";
     MemberBrowsingComponent,
     AttendanceRecordComponent,
     TopnavComponent,
-    SidebarComponent
+    SidebarComponent,
+    WarehouseOneComponent,
+    WarehouseTwoComponent,
+    EditInfoComponent,
+    CreateWarehouseComponent,
+    EditAssetComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +75,10 @@ import {provideAppConfig} from "./app.config";
     provideAppConfig(),
     UnauthenticatedGuard,
     HomeRootComponentGuard,
-    DemoService
+    DemoService,
+    WarehouseService,
+    AssetService,
+    AuthWithTokenService
   ],
   bootstrap: [AppComponent]
 })

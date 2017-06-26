@@ -22,8 +22,23 @@
 
 （这个尽量卸载bootstrap里面，不然去服务中心改太麻烦）
 
-### 如何解决监听只监听tcp6，内部无法访问engine问题 (未解决)
+### 容器A不能通过HOST IP 访问容器B (未解决)
+防火墙问题，DNAT 有一条规则是 !docker0, 不会改
 
-`systemctl stop firewalld `先关掉防火墙
-` vi /etc/sysctl.conf`  追加  `net.ipv6.conf.all.forwarding = 1`
-`sysctl -p`    //  使其生效
+`systemctl stop firewalld ` 
+`iptables -F`
+上面两个方法是测试 确认是因为iptables.
+
+解决： 暂时使用 --link 来部署
+
+
+
+### fegin 问题
+#### fegin 配置 Interceptor 来加入 OAuth Token
+参看 Demo 的 OAuth2FeignClintConfiguration
+    问题：配置类 不能得到 Security Context 就不能得到token
+        原因： Hystrix 会隔离进程
+        解决： 
+        `feign.hystrix.enabled=false`  或者
+        `hystrix.command.default.execution.isolation.strategy=SEMAPHORE`
+        参看 https://github.com/spring-cloud/spring-cloud-security/issues/89
