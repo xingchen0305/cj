@@ -6,6 +6,7 @@ import { MemberBrowsingComponent } from '../member/member-browsing/member-browsi
 import { AttendanceRecordComponent } from '../member/attendance-record/attendance-record.component';
 import {WarehouseOneComponent } from '../warehouse-one/warehouse-one.component';
 import {EditInfoComponent } from '../edit-info/edit-info.component';
+import {EditAssetComponent } from '../edit-asset/edit-asset.component';
 import {WarehouseTwoComponent } from '../warehouse-two/warehouse-two.component';
 import { CreateWarehouseComponent } from '../create-warehouse/create-warehouse.component';
 import {HomeRootComponentGuard} from "./home-root.guard";
@@ -26,6 +27,7 @@ export const HomeRootRoutes: Routes = [
       {path:'warehouseOne/:id',component:WarehouseOneComponent},
       {path:'editInfo/:id',component:EditInfoComponent},
       {path:'createWarehouse',component: CreateWarehouseComponent},
+      {path:'editAsset/:id',component:EditAssetComponent},
       //{path:'warehouseTwo',component:WarehouseTwoComponent}
 
     ]

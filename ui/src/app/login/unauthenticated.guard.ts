@@ -9,6 +9,11 @@ export class UnauthenticatedGuard implements CanActivate {
   constructor(private _router: Router, private _userService: UserService) {}
 
   canActivate(): Observable<boolean> | boolean {
-    return true;
+    if (!this._userService.authenticated()) {
+      return true;
+    } else {
+      this._router.navigateByUrl('/');
+      return false;
+    }
   }
 }

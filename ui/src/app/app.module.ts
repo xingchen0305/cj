@@ -26,6 +26,11 @@ import { WarehouseOneComponent } from './warehouse-one/warehouse-one.component';
 import { WarehouseTwoComponent } from './warehouse-two/warehouse-two.component';
 import { EditInfoComponent } from './edit-info/edit-info.component';
 import { CreateWarehouseComponent } from './create-warehouse/create-warehouse.component';
+import {WarehouseService} from "./common/service/warehouse.service";
+import {AssetService} from "./common/service/asset.service";
+import { EditAssetComponent } from './edit-asset/edit-asset.component';
+import {AuthWithTokenService} from "./common/auth/auth-with-token.service";
+
 
 @NgModule({
   declarations: [
@@ -41,7 +46,8 @@ import { CreateWarehouseComponent } from './create-warehouse/create-warehouse.co
     WarehouseOneComponent,
     WarehouseTwoComponent,
     EditInfoComponent,
-    CreateWarehouseComponent
+    CreateWarehouseComponent,
+    EditAssetComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +75,10 @@ import { CreateWarehouseComponent } from './create-warehouse/create-warehouse.co
     provideAppConfig(),
     UnauthenticatedGuard,
     HomeRootComponentGuard,
-    DemoService
+    DemoService,
+    WarehouseService,
+    AssetService,
+    AuthWithTokenService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Http, Request, RequestOptionsArgs, Response, RequestOptions, ConnectionBackend, Headers } from '@angular/http';
+import {HttpInterceptor} from "../common/auth/HttpInterceptor";
+import {warehouse} from "./warehouse";
+import {WarehouseService} from "../common/service/warehouse.service";
 
 @Component({
   selector: 'app-create-warehouse',
@@ -7,9 +11,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateWarehouseComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private warehouseService: WarehouseService,private http: HttpInterceptor) {
+  }
+  data :any={};
   ngOnInit() {
+  }
+  onSubmit(value){
+    this.warehouseService.editWareHouse(value).subscribe(
+      res=> {
+        console.log(res);
+        /*alert(" edit success")*/}
+    )
   }
 
 }

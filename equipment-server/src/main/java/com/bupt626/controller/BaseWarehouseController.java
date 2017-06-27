@@ -5,7 +5,7 @@ import com.bupt626.common.base.Constants;
 import com.bupt626.common.base.PageEntity;
 import com.bupt626.domain.BaseWarehouse;
 import com.bupt626.service.BaseWarehouseService;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,24 +22,36 @@ public class BaseWarehouseController extends BaseCommonController {
     private BaseWarehouseService baseWarehouseService;
 
     @RequestMapping("/saveOrUpdate")
-    public String saveOrUpdate(BaseWarehouse entity){
+    public String saveOrUpdate(@RequestBody BaseWarehouse entity){
         baseWarehouseService.save(entity);
         return sendSuccessMessage();
     }
-    @RequestMapping("/save")
+    @RequestMapping(value = "/save",method = RequestMethod.POST)
     public String save(@RequestBody BaseWarehouse entity){
         baseWarehouseService.save(entity);
         return sendSuccessMessage();
     }
-    @RequestMapping("/findById" )
+    @RequestMapping(value = "/update",method = RequestMethod.PUT)
+    public String update(@RequestBody BaseWarehouse entity){
+        if (StringUtils.isNotBlank(entity.getId())){
+            BaseWarehouse baseWarehouse = baseWarehouseService.findOne(entity.getId());
+            BeanUtills.copyProperties(entity,baseWarehouse);
+            baseWarehouseService.save(baseWarehouse);
+            return sendSuccessMessage();
+        }else {
+            return sendFailMessage();
+        }
+    }
+    @RequestMapping(value = "/findById",method = RequestMethod.POST )
     public String findById(String id){
         BaseWarehouse baseWarehouse = baseWarehouseService.findOne(id);
         return sendSuccessMessage(baseWarehouse);
     }
-    @RequestMapping(value = "/find/{id}",method = RequestMethod.GET)
+    @RequestMapping("/find/{id}")
     public String find(@PathVariable("id") String id){
         BaseWarehouse baseWarehouse = baseWarehouseService.findOne(id);
-        return sendSuccessMessage(baseWarehouse);
+//        return sendSuccessMessage(baseWarehouse);
+        return sendMessage("true","",baseWarehouse, DateUtil.DATE);
     }
 
     @RequestMapping("/page")

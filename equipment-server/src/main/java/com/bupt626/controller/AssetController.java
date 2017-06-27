@@ -1,8 +1,6 @@
 package com.bupt626.controller;
 
 
-
-
 import com.bupt626.common.base.BaseCommonController;
 import com.bupt626.common.base.Constants;
 import com.bupt626.common.base.PageEntity;
@@ -13,7 +11,9 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,12 +29,12 @@ public class AssetController extends BaseCommonController {
 
 
     @RequestMapping(value="/testAsset", method= RequestMethod.POST)
-    public String save(Asset entity) {
+    public String save(@RequestBody Asset entity) {
         assetService.save(entity);
         return sendSuccessMessage();
     }
     @RequestMapping(value="/testAsset", method= RequestMethod.PUT)
-    public String update(Asset entity) {
+    public String update(@RequestBody Asset entity) {
         assetService.save(entity);
         return sendSuccessMessage();
     }
