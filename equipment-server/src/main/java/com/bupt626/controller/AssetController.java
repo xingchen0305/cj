@@ -23,26 +23,30 @@ public class AssetController extends BaseCommonController {
     @Autowired
     private AssetService assetService;
 
-
-    @RequestMapping(value="/testAsset", method= RequestMethod.POST)
-    public String save(Asset entity) {
+    @RequestMapping("/saveOrUpdate")
+    public String saveOrUpdate(Asset entity){
         assetService.save(entity);
         return sendSuccessMessage();
     }
-    @RequestMapping(value="/testAsset", method= RequestMethod.PUT)
-    public String update(Asset entity) {
+    @RequestMapping(value="/save", method= RequestMethod.POST)
+    public String save(@RequestBody Asset entity){
+        assetService.save(entity);
+        return sendSuccessMessage();
+    }
+    @RequestMapping(value="/Asset", method= RequestMethod.PUT)
+    public String update(@RequestBody Asset entity) {
         assetService.save(entity);
         return sendSuccessMessage();
     }
 
-    @RequestMapping(value="/testAsset/{id}", method= RequestMethod.GET)
+    @RequestMapping(value="/Asset/{id}", method= RequestMethod.GET)
        public String findById(@PathVariable(value="id") String id) {
         Asset asset = assetService.findOne(id);
         return sendSuccessMessage(asset);
     }
 
 
-    @RequestMapping(value="/testAsset/{id}", method=RequestMethod.DELETE)
+    @RequestMapping(value="/Asset/{id}", method=RequestMethod.DELETE)
     public String deleteById(@PathVariable(value="id")String ids) {
         if (StringUtils.isNotBlank(ids)) {
             assetService.deleteById(ids);
