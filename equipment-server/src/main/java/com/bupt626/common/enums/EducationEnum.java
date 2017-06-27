@@ -1,4 +1,4 @@
-package com.bupt.common.enums;
+package com.bupt626.common.enums;
 
 /**
  * Created by bupt626 on 17-4-15.

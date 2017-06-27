@@ -1,4 +1,4 @@
-package com.bupt.common.utils;
+package com.bupt626.common.utils;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,4 +1,4 @@
-package com.bupt.common.base;
+package com.bupt626.common.base;
 
 import com.bupt.common.utils.ReflectUtils;
 import org.hibernate.SQLQuery;
