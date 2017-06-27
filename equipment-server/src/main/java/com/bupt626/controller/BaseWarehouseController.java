@@ -31,7 +31,7 @@ public class BaseWarehouseController extends BaseCommonController {
         baseWarehouseService.save(entity);
         return sendSuccessMessage();
     }
-    @RequestMapping(value = "/findById",method = RequestMethod.POST )
+    @RequestMapping(value = "/findById",method = RequestMethod.GET )
     public String findById(String id){
         BaseWarehouse baseWarehouse = baseWarehouseService.findOne(id);
         return sendSuccessMessage(baseWarehouse);
