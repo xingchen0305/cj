@@ -78,6 +78,7 @@ public class AssetController extends BaseCommonController {
              return sendFailMessage();
          }
      }*/
+
     @RequestMapping("/page")
     public String page(Asset entity, int start) {
         PageEntity<Asset> pageEntity = new PageEntity<>(start, Constants.PAGE_SIZE);
