@@ -23,6 +23,7 @@ public class BaseUuidEntity implements Serializable{
      * Hibernate3.6以后,UUIDHexGenerator(uuid)已不推荐使用，改用UUIDGenerator(org.hibernate
      * .id.UUIDGenerator)
      */
+
     @Id
     @Column(name = "ID", updatable = false)
     @GeneratedValue(generator = "system-uuid")
@@ -31,14 +32,13 @@ public class BaseUuidEntity implements Serializable{
 
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
-    @Column(name= "CREATE_TIME")
+    @Column(name= "CREATE_TIME",updatable = false)
     private Date createTime;
 
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
     @Column(name= "LAST_UPDATE")
     private Date lastUpdate;
-
     public String getId() {
         return id;
     }

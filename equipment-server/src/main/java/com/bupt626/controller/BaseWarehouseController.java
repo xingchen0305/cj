@@ -1,8 +1,8 @@
 package com.bupt626.controller;
 
-import com.bupt626.common.base.BaseCommonController;
-import com.bupt626.common.base.Constants;
-import com.bupt626.common.base.PageEntity;
+import com.bupt626.common.BaseCommonController;
+import com.bupt626.common.Constants;
+import com.bupt626.common.PageEntity;
 import com.bupt626.domain.BaseWarehouse;
 import com.bupt626.service.BaseWarehouseService;
 import org.apache.commons.lang.StringUtils;

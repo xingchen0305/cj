@@ -1,15 +1,16 @@
 package com.bupt626.service;
 
-import com.bupt626.common.base.BasePageService;
-import com.bupt626.common.base.PageEntity;
+import com.bupt626.common.BasePageService;
+import com.bupt626.common.PageEntity;
+import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
 import com.bupt626.domain.BaseWarehouse;
 import com.bupt626.repository.BaseWarehouseRepository;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+
+
 import java.util.Map;
 
 /**
