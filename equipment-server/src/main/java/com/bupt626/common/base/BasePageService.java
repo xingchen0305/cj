@@ -1,5 +1,6 @@
-package com.bupt626.common;
+package com.bupt.common.base;
 
+import com.bupt.common.utils.ReflectUtils;
 import org.hibernate.SQLQuery;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;

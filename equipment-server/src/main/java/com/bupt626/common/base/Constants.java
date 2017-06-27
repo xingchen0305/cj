@@ -1,4 +1,4 @@
-package com.bupt626.common;
+package com.bupt.common.base;
 
 /**
  * Created by bupt626 on 17-4-14.

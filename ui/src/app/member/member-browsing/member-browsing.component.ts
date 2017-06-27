@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { DemoService } from '../../common/service/demo.service';
 import {HttpInterceptor} from "../../common/auth/HttpInterceptor";
+import {parseHttpResponse} from "selenium-webdriver/http";
+import {ActivatedRoute} from '@angular/router';
+import {Router} from '@angular/router';
+import {URLSearchParams, RequestOptionsArgs} from '@angular/http';
+import {EQUIPMENT_URI} from "../../common/backen-const";
+import {AssetService} from "../../common/service/asset.service";
 
 @Component({
   selector: 'app-member-browsing',
@@ -9,17 +15,26 @@ import {HttpInterceptor} from "../../common/auth/HttpInterceptor";
 })
 export class MemberBrowsingComponent implements OnInit {
 
-  constructor(private demoService: DemoService,private http: HttpInterceptor) { }
+  constructor(private assetService: AssetService, private http: HttpInterceptor, private _router: Router,) {
+  }
 
   ngOnInit() {
-    this.getDemos();
+    this.getAssets();
   }
   data:any;
-  getDemos(){
-    this.demoService.getDemo().subscribe(
+  getAssets(){
+    this.assetService.getAsset().subscribe(
       (response)=>{
-        this.data=response.json();
+        this.data = response.json().data.results;
+        console.log(this.data)
       }
     );
-}
+  }
+  delete(id,index){
+    this.assetService.deleteById(id).subscribe(
+      (response)=>{
+        this.data.splice(index,1 );
+      }
+    )
+  }
 }

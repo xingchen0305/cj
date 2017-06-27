@@ -1,12 +1,14 @@
-package com.bupt626.common;
+package com.bupt.common.base;
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.*;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Date;
+import com.google.gson.annotations.Expose;
+import org.hibernate.annotations.UpdateTimestamp;
 
 /**
  * @author ycliu
@@ -23,7 +25,7 @@ public class BaseUuidEntity implements Serializable{
      * Hibernate3.6以后,UUIDHexGenerator(uuid)已不推荐使用，改用UUIDGenerator(org.hibernate
      * .id.UUIDGenerator)
      */
-
+    @Expose
     @Id
     @Column(name = "ID", updatable = false)
     @GeneratedValue(generator = "system-uuid")
@@ -32,13 +34,14 @@ public class BaseUuidEntity implements Serializable{
 
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
-    @Column(name= "CREATE_TIME",updatable = false)
+    @Column(name= "CREATE_TIME")
     private Date createTime;
 
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
     @Column(name= "LAST_UPDATE")
     private Date lastUpdate;
+
     public String getId() {
         return id;
     }
