@@ -1,9 +1,10 @@
 package com.bupt626.controller;
 
-import com.bupt626.common.BaseCommonController;
-import com.bupt626.common.Constants;
-import com.bupt626.common.PageEntity;
+import com.bupt626.common.base.BaseCommonController;
+import com.bupt626.common.base.Constants;
+import com.bupt626.common.base.PageEntity;
 import com.bupt626.domain.Asset;
+import com.bupt626.domain.BaseWarehouse;
 import com.bupt626.service.AssetService;
 
 import org.apache.commons.lang.StringUtils;
@@ -34,11 +35,21 @@ public class AssetController extends BaseCommonController {
         return sendSuccessMessage();
     }
     @RequestMapping(value="/Asset", method= RequestMethod.PUT)
-    public String update(@RequestBody Asset entity) {
+    public String update1(@RequestBody Asset entity) {
         assetService.save(entity);
         return sendSuccessMessage();
     }
-
+    @RequestMapping(value = "/update",method = RequestMethod.PUT)
+    public String update2(@RequestBody Asset entity){
+        if (org.apache.commons.lang3.StringUtils.isNotBlank(entity.getId())){
+            Asset  asset = assetService.findOne(entity.getId());
+            BeanUtills.copyProperties(entity,asset);
+            assetService.save(asset);
+            return sendSuccessMessage();
+        }else {
+            return sendFailMessage();
+        }
+    }
     @RequestMapping(value="/Asset/{id}", method= RequestMethod.GET)
        public String findById(@PathVariable(value="id") String id) {
         Asset asset = assetService.findOne(id);
