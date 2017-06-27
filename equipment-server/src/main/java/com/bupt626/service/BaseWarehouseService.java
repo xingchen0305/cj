@@ -1,7 +1,7 @@
 package com.bupt626.service;
 
-import com.bupt626.common.BasePageService;
-import com.bupt626.common.PageEntity;
+import com.bupt626.common.base.BasePageService;
+import com.bupt626.common.base.PageEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;

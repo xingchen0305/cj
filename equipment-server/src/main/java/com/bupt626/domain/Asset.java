@@ -1,6 +1,5 @@
 package com.bupt626.domain;
 
-import com.bupt626.common.BaseUuidEntity;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
