@@ -30,6 +30,11 @@ public class PageEntity<T> {
         this.start = start;
         this.pageSize = pageSize;
     }
+    public PageEntity(int start, int pageSize,int currentPage) {
+        this.start = start;
+        this.pageSize = pageSize;
+        this.currentPage = currentPage;
+    }
 
     public List<T> getResults() {
         return results;
