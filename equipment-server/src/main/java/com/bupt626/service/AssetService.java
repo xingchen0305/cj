@@ -43,6 +43,12 @@ public class AssetService extends BasePageService<Asset, String> {
         if (paramaMap.containsKey("property")) {
             sql.append(" and property =:property ");
         }
+        if (paramaMap.containsKey("type")) {
+            sql.append(" and type =:type ");
+        }
+        if (paramaMap.containsKey("state")) {
+            sql.append(" and state =:state ");
+        }
         super.pageByHql(sql.toString(), pageEntity, paramaMap);
         translate(pageEntity.getResults());
     }

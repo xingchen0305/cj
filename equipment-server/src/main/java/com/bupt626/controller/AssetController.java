@@ -91,6 +91,12 @@ public class AssetController extends BaseCommonController {
         if (StringUtils.isNotBlank(entity.getProperty())) {
             parameterMap.put("property", entity.getProperty());
         }
+        if (StringUtils.isNotBlank(entity.getType())){
+            parameterMap.put("type", entity.getType());
+        }
+        if (StringUtils.isNotBlank(entity.getState())){
+            parameterMap.put("state", entity.getState());
+        }
         return parameterMap;
     }
 }

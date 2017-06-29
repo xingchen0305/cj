@@ -29,14 +29,16 @@ public class Asset {
     private String warehous_location;
     private String warehous_user_name;
 
+    //@Id,@GeneratedValue,@GenericGenerator. ,@GeneratedValue作用是JPA的默认实现自定义主键生成策略
     @Id
     @Column(name = "ID", updatable = false)
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "org.hibernate.id.UUIDGenerator")
+
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIMESTAMP)//指定映射数据库中的日期事件类型
     @CreationTimestamp
     @Column(name= "CREATE_TIME", updatable = false )
     public Date getCreateTime(){
