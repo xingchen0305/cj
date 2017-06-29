@@ -6,8 +6,10 @@ import com.bupt626.common.base.PageEntity;
 import com.bupt626.common.utils.BeanUtills;
 import com.bupt626.common.utils.DateUtil;
 import com.bupt626.domain.Asset;
+import com.bupt626.domain.BaseWarehouse;
 import com.bupt626.service.AssetService;
 
+import com.bupt626.service.BaseWarehouseService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +26,8 @@ public class AssetController extends BaseCommonController {
 
     @Autowired
     private AssetService assetService;
-
+    @Autowired
+    private BaseWarehouseService baseWarehouseService;
     @RequestMapping("/saveOrUpdate")
     public String saveOrUpdate(Asset entity) {
         assetService.save(entity);
@@ -55,6 +58,12 @@ public class AssetController extends BaseCommonController {
     @RequestMapping(value = "/Asset/{id}", method = RequestMethod.GET)
     public String findById(@PathVariable(value = "id") String id) {
         Asset asset = assetService.findOne(id);
+        if(StringUtils.isNotBlank(asset.getWarehouse_id())){
+            BaseWarehouse baseWarehouse=  baseWarehouseService.findOne(asset.getWarehouse_id());
+            asset.setWarehous_location(baseWarehouse.getLocation());
+            asset.setWarehous_name(baseWarehouse.getName());
+            asset.setWarehous_user_name(baseWarehouse.getUsername());
+        }
         return sendMessage("true", "", asset, DateUtil.DATE);
     }
 
@@ -68,7 +77,6 @@ public class AssetController extends BaseCommonController {
             return sendFailMessage();
         }
     }
-
     /* @RequestMapping("/deleteById")
      public String deleteById(String ids) {
          if (StringUtils.isNotBlank(ids)) {
@@ -80,7 +88,7 @@ public class AssetController extends BaseCommonController {
      }*/
 
     @RequestMapping("/page")
-    public String page(Asset entity, int start) {
+    public String page( Asset entity,int start) {
         PageEntity<Asset> pageEntity = new PageEntity<>(start, Constants.PAGE_SIZE);
         assetService.pageByHql(pageEntity, buildParameter(entity));
         return sendSuccessMessage(pageEntity);

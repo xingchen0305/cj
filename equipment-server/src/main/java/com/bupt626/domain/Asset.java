@@ -19,7 +19,7 @@ public class Asset {
     private String name;
     private String property;//公有或私有
     private String count;
-    private String location;
+  //  private String location;
     private String state;
     private String type;
     private String warehouse_id;
@@ -87,7 +87,7 @@ public class Asset {
         this.count = count;
     }
 
-    @Basic
+    /*@Basic
     @Column(name = "LOCATION")
     public String getLocation() {
         return location;
@@ -96,7 +96,7 @@ public class Asset {
     public void setLocation(String location) {
         this.location = location;
     }
-
+*/
     @Basic
     @Column(name = "STATE")
     public String getState() {
