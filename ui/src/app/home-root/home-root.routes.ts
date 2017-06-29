@@ -9,7 +9,6 @@ import {EditInfoComponent } from '../edit-info/edit-info.component';
 import {EditAssetComponent } from '../edit-asset/edit-asset.component';
 import {WarehouseTwoComponent } from '../warehouse-two/warehouse-two.component';
 import { CreateWarehouseComponent } from '../create-warehouse/create-warehouse.component';
-import { NewAssetsComponent} from '../new-assets/new-assets.component';
 import {HomeRootComponentGuard} from "./home-root.guard";
 export const HomeRootRoutes: Routes = [
   {
@@ -29,7 +28,6 @@ export const HomeRootRoutes: Routes = [
       {path:'editInfo/:id',component:EditInfoComponent},
       {path:'createWarehouse',component: CreateWarehouseComponent},
       {path:'editAsset/:id',component:EditAssetComponent},
-      {path:'newAssets',component: NewAssetsComponent},
       //{path:'warehouseTwo',component:WarehouseTwoComponent}
 
     ]

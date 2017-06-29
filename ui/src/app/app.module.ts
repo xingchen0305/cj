@@ -29,7 +29,6 @@ import { CreateWarehouseComponent } from './create-warehouse/create-warehouse.co
 import {WarehouseService} from "./common/service/warehouse.service";
 import {AssetService} from "./common/service/asset.service";
 import { EditAssetComponent } from './edit-asset/edit-asset.component';
-import { NewAssetsComponent } from './new-assets/new-assets.component';
 
 @NgModule({
   declarations: [
@@ -46,8 +45,7 @@ import { NewAssetsComponent } from './new-assets/new-assets.component';
     WarehouseTwoComponent,
     EditInfoComponent,
     CreateWarehouseComponent,
-    EditAssetComponent,
-    NewAssetsComponent
+    EditAssetComponent
   ],
   imports: [
     BrowserModule,
