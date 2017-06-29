@@ -2,6 +2,7 @@ package com.bupt.common.base;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,42 +14,52 @@ import java.util.Map;
 public class BaseCommonController {
 	public static final String DATE_TIME = "yyyy-MM-dd HH:mm:ss";//"yyyy-MM-dd HH:mm:ss";
 
-	public static String sendSuccessMessage() {
+	public  String sendSuccessMessage() {
 		return sendMessage("true", "SUCCESS", null);
 	}
-	public static String sendSuccessMessage(Object data) {
+	public  String sendSuccessMessage(Object data) {
 		return sendMessage("true", "SUCCESS", data);
 	}
-	public static String sendSuccessMessage(String message) {
+	public  String sendSuccessMessage(String message) {
 		return sendMessage("true", message, null);
 	}
-	public static String sendSuccessMessage(String message,Object data) {
+	public  String sendSuccessMessage(String message,Object data) {
 		return sendMessage("true", message, data);
 	}
-	public static String sendFailMessage() {
+	public  String sendFailMessage() {
 		return sendMessage("false", "FAILED", null);
 	}
-	public static String sendFailMessage(Object data) {
+	public  String sendFailMessage(Object data) {
 		return sendMessage("false", "FAILED", data);
 	}
-	public static String sendFailMessage(String message) {
+	public  String sendFailMessage(String message) {
 		return sendMessage("false", message, null);
 	}
-	public static String sendFailMessage(String message,Object data) {
+	public  String sendFailMessage(String message,Object data) {
 		return sendMessage("false", message, data);
 	}
 	
-	public static String sendMessage(String status,String message,Object data){
+	public  String sendMessage(String status,String message,Object data){
 		Map<String, Object> result = new HashMap<>();
 		result.put("status", status);
 		result.put("message", message);
 		result.put("data", data);
 		return Object2Json(result,DATE_TIME);
 	}
-	
+	public  String sendMessage(String status,String message,Object data,String dateFormat){
+		Map<String, Object> result = new HashMap<>();
+		result.put("status", status);
+		result.put("message", message);
+		result.put("data", data);
+		if (null == dateFormat || "".equals(dateFormat)){
+			return Object2Json(result,DATE_TIME);
+		}else {
+			return Object2Json(result,dateFormat);
+		}
+	}
 
-	
-	public static String Object2Json(Object obj, String dateFormat) {
+
+	private static String Object2Json(Object obj, String dateFormat) {
 		Gson gson = null;
 		if (null != dateFormat) {
 			gson = new GsonBuilder().setDateFormat(dateFormat).create();

@@ -1,6 +1,8 @@
 package com.bupt626.domain;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -46,6 +48,7 @@ public class BaseWarehouse {
 
     @Basic
     @Column(name = "CREATE_TIME")
+    @CreationTimestamp
     public Timestamp getCreateTime() {
         return createTime;
     }
@@ -55,6 +58,7 @@ public class BaseWarehouse {
 
     @Basic
     @Column(name = "LAST_UPDATE")
+    @UpdateTimestamp
     public Timestamp getLastUpdate() {
         return lastUpdate;
     }

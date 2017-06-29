@@ -1,12 +1,14 @@
 package com.bupt626.service;
 
-import com.bupt626.common.base.PageEntity;
 import com.bupt626.common.base.BasePageService;
+import com.bupt626.common.base.PageEntity;
 import com.bupt626.domain.Asset;
 
+import com.bupt626.domain.BaseWarehouse;
 import com.bupt626.repository.AssetRepository;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,9 +23,11 @@ import java.util.Map;
 public class AssetService extends BasePageService<Asset, String> {
     @Autowired
     private AssetRepository assetRepository;
-
+    @Autowired
+    private BaseWarehouseService baseWarehouseService;
     public void save(Asset entity) {
         assetRepository.save(entity);
+        assetRepository.findAll();
     }
 
     public Asset findOne(String id) {
@@ -39,7 +43,14 @@ public class AssetService extends BasePageService<Asset, String> {
         if (paramaMap.containsKey("property")) {
             sql.append(" and property =:property ");
         }
+        if (paramaMap.containsKey("type")) {
+            sql.append(" and type =:type ");
+        }
+        if (paramaMap.containsKey("state")) {
+            sql.append(" and state =:state ");
+        }
         super.pageByHql(sql.toString(), pageEntity, paramaMap);
+        translate(pageEntity.getResults());
     }
 
     @Override
@@ -47,8 +58,11 @@ public class AssetService extends BasePageService<Asset, String> {
         super.translate(list);
         for(Asset entity:list){
             if(StringUtils.isNotBlank(entity.getWarehouse_id())){
-
+                BaseWarehouse baseWarehouse=  baseWarehouseService.findOne(entity.getWarehouse_id());
+                entity.setWarehous_name(baseWarehouse.getName());
+                entity.setWarehous_user_name(baseWarehouse.getName());
             }
         }
     }
+
 }
