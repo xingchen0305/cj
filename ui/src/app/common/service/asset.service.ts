@@ -17,6 +17,7 @@ export class AssetService{
   getAsset(): Observable<any> {
     return this.http.get(this.assetUrl+'/page?start=0');
   }
+
   editById(index):Observable<any>{
     return this.http.get(this.assetUrl+'/testAsset/'+index);
   }
