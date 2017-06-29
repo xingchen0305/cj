@@ -17,16 +17,31 @@ export class AssetService{
   getAsset(): Observable<any> {
     return this.http.get(this.assetUrl+'/page?start=0');
   }
+  getAssetById(index): Observable<any> {
+    return this.http.get(this.assetUrl+'/Asset/'+index);
+  }
   editById(index):Observable<any>{
-    return this.http.get(this.assetUrl+'/testAsset/'+index);
+    return this.http.get(this.assetUrl+'/Asset/'+index);
   }
   /*
-  * 更新
+  * 编辑更新
   * */
   updateAsset(assetData){
-    return this.http.post(this.assetUrl+'/testAsset/',assetData);
+    return this.http.put(this.assetUrl+'/Asset/',assetData);
+  }
+  /*
+  * 新增
+  * */
+  addAsset(assetData){
+    return this.http.post(this.assetUrl+'/save/',assetData);
   }
   deleteById(index){
-    return this.http.delete(this.assetUrl+'/testAsset/'+index);
+    return this.http.delete(this.assetUrl+'/Asset/'+index);
+  }
+  /*
+  * 根据资产唯一id查询详情
+  * */
+  getDetailById(index):Observable<any>{
+    return this.http.get(this.assetUrl+'/Asset/'+index);
   }
 }

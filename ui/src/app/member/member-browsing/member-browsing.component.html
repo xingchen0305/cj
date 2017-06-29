@@ -37,7 +37,7 @@
       </th>
       <th>编号</th>
       <th>物品姓名</th>
-      <th>属性</th>
+      <th>类型</th>
       <th>数量</th>
       <th>所属仓库</th>
       <th>状态</th>
@@ -55,6 +55,7 @@
       <td>{{item.state}}</td>
       <td style="text-align: center">
         <!--<button [routerLink]="['/warehouseOne', item.id]"  class="btn btn-info btn-sm" >查看资产</button>-->
+        <button   [routerLink]="['/detailAssets',item.id]"  class="btn btn-primary btn-sm" >查看详情</button>
         <button   [routerLink]="['/editAsset', item.id]"  class="btn btn-primary btn-sm" >修改</button>
        <button   class="btn btn-danger btn-sm" (click)="delete(item.id, idx)" >删除</button></td>
 
@@ -62,6 +63,9 @@
 
   </table>
   <div class="center">
+    <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModalLong"  [routerLink]="['/newAsset']" >
+      新增资产
+    </button>
 
   </div>
   <div class="center">

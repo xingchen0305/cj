@@ -44,12 +44,12 @@ public class BaseWarehouseController extends BaseCommonController {
             return sendFailMessage();
         }
     }
-    @RequestMapping(value = "/findById",method = RequestMethod.POST )
+    @RequestMapping(value = "/findById",method = RequestMethod.GET )
     public String findById(String id){
         BaseWarehouse baseWarehouse = baseWarehouseService.findOne(id);
         return sendSuccessMessage(baseWarehouse);
     }
-    @RequestMapping("/find/{id}")
+    @RequestMapping(value ="/find/{id}",method = RequestMethod.GET)
     public String find(@PathVariable("id") String id){
         BaseWarehouse baseWarehouse = baseWarehouseService.findOne(id);
 //        return sendSuccessMessage(baseWarehouse);
