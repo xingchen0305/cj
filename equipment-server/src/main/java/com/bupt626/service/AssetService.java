@@ -33,7 +33,9 @@ public class AssetService extends BasePageService<Asset, String> {
     public Asset findOne(String id) {
         return assetRepository.findOne(id);
     }
-
+    public List<Asset> findAll(String id) {
+        return assetRepository.findAll();
+    }
     public void deleteById(String ids) {
         assetRepository.delete(ids);
     }
@@ -59,8 +61,9 @@ public class AssetService extends BasePageService<Asset, String> {
         for(Asset entity:list){
             if(StringUtils.isNotBlank(entity.getWarehouse_id())){
                 BaseWarehouse baseWarehouse=  baseWarehouseService.findOne(entity.getWarehouse_id());
+                entity.setWarehous_location(baseWarehouse.getLocation());
                 entity.setWarehous_name(baseWarehouse.getName());
-                entity.setWarehous_user_name(baseWarehouse.getName());
+                entity.setWarehous_user_name(baseWarehouse.getUsername());
             }
         }
     }
