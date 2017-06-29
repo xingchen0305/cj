@@ -63,7 +63,7 @@ public class AssetService extends BasePageService<Asset, String> {
                 BaseWarehouse baseWarehouse=  baseWarehouseService.findOne(entity.getWarehouse_id());
                 entity.setWarehous_location(baseWarehouse.getLocation());
                 entity.setWarehous_name(baseWarehouse.getName());
-                entity.setWarehous_user_name(baseWarehouse.getName());
+                entity.setWarehous_user_name(baseWarehouse.getUsername());
             }
         }
     }
