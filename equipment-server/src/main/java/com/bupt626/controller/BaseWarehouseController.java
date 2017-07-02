@@ -72,6 +72,9 @@ public class BaseWarehouseController extends BaseCommonController {
         if (StringUtils.isNotBlank(entity.getLocation())){
             parameterMap.put("location", entity.getLocation());
         }
+        if (StringUtils.isNotBlank(entity.getUsername())){
+            parameterMap.put("username", entity.getUsername());
+        }
         return parameterMap;
     }
 
