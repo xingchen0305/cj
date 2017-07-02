@@ -3,8 +3,9 @@ import {Http, Response, Headers, RequestOptions} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/observable/throw";
 import {LocalStorageService} from "../local-storage.service";
-import {OAUTH_TOKEN_URI} from "../backen-const";
+import {OAUTH_TOKEN_URI, OAUTH_SIGN_UP_URI} from "../backen-const";
 import {AuthWithTokenService} from "./auth-with-token.service";
+import {Router} from "@angular/router";
 
 
 /**
@@ -16,6 +17,7 @@ export class UserService {
 
   constructor (private http: Http,
                private _localStorageService: LocalStorageService,
+               private router: Router,
                @Inject('appConfig') private _config: any) {
 
   }
@@ -37,9 +39,7 @@ export class UserService {
 
 
   register(user) {
-    return this.http.post(this._config.registerUrl, user)
-                    .map((res: Response) => res.json())
-                    .catch(this.handleError);
+    return this.http.post(OAUTH_SIGN_UP_URI, user);
   }
 
   getToken(user): Observable<Response>{
@@ -54,6 +54,25 @@ export class UserService {
     options.headers.append("Content-Type","application/x-www-form-urlencoded");
     options.headers.append("Authorization", "Basic " + btoa("bupt-client:bupt626"));
     return this.http.post(OAUTH_TOKEN_URI, searchParams, options);
+  }
+
+  loginSuccess(data) {
+    if (data.error) {
+      alert(data.error);
+      return false;
+    }
+    this._localStorageService.setAuth({
+      'access_token': data.access_token,
+      'refresh_token': data.refresh_token,
+      'username': this.user.username,
+      'isAuthenticated': true
+    });
+    let redirectUrl = this._localStorageService.getLastVisitUrl();
+    if (!redirectUrl || '/login' === redirectUrl) {
+      redirectUrl = '/';
+    }
+    this._localStorageService.removeLastVisitUrl();
+    this.router.navigate([redirectUrl]);
   }
 
 

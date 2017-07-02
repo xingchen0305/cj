@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
     this._userService.login(this.user)
       .subscribe(
         data => {
-          this.loginSuccess(data);
+          this._userService.loginSuccess(data);
         },
         error => {
           let res = error.json();
@@ -56,24 +56,7 @@ export class LoginComponent implements OnInit {
       );
   }
 
-  loginSuccess(data) {
-    if (data.error) {
-      alert(data.error);
-      return false;
-    }
-    this._localStorageService.setAuth({
-      'access_token': data.access_token,
-      'refresh_token': data.refresh_token,
-      'username': this.user.username,
-      'isAuthenticated': true
-    });
-    let redirectUrl = this._localStorageService.getLastVisitUrl();
-    if (!redirectUrl || '/login' === redirectUrl) {
-      redirectUrl = '/';
-    }
-    this._localStorageService.removeLastVisitUrl();
-    this.router.navigate([redirectUrl]);
-  }
+
 
   cancelRegister() {
     this.showSignUp = false;

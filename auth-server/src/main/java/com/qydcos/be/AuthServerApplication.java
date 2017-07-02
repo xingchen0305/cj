@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.annotation.Order;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -82,7 +83,7 @@ public class AuthServerApplication {
 
 		@Override
 		public void configure(WebSecurity web) throws Exception {
-			web.ignoring().antMatchers("/user");
+			web.ignoring().antMatchers(HttpMethod.POST, "/user");
 		}
 
 		@Override
@@ -93,9 +94,7 @@ public class AuthServerApplication {
 					.and()
 					.requestMatchers().antMatchers("/login", "/controller/authorize", "/controller/confirm_access")
 					.and()
-					.authorizeRequests()
-						.antMatchers("/user").permitAll()
-						.anyRequest().authenticated();
+					.authorizeRequests().anyRequest().authenticated();
 		}
 
 		@Override

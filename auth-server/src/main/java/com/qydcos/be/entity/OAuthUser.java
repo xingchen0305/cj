@@ -23,7 +23,7 @@ public class OAuthUser implements UserDetails, Serializable {
     private boolean enabled;
     private String displayName;
 
-    private Collection<? extends GrantedAuthority> authorities = AuthorityUtils.createAuthorityList("ROLE_ADMIN");
+    private Collection<? extends GrantedAuthority> authorities = AuthorityUtils.NO_AUTHORITIES;
 
     private List<UserRole> userRoles = new ArrayList<>(0);
 
