@@ -50,7 +50,7 @@ public class OauthController {
     }
 
     @PostMapping("/user")
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity createUser(@RequestBody UserForm user) {
         try {
             if (!StringUtils.hasText(user.getUsername())) {

@@ -6,6 +6,7 @@ import 'rxjs/Rx';
 import {UserService} from "../common/auth/auth.service";
 import {UnauthenticatedGuard} from "./unauthenticated.guard";
 import {LocalStorageService} from "../common/local-storage.service";
+import {SignUpComponent} from "../sign-up/sign-up.component";
 declare let backgroundShaking;
 
 /**
@@ -15,7 +16,7 @@ declare let backgroundShaking;
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  styleUrls: ['./login.component.scss']
 })
 @Injectable()
 export class LoginComponent implements OnInit {
@@ -23,6 +24,8 @@ export class LoginComponent implements OnInit {
   private user: any;
 
   private isSubmitting: boolean = false;
+
+  private showSignUp: boolean = false;
 
   constructor( private router: Router,
                private _userService: UserService,
@@ -72,5 +75,12 @@ export class LoginComponent implements OnInit {
     this.router.navigate([redirectUrl]);
   }
 
+  cancelRegister() {
+    this.showSignUp = false;
+  }
+
+  onRegisterDone() {
+    this.showSignUp = false;
+  }
 
 }
