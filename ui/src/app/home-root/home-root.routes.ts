@@ -10,12 +10,13 @@ import {EditAssetComponent } from '../edit-asset/edit-asset.component';
 import { CreateWarehouseComponent } from '../create-warehouse/create-warehouse.component';
 import { NewAssetsComponent } from '../new-assets/new-assets.component';
 import { DetailAssetsComponent } from '../detail-assets/detail-assets.component';
-import {HomeRootComponentGuard} from "./home-root.guard";
+import { BookDetailComponent } from '../book/book-detail/book-detail.component';
+import { BooksPublishingComponent } from '../book/books-publishing/books-publishing.component';
 export const HomeRootRoutes: Routes = [
   {
     path: '',
     component: HomeRootComponent,
-    canActivate: [HomeRootComponentGuard],
+    // canActivate: [HomeRootComponentGuard],
     children: [
       { path: '', component: DashboardComponent },
       { path: 'dashboard', component: DashboardComponent },
@@ -24,10 +25,15 @@ export const HomeRootRoutes: Routes = [
         {path:'warehouseTwo',component:WarehouseTwoComponent}*/
       ]},
       {path:'memberBrowsing',component:MemberBrowsingComponent},
-      {path:'attendanceRecord',component:AttendanceRecordComponent},
-      {path:'warehouseOne/:id',component:WarehouseOneComponent},
-      {path:'editInfo/:id',component:EditInfoComponent},
-      {path:'createWarehouse',component: CreateWarehouseComponent},
+      {path:'attendanceRecord',component:AttendanceRecordComponent,
+        children:[
+          { path: 'bookDetail', component: BookDetailComponent },
+          { path: 'booksPublishing', component: BooksPublishingComponent },
+        ]
+      },
+      {path:'stationBrowsing/warehouseOne/:id',component:WarehouseOneComponent},
+      {path:'stationBrowsing/editInfo/:id',component:EditInfoComponent},
+      {path:'stationBrowsing/createWarehouse',component: CreateWarehouseComponent},
       {path:'editAsset/:id',component:EditAssetComponent},
       {path:'newAsset',component:NewAssetsComponent},
       {path:'detailAssets/:id',component:DetailAssetsComponent},

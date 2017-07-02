@@ -43,7 +43,7 @@
       <th>状态</th>
       <th style="text-align: center">操作</th>
     </tr>
-    <tr *ngFor="let item of data; let idx=index">
+    <tr *ngFor="let item of data | paginate: { itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalResults }; let idx=index" >
       <th>
         <input type="checkbox">
       </th>
@@ -68,10 +68,7 @@
     </button>
 
   </div>
-  <div class="center">
-    <a href="#">上一页</a>
-    <a href="#">下一页</a>
-    <a href="#">首页</a>
-    <a href="#">末页</a>
+  <div class="center" style="margin-top: 20px" >
+    <pagination-controls previousLabel="上一页" nextLabel="下一页"(pageChange)="pageChanged($event)"></pagination-controls>
   </div>
 </section>

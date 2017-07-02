@@ -15,7 +15,7 @@
   <th style="text-align: center">操作</th>
   </tr>
   <tr>
-  <tr *ngFor="let item of data; let idx=index" >
+  <tr *ngFor="let item of data | paginate: { itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalResults }; let idx=index" >
   <th >
     <input type="checkbox">
   </th>
@@ -23,8 +23,8 @@
   <td>{{item.name}}</td>
   <td>{{item.location}}</td>
   <td  style="text-align: center">
-    <button [routerLink]="['/warehouseOne', item.id]"  class="btn btn-info btn-sm" >进入仓库</button>
-    <button   [routerLink]="['/editInfo', item.id]"  class="btn btn-primary btn-sm" >修改</button>
+    <button [routerLink]="['/stationBrowsing/warehouseOne', item.id]"  class="btn btn-info btn-sm" >进入仓库</button>
+    <button   [routerLink]="['/stationBrowsing/editInfo', item.id]"  class="btn btn-primary btn-sm" >修改</button>
     <button   class="btn btn-danger btn-sm" (click)="delete(item.id, idx)" routerLink="/stationBrowsing">删除</button>
   </td>
 </tr>
@@ -32,7 +32,7 @@
 </table>
 <div class="center">
   <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModalLong"  [routerLink]="['/createWarehouse']" >
+<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModalLong"  [routerLink]="['/stationBrowsing/createWarehouse']" >
  新增仓库
 </button>
 
@@ -57,10 +57,9 @@
   </div>
 </div>
 </div>
-<div class="center">
-  <a href="#" >上一页</a>
-  <a href="#" >下一页</a>
-  <a href="#" >首页</a>
-  <a href="#" >末页</a>
+<div class="center" style="margin-top: 20px" >
+  <pagination-controls previousLabel="上一页" nextLabel="下一页"(pageChange)="pageChanged($event)"></pagination-controls>
 </div>
+
+
 </section>

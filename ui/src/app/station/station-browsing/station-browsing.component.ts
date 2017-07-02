@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
 import {URLSearchParams, RequestOptionsArgs} from '@angular/http';
 import {EQUIPMENT_URI} from "../../common/backen-const";
 import {WarehouseService} from "../../common/service/warehouse.service";
+import {isNumber} from "util";
 
 
 @Component({
@@ -23,10 +24,20 @@ export class StationBrowsingComponent implements OnInit {
     this.getWarehouses();
   }
   data: any;
+  totalResults:number;
+  totalPages:number;
+  start:number;
+  pageSize:number = 5;
+  currentPageLength:number;
+  currentPage:number;
+  p: number = 3;
+
   getWarehouses() {
-    this.warehouseService.getWareHouses().subscribe(
+    this.warehouseService.getWareHouses(1,this.pageSize).subscribe(
       (response) => {
         this.data = response.json().data.results;
+        this.totalResults = response.json().data.totalResults;
+        this.currentPage=response.json().data.currentPage;
         console.log(this.data)
       }
     );
@@ -42,6 +53,17 @@ export class StationBrowsingComponent implements OnInit {
           console.log(this.data);
 
         });
+  }
+
+  pageChanged(event){
+    this.warehouseService.getWareHouses(event,this.pageSize).subscribe(
+      (response) => {
+        let body = response.json().data;
+        this.data = body.results;
+        this.totalResults = body.totalResults;
+        this.currentPage=body.currentPage;
+      }
+    );
   }
 
 

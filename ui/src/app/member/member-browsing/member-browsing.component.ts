@@ -22,6 +22,12 @@ export class MemberBrowsingComponent implements OnInit {
     this.getAssets();
   }
   data:any;
+  totalResults:number;
+  totalPages:number;
+  start:number;
+  pageSize:number = 5;
+  currentPageLength:number;
+  currentPage:number;
   getAssets(){
     this.assetService.getAsset().subscribe(
       (response)=>{
@@ -36,5 +42,15 @@ export class MemberBrowsingComponent implements OnInit {
         this.data.splice(index,1 );
       }
     )
+  }
+  pageChanged(event){
+    this.assetService.getAsset(event,this.pageSize).subscribe(
+      (response) => {
+        let body = response.json().data;
+        this.data = body.results;
+        this.totalResults = body.totalResults;
+        this.currentPage=body.currentPage;
+      }
+    );
   }
 }

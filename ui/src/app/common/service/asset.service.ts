@@ -14,8 +14,12 @@ export class AssetService{
   /*
   * 获取资产类表
   * */
-  getAsset(): Observable<any> {
+/*  getAsset(): Observable<any> {
     return this.http.get(this.assetUrl+'/page?start=0');
+  }*/
+
+  getAsset(page:number = 1, size:number=10): Observable<any> {
+    return this.http.get(this.assetUrl+'/page?page='+page+'&size='+size);
   }
   getAssetById(index): Observable<any> {
     return this.http.get(this.assetUrl+'/Asset/'+index);

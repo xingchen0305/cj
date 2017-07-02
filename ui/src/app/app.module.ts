@@ -31,6 +31,9 @@ import { EditAssetComponent } from './edit-asset/edit-asset.component';
 import {AuthWithTokenService} from "./common/auth/auth-with-token.service";
 import { NewAssetsComponent } from './new-assets/new-assets.component';
 import { DetailAssetsComponent } from './detail-assets/detail-assets.component';
+import {NgxPaginationModule} from "ngx-pagination";
+import { BookDetailComponent } from './book/book-detail/book-detail.component';
+import { BooksPublishingComponent } from './book/books-publishing/books-publishing.component';
 
 
 @NgModule({
@@ -49,7 +52,9 @@ import { DetailAssetsComponent } from './detail-assets/detail-assets.component';
     CreateWarehouseComponent,
     EditAssetComponent,
     NewAssetsComponent,
-    DetailAssetsComponent
+    DetailAssetsComponent,
+    BookDetailComponent,
+    BooksPublishingComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +64,7 @@ import { DetailAssetsComponent } from './detail-assets/detail-assets.component';
     BsDropdownModule.forRoot(),
     AlertModule.forRoot(),
     ModalModule.forRoot(),
+    NgxPaginationModule,
 
     // app
     // RouterModule.forRoot([
