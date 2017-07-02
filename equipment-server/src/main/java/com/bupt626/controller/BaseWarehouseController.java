@@ -57,8 +57,9 @@ public class BaseWarehouseController extends BaseCommonController {
     }
 
     @RequestMapping("/page")
-    public String page(BaseWarehouse entity,int start){
-        PageEntity<BaseWarehouse> pageEntity = new PageEntity<>(start, Constants.PAGE_SIZE);
+    public String page(BaseWarehouse entity,int page,int size){
+        int start = (page - 1) * size;
+        PageEntity<BaseWarehouse> pageEntity = new PageEntity<>(start, size,page);
         baseWarehouseService.pageByHql(pageEntity,buildParameter(entity));
         return sendSuccessMessage(pageEntity);
     }
