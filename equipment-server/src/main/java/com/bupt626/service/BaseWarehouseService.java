@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import com.bupt626.domain.BaseWarehouse;
+import com.bupt626.domain.Organization;
 import com.bupt626.repository.BaseWarehouseRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,9 @@ import java.util.Map;
 public class BaseWarehouseService extends BasePageService<BaseWarehouse,String> {
     @Autowired
     private BaseWarehouseRepository baseWarehouseRepository;
+
     @Autowired
-    private BaseWarehouseRepository cod;
+    private OrganizationServiceImpl organizationService;
 
     public void save(BaseWarehouse entity){
         baseWarehouseRepository.save(entity);
@@ -49,16 +51,19 @@ public class BaseWarehouseService extends BasePageService<BaseWarehouse,String> 
         translate(pageEntity.getResults());
     }
 
-   /* @Override
+    @Override
     protected void translate(List<BaseWarehouse> list) {
         super.translate(list);
         for (BaseWarehouse baseWarehouse:list ) {
             if (StringUtils.isNotBlank(baseWarehouse.getorgId())) {
-                BaseOrganization baseOrganization = baseOrganizationService.findOne(baseWarehouse.getorgId());
-                if (baseOrganization != null) {
-                    baseWarehouse.setOrgName(baseOrganization.getName());
+                Organization organization = organizationService.findOne(baseWarehouse.getorgId());
+                if (organization != null) {
+                    baseWarehouse.setOrgName(organization.getName());
                 }
             }
         }
-    }*/
+    }
+
+
+
 }
