@@ -50,7 +50,6 @@ public class OauthController {
     }
 
     @PostMapping("/user")
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity createUser(@RequestBody UserForm user) {
         try {
             if (!StringUtils.hasText(user.getUsername())) {
@@ -79,7 +78,7 @@ public class OauthController {
             result.put("error", e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(result);
         }
-        return ResponseEntity.status(HttpStatus.CREATED).body(user);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping("/oauth/revoke-token")
