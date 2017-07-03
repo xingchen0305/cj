@@ -88,8 +88,9 @@ public class AssetController extends BaseCommonController {
      }*/
 
     @RequestMapping("/page")
-    public String page( Asset entity,int start) {
-        PageEntity<Asset> pageEntity = new PageEntity<>(start, Constants.PAGE_SIZE);
+    public String page( Asset entity,int page,int size) {
+        int start=(page-1)*size;
+        PageEntity<Asset> pageEntity = new PageEntity<>(start,size,page);
         assetService.pageByHql(pageEntity, buildParameter(entity));
         return sendSuccessMessage(pageEntity);
     }
