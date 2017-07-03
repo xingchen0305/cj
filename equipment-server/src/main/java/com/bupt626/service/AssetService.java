@@ -67,6 +67,7 @@ public class AssetService extends BasePageService<Asset, String> {
                     entity.setWarehous_user_name(baseWarehouse.getUsername());
                 }
             }
+
         }
     }
 
