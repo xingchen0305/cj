@@ -27,10 +27,10 @@ export const HomeRootRoutes: Routes = [
       ]},
       {path:'memberBrowsing',component:MemberBrowsingComponent},
       {path:'attendanceRecord',component:AttendanceRecordComponent,
-        children:[
+    /*    children:[
           { path: 'bookDetail', component: BookDetailComponent },
           { path: 'booksPublishing', component: BooksPublishingComponent }
-        ]
+        ]*/
       },
       {path:'stationBrowsing/warehouseOne/:id',component:WarehouseOneComponent},
       {path:'stationBrowsing/editInfo/:id',component:EditInfoComponent},
@@ -38,6 +38,8 @@ export const HomeRootRoutes: Routes = [
       {path:'editAsset/:id',component:EditAssetComponent},
       {path:'newAsset',component:NewAssetsComponent},
       {path:'detailAssets/:id',component:DetailAssetsComponent},
+      { path: 'attendanceRecord/bookDetail', component: BookDetailComponent },
+      { path: 'attendanceRecord/booksPublishing', component: BooksPublishingComponent }
 
 
     ]
