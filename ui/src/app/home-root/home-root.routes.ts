@@ -12,11 +12,12 @@ import { NewAssetsComponent } from '../new-assets/new-assets.component';
 import { DetailAssetsComponent } from '../detail-assets/detail-assets.component';
 import { BookDetailComponent } from '../book/book-detail/book-detail.component';
 import { BooksPublishingComponent } from '../book/books-publishing/books-publishing.component';
+import {HomeRootComponentGuard} from "./home-root.guard";
 export const HomeRootRoutes: Routes = [
   {
     path: '',
     component: HomeRootComponent,
-    // canActivate: [HomeRootComponentGuard],
+    canActivate: [HomeRootComponentGuard],
     children: [
       { path: '', component: DashboardComponent },
       { path: 'dashboard', component: DashboardComponent },
@@ -28,7 +29,7 @@ export const HomeRootRoutes: Routes = [
       {path:'attendanceRecord',component:AttendanceRecordComponent,
         children:[
           { path: 'bookDetail', component: BookDetailComponent },
-          { path: 'booksPublishing', component: BooksPublishingComponent },
+          { path: 'booksPublishing', component: BooksPublishingComponent }
         ]
       },
       {path:'stationBrowsing/warehouseOne/:id',component:WarehouseOneComponent},

@@ -4,8 +4,6 @@ import {HttpInterceptor} from "../../common/auth/HttpInterceptor";
 import {parseHttpResponse} from "selenium-webdriver/http";
 import {ActivatedRoute} from '@angular/router';
 import {Router} from '@angular/router';
-import {URLSearchParams, RequestOptionsArgs} from '@angular/http';
-import {EQUIPMENT_URI} from "../../common/backen-const";
 import {AssetService} from "../../common/service/asset.service";
 
 @Component({
@@ -28,8 +26,12 @@ export class MemberBrowsingComponent implements OnInit {
   pageSize:number = 5;
   currentPageLength:number;
   currentPage:number;
+  searchArgs: Object = {
+    size: this.pageSize,
+    page: 1
+  };
   getAssets(){
-    this.assetService.getAsset().subscribe(
+    this.assetService.getAsset(this.searchArgs).subscribe(
       (response)=>{
         this.data = response.json().data.results;
         console.log(this.data)
@@ -44,7 +46,8 @@ export class MemberBrowsingComponent implements OnInit {
     )
   }
   pageChanged(event){
-    this.assetService.getAsset(event,this.pageSize).subscribe(
+    this.searchArgs['page'] = event;
+    this.assetService.getAsset(this.searchArgs).subscribe(
       (response) => {
         let body = response.json().data;
         this.data = body.results;

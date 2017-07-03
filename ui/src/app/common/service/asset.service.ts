@@ -18,8 +18,9 @@ export class AssetService{
     return this.http.get(this.assetUrl+'/page?start=0');
   }*/
 
-  getAsset(page:number = 1, size:number=10): Observable<any> {
-    return this.http.get(this.assetUrl+'/page?page='+page+'&size='+size);
+  getAsset( searchObj:Object): Observable<any> {
+
+    return this.http.get(this.assetUrl+'/page?'+ this.http.generateUrlArgsByObj(searchObj));
   }
   getAssetById(index): Observable<any> {
     return this.http.get(this.assetUrl+'/Asset/'+index);

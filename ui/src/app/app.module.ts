@@ -29,12 +29,12 @@ import {WarehouseService} from "./common/service/warehouse.service";
 import {AssetService} from "./common/service/asset.service";
 import { EditAssetComponent } from './edit-asset/edit-asset.component';
 import {AuthWithTokenService} from "./common/auth/auth-with-token.service";
+import { SignUpComponent } from './sign-up/sign-up.component';
 import { NewAssetsComponent } from './new-assets/new-assets.component';
 import { DetailAssetsComponent } from './detail-assets/detail-assets.component';
 import {NgxPaginationModule} from "ngx-pagination";
 import { BookDetailComponent } from './book/book-detail/book-detail.component';
 import { BooksPublishingComponent } from './book/books-publishing/books-publishing.component';
-
 
 @NgModule({
   declarations: [
@@ -51,6 +51,7 @@ import { BooksPublishingComponent } from './book/books-publishing/books-publishi
     EditInfoComponent,
     CreateWarehouseComponent,
     EditAssetComponent,
+    SignUpComponent,
     NewAssetsComponent,
     DetailAssetsComponent,
     BookDetailComponent,

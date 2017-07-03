@@ -16,8 +16,8 @@ export class WarehouseService{
    *  获取仓库列表
    * @returns {Observable<Response>}
    */
-  getWareHouses(page:number = 1, size:number=10): Observable<any> {
-    return this.http.get(this.warehouseUrl+'/page?page='+page+'&size='+size);
+  getWareHouses(searchObj:Object): Observable<any> {
+    return this.http.get(this.warehouseUrl+'/page?'+ this.http.generateUrlArgsByObj(searchObj));
   }
 
   /**

@@ -73,6 +73,13 @@ export class HttpInterceptor extends Http {
     return options;
   }
 
+  generateUrlArgsByObj(obj: Object): String {
+    let searchParams = Object.keys(obj).map((key) => {
+      return key + '=' + obj[key];
+    }).join('&');
+    return searchParams;
+  }
+
   intercept(observable: Observable<Response>): Observable<Response> {
     return observable.catch((err, source) => {
       console.log('Http error: ', err, source);
@@ -84,6 +91,8 @@ export class HttpInterceptor extends Http {
         return Observable.throw(err);
       }
     });
+
+
 
   }
 }
