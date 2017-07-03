@@ -52,7 +52,7 @@ public class DemoController {
      */
 
     @RequestMapping("testdemos")
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     public List<Demo> getDemos(){
         OAuth2AccessToken accessToken = oauth2ClientContext.getAccessToken();
         return demoService.findAllDemo();
