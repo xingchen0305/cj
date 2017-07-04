@@ -6,9 +6,11 @@ import com.bupt626.common.base.PageEntity;
 import com.bupt626.common.utils.BeanUtills;
 import com.bupt626.common.utils.DateUtil;
 import com.bupt626.domain.Asset;
+import com.bupt626.domain.AssetType;
 import com.bupt626.domain.BaseWarehouse;
 import com.bupt626.service.AssetService;
 
+import com.bupt626.service.AssetTypeService;
 import com.bupt626.service.BaseWarehouseService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,8 @@ public class AssetController extends BaseCommonController {
     private AssetService assetService;
     @Autowired
     private BaseWarehouseService baseWarehouseService;
+    @Autowired
+    private AssetTypeService assetTypeService;
     @RequestMapping("/saveOrUpdate")
     public String saveOrUpdate(Asset entity) {
         assetService.save(entity);
@@ -58,11 +62,13 @@ public class AssetController extends BaseCommonController {
     @RequestMapping(value = "/Asset/{id}", method = RequestMethod.GET)
     public String findById(@PathVariable(value = "id") String id) {
         Asset asset = assetService.findOne(id);
-        if(StringUtils.isNotBlank(asset.getWarehouse_id())){
+       if(StringUtils.isNotBlank(asset.getWarehouse_id())){
             BaseWarehouse baseWarehouse=  baseWarehouseService.findOne(asset.getWarehouse_id());
+            AssetType assetType = assetTypeService.findByCode(asset.getCode());
             asset.setWarehous_location(baseWarehouse.getLocation());
             asset.setWarehous_name(baseWarehouse.getName());
             asset.setWarehous_user_name(baseWarehouse.getUsername());
+            asset.setType(assetType.getName());
         }
         return sendMessage("true", "", asset, DateUtil.DATE);
     }
