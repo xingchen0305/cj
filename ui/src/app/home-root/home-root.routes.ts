@@ -13,6 +13,8 @@ import { DetailAssetsComponent } from '../detail-assets/detail-assets.component'
 import { BookDetailComponent } from '../book/book-detail/book-detail.component';
 import { BooksPublishingComponent } from '../book/books-publishing/books-publishing.component';
 import {HomeRootComponentGuard} from "./home-root.guard";
+import { PurchaseBookComponent } from '../book/purchase-book/purchase-book.component';
+import { RentingBookComponent } from '../book/renting-book/renting-book.component';
 export const HomeRootRoutes: Routes = [
   {
     path: '',
@@ -39,9 +41,9 @@ export const HomeRootRoutes: Routes = [
       {path:'newAsset',component:NewAssetsComponent},
       {path:'detailAssets/:id',component:DetailAssetsComponent},
       { path: 'attendanceRecord/bookDetail', component: BookDetailComponent },
-      { path: 'attendanceRecord/booksPublishing', component: BooksPublishingComponent }
-
-
+      { path: 'attendanceRecord/booksPublishing', component: BooksPublishingComponent},
+      { path: 'attendanceRecord/booksPublishing/purchase', component: PurchaseBookComponent},
+      { path: 'attendanceRecord/booksPublishing/renting', component: RentingBookComponent }
     ]
   }
 ];

@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-
 import { AppComponent } from './app.component';
 import { HomeRootComponent } from './home-root/home-root.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -27,6 +26,7 @@ import { EditInfoComponent } from './edit-info/edit-info.component';
 import { CreateWarehouseComponent } from './create-warehouse/create-warehouse.component';
 import {WarehouseService} from "./common/service/warehouse.service";
 import {AssetService} from "./common/service/asset.service";
+import {BookService} from "./common/service/book.service";
 import { EditAssetComponent } from './edit-asset/edit-asset.component';
 import {AuthWithTokenService} from "./common/auth/auth-with-token.service";
 import { SignUpComponent } from './sign-up/sign-up.component';
@@ -35,6 +35,8 @@ import { DetailAssetsComponent } from './detail-assets/detail-assets.component';
 import {NgxPaginationModule} from "ngx-pagination";
 import { BookDetailComponent } from './book/book-detail/book-detail.component';
 import { BooksPublishingComponent } from './book/books-publishing/books-publishing.component';
+import { PurchaseBookComponent } from './book/purchase-book/purchase-book.component';
+import { RentingBookComponent } from './book/renting-book/renting-book.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,9 @@ import { BooksPublishingComponent } from './book/books-publishing/books-publishi
     NewAssetsComponent,
     DetailAssetsComponent,
     BookDetailComponent,
-    BooksPublishingComponent
+    BooksPublishingComponent,
+    PurchaseBookComponent,
+    RentingBookComponent
   ],
   imports: [
     BrowserModule,
@@ -65,6 +69,7 @@ import { BooksPublishingComponent } from './book/books-publishing/books-publishi
     BsDropdownModule.forRoot(),
     AlertModule.forRoot(),
     ModalModule.forRoot(),
+    RouterModule.forRoot(routes),
     NgxPaginationModule,
 
     // app
@@ -75,7 +80,7 @@ import { BooksPublishingComponent } from './book/books-publishing/books-publishi
     //     //canActivate:[UnauthenticatedGuard]
     //   }
     // ]),
-    RouterModule.forRoot(routes),
+
   ],
   providers: [
     UserService,
@@ -87,7 +92,8 @@ import { BooksPublishingComponent } from './book/books-publishing/books-publishi
     DemoService,
     WarehouseService,
     AssetService,
-    AuthWithTokenService
+    AuthWithTokenService,
+    BookService
   ],
   bootstrap: [AppComponent]
 })

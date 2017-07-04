@@ -25,10 +25,8 @@ export class StationBrowsingComponent implements OnInit {
   }
   data: any;
   totalResults:number;
-  totalPages:number;
   start:number;
   pageSize:number = 5;
-  currentPageLength:number;
   currentPage:number;
   p: number = 3;
   searchArgs: Object = {
@@ -38,13 +36,12 @@ export class StationBrowsingComponent implements OnInit {
   getWarehouses(){
     this.warehouseService.getWareHouses(this.searchArgs).subscribe(
       (response)=>{
+        console.log(this.searchArgs);
         this.data = response.json().data.results;
-        console.log(this.data)
+        //console.log(this.data)
       }
     );
   }
-
-
 
   delete(id, index) {
     console.log(id);
@@ -59,7 +56,9 @@ export class StationBrowsingComponent implements OnInit {
   }
 
   pageChanged(event){
+    console.log(event);
     this.searchArgs['page'] = event;
+    //console.log(this.searchArgs['page']);
     this.warehouseService.getWareHouses(this.searchArgs).subscribe(
       (response) => {
         let body = response.json().data;

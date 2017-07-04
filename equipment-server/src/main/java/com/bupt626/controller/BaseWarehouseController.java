@@ -44,7 +44,7 @@ public class BaseWarehouseController extends BaseCommonController {
             return sendFailMessage();
         }
     }
-    @RequestMapping(value = "/findById",method = RequestMethod.POST )
+    @RequestMapping(value = "/findById",method = RequestMethod.GET )
     public String findById(String id){
         BaseWarehouse baseWarehouse = baseWarehouseService.findOne(id);
         return sendSuccessMessage(baseWarehouse);

@@ -6,7 +6,7 @@
   <form class="form-inline" style="margin:10px;padding: 10px;  ">
     <div class="form-group">
       <label for="exampleInputName2">物品名称:</label>
-      <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+      <input type="text" class="form-control" id="exampleInputName2" placeholder="请输入物品名称">
     </div>
     <div class="form-group">
       <label>所属仓库:</label>
@@ -35,7 +35,7 @@
       <th>
         <input type="checkbox">
       </th>
-      <th>编号</th>
+      <th>序号</th>
       <th>物品姓名</th>
       <th>类型</th>
       <th>数量</th>
@@ -43,7 +43,7 @@
       <th>状态</th>
       <th style="text-align: center">操作</th>
     </tr>
-    <tr *ngFor="let item of data | paginate: { itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalResults }; let idx=index" >
+    <tr *ngFor="let item of data | paginate: { itemsPerPage: pageSize, currentPage: 3, totalItems: totalResults }; let idx=index" >
       <th>
         <input type="checkbox">
       </th>

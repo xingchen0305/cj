@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Request, RequestOptionsArgs, Response, RequestOptions, ConnectionBackend, Headers } from '@angular/http';
 import {HttpInterceptor} from "../common/auth/HttpInterceptor";
-import {warehouse} from "./warehouse";
 import {WarehouseService} from "../common/service/warehouse.service";
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-create-warehouse',
@@ -11,7 +10,7 @@ import {WarehouseService} from "../common/service/warehouse.service";
 })
 export class CreateWarehouseComponent implements OnInit {
 
-  constructor(private warehouseService: WarehouseService,private http: HttpInterceptor) {
+  constructor(private router:Router,private warehouseService: WarehouseService,private http: HttpInterceptor) {
   }
   data :any={};
   ngOnInit() {
@@ -20,6 +19,7 @@ export class CreateWarehouseComponent implements OnInit {
     this.warehouseService.editWareHouse(value).subscribe(
       res=> {
         console.log(res);
+        this.router.navigateByUrl("/stationBrowsing");
         /*alert(" edit success")*/}
     )
   }

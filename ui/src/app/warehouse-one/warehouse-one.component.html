@@ -1,6 +1,6 @@
 <section class="content" style="padding: 0px" >
   <h3 style="display:inline;margin-left:1%;"   *ngIf="data">
-    {{data.name}}资产列表---<small>资产信息管理</small>
+    {{data.warehous_name}}资产列表---<small>资产信息管理</small>
   </h3>
   <form class="form-inline" style="margin:10px;padding: 10px;  ">
     <div class="form-group">
@@ -40,7 +40,7 @@
       <th>数量</th>
       <th>所属仓库</th>
       <th>状态</th>
-      <th>操作</th>
+    <!--  <th>操作</th>-->
     </tr>
     <tr >
       <th>
@@ -52,7 +52,7 @@
       <td>{{data.count}}</td>
       <td>{{data.warehous_name}}</td>
       <td>{{data.state}}</td>
-      <td><a routerLink="/heroes" class="btn btn-info btn-sm">进入仓库</a></td></tr>
+    <!--  <td><a routerLink="/heroes" class="btn btn-info btn-sm">进入仓库</a></td></tr>-->
 
 
   </table>
