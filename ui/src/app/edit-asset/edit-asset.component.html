@@ -1,0 +1,30 @@
+<form *ngIf="data" #planetform="ngForm"  (ngSubmit)="onSubmit(planetform.value)">  <!--(ngSubmit)="onSubmit(planetForm.value)"-->
+  <div class="form-group">
+    <input type="hidden" name="id" [(ngModel)]="data.id">
+    <label for="exampleInputEmail1">物品名称</label>
+    <!-- .在ng2表单中使用ngModel需要注意,必须带有name属性或者使用 [ngModelOptions]=”{standalone: true}”，二选其一-->
+    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Email" name="name"   [(ngModel)]="data.name" >
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword2">属性</label>
+    <input type="text" class="form-control" id="exampleInputPassword2" placeholder="请输入属性" name="property"    [(ngModel)]="data.property"  >
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword3">数量</label>
+    <input type="text" class="form-control" id="exampleInputPassword3" placeholder="请输入数量" name="count"    [(ngModel)]="data.count"  >
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword4">所属仓库</label>
+    <input type="text" class="form-control" id="exampleInputPassword4" placeholder="请输入仓库" name="location"    [(ngModel)]="data.location"  >
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword5">状态</label>
+    <input type="text" class="form-control" id="exampleInputPassword5" placeholder="请输入状态" name="state"    [(ngModel)]="data.state"  >
+  </div>
+  <div class="form-group">
+    <label >地图</label>
+    <p class="help-block">高德地图位置</p>
+  </div>
+  <button type="submit" class="btn btn-default">提交</button>
+  <button type="submit" class="btn btn-default">取消</button>
+</form>

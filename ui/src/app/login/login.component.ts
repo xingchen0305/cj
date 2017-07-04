@@ -5,6 +5,7 @@ import { Http } from '@angular/http';
 import 'rxjs/Rx';
 import {UserService} from "../common/auth/auth.service";
 import {UnauthenticatedGuard} from "./unauthenticated.guard";
+import {LocalStorageService} from "../common/local-storage.service";
 declare let backgroundShaking;
 
 /**
@@ -18,44 +19,38 @@ declare let backgroundShaking;
 })
 @Injectable()
 export class LoginComponent implements OnInit {
-  constructor(){}
+
+  private user: any;
+
+  private isSubmitting: boolean = false;
+
+  constructor( private router: Router,
+               private _userService: UserService,
+               private _localStorageService: LocalStorageService){}
 
   ngOnInit(): void {
     document.getElementById('canvas_full').oncontextmenu = () => { return false; };
     backgroundShaking('canvas-container', 'canvas_full', '#006691', '#005173');
-  }
 
- /* public user: any;
-
-  private isSubmitting: boolean = false;
-
-  constructor(private _http: Http, private router: Router, private _userService: UserService) {
-
-  }
-
-  ngOnInit() {
-    // this.user = {username: '', password: ''};
-    // document.getElementById('canvas_full').oncontextmenu = () => { return false; };
-    // backgroundShaking('canvas-container', 'canvas_full', '#006691', '#005173');
+    this.user =  {username: '', password: ''};
   }
 
   loginUsr() {
     this.isSubmitting = true;
-    console.log(this._http, this.user);
     this._userService.login(this.user)
-        .subscribe(
-          data => {
-            this.loginSuccess(data);
-          },
-          error => {
-            let res = error.json();
-            alert(res.error || '连接认证服务器失败');
-            this.isSubmitting = false;
-          },
-          () => {
-            this.isSubmitting = false;
-          }
-        );
+      .subscribe(
+        data => {
+          this.loginSuccess(data);
+        },
+        error => {
+          let res = error.json();
+          alert(res.error? '用户名或密码错误': '连接认证服务器失败');
+          this.isSubmitting = false;
+        },
+        () => {
+          this.isSubmitting = false;
+        }
+      );
   }
 
   loginSuccess(data) {
@@ -63,15 +58,19 @@ export class LoginComponent implements OnInit {
       alert(data.error);
       return false;
     }
-    localStorage.setItem('access_token', data.token.access_token);
-    localStorage.setItem('refresh_token', data.token.access_token);
-    localStorage.setItem('username', data.user.username);
-    localStorage.setItem('isAuthenticated', 'true');
-    let redirectUrl = localStorage.getItem('lastVisitUrl');
+    this._localStorageService.setAuth({
+      'access_token': data.access_token,
+      'refresh_token': data.refresh_token,
+      'username': this.user.username,
+      'isAuthenticated': true
+    });
+    let redirectUrl = this._localStorageService.getLastVisitUrl();
     if (!redirectUrl || '/login' === redirectUrl) {
       redirectUrl = '/';
     }
-    localStorage.removeItem('lastVisitUrl');
+    this._localStorageService.removeLastVisitUrl();
     this.router.navigate([redirectUrl]);
-  }*/
+  }
+
+
 }

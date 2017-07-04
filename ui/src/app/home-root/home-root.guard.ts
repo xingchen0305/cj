@@ -10,6 +10,10 @@ export class HomeRootComponentGuard implements CanActivate {
               private _userService: UserService) {}
 
   canActivate(route: ActivatedRouteSnapshot, routeState: RouterStateSnapshot): Observable<boolean> | boolean {
-    return true;
+      if(!this._userService.authenticated()){
+        this._router.navigate(['/login']);
+        return false;
+      } else
+        return true;
   }
 }
