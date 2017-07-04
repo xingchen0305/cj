@@ -1,6 +1,6 @@
 <section class="content" style="padding: 0px">
 	<h3 style="display:inline;margin-left:1%;">
-         我的书架---<small>图书信息管理</small>
+         我的书屋---<small>图书信息管理</small>
   </h3>
   <form class="form-inline" style="margin:10px;padding: 10px; ">
   <div class="form-group">
@@ -46,12 +46,12 @@
   </th>
   <td>{{idx+1}}</td>
   <td>{{item.name}}</td>
-  <td>{{item.stateName}}/td>
+  <td>{{item.barcode}}</td>
   <td>{{item.stateName}}</td>
   <td>{{item.warehous_name}}</td>
   <!--  [routerLink]="['/editAsset', item.id]"-->
-  <td style="text-align: center"><a routerLink="/attendanceRecord/bookDetail"  class="btn btn-info btn-sm">查看</a>
-    <a *ngIf="item.stateName=='未发布'" [routerLink]="['/attendanceRecord/booksPublishing']" class="btn btn-info btn-sm">发布</a></td>
+  <td style="text-align: center"><a [routerLink]="['/attendanceRecord/bookDetail']"  class="btn btn-info btn-sm">查看</a>
+    <a *ngIf="item.stateName=='未发布'" [routerLink]="['/attendanceRecord/booksPublishing',item.id]" class="btn btn-info btn-sm">发布</a></td>
  </tr>
 
 </table>

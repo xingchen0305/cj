@@ -41,9 +41,9 @@ export const HomeRootRoutes: Routes = [
       {path:'newAsset',component:NewAssetsComponent},
       {path:'detailAssets/:id',component:DetailAssetsComponent},
       { path: 'attendanceRecord/bookDetail', component: BookDetailComponent },
-      { path: 'attendanceRecord/booksPublishing', component: BooksPublishingComponent},
-      { path: 'attendanceRecord/booksPublishing/purchase', component: PurchaseBookComponent},
-      { path: 'attendanceRecord/booksPublishing/renting', component: RentingBookComponent }
+      { path: 'attendanceRecord/booksPublishing/:id', component: BooksPublishingComponent},
+      { path: 'attendanceRecord/booksPublishing/purchase/:id', component: PurchaseBookComponent},
+      { path: 'attendanceRecord/booksPublishing/renting/:id', component: RentingBookComponent }
     ]
   }
 ];

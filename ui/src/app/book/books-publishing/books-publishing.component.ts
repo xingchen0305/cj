@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-books-publishing',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./books-publishing.component.scss']
 })
 export class BooksPublishingComponent implements OnInit {
-
-  constructor() { }
+  book_id:string;
+  constructor(private activatedRoute:ActivatedRoute) { }
 
   ngOnInit() {
+    this.book_id=this.activatedRoute.snapshot.params['id'];
+
   }
 
 }

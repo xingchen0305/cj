@@ -17,10 +17,8 @@ export class AttendanceRecordComponent implements OnInit {
   }
   data:any;
   totalResults:number;
-  totalPages:number;
   start:number;
   pageSize:number = 5;
-  currentPageLength:number;
   currentPage:number;
   searchArgs: Object = {
     size: this.pageSize,
@@ -32,10 +30,8 @@ export class AttendanceRecordComponent implements OnInit {
       (response)=>{
         this.data=response.json().data.results;
         console.log(this.data)
-
       }
     )
-
   }
   pageChanged(event){
     console.log(event);

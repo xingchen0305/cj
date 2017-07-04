@@ -11,8 +11,8 @@
           发布类型 <span class="caret"></span>
         </button>
         <ul *dropdownMenu class="dropdown-menu" role="menu">
-          <li role="menuitem"><a class="dropdown-item"  [routerLink]="['/attendanceRecord/booksPublishing/renting']">出租</a></li>
-          <li role="menuitem"><a class="dropdown-item" [routerLink]="['/attendanceRecord/booksPublishing/purchase']">出售</a></li>
+          <li role="menuitem"><a class="dropdown-item"  [routerLink]="['/attendanceRecord/booksPublishing/renting',book_id]">出租</a></li>
+          <li role="menuitem"><a class="dropdown-item" [routerLink]="['/attendanceRecord/booksPublishing/purchase',book_id]">出售</a></li>
           <li role="menuitem"><a class="dropdown-item" href="#">以物易物</a></li>
         </ul>
       </div>

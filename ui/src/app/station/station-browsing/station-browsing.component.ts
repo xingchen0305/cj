@@ -45,7 +45,7 @@ export class StationBrowsingComponent implements OnInit {
 
   delete(id, index) {
     console.log(id);
-    this.http.get(EQUIPMENT_URI + "/baseWarehouse/deleteById" + "?ids=" + id)
+    this.http.get(EQUIPMENT_URI + "/baseWarehouse/deleteById" + "?id=" + id)
       .subscribe(
         res => {
           console.log(this.data);
