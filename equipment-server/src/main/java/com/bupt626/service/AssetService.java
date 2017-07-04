@@ -2,8 +2,10 @@ package com.bupt626.service;
 
 import com.bupt626.common.base.BasePageService;
 import com.bupt626.common.base.PageEntity;
+import com.bupt626.common.enums.AssetStateEnum;
 import com.bupt626.domain.Asset;
 
+import com.bupt626.domain.AssetType;
 import com.bupt626.domain.BaseWarehouse;
 import com.bupt626.repository.AssetRepository;
 import org.apache.commons.lang.StringUtils;
@@ -45,8 +47,8 @@ public class AssetService extends BasePageService<Asset, String> {
         if (paramaMap.containsKey("property")) {
             sql.append(" and property =:property ");
         }
-        if (paramaMap.containsKey("type")) {
-            sql.append(" and type =:type ");
+        if (paramaMap.containsKey("code")) {
+            sql.append(" and code =:code ");
         }
         if (paramaMap.containsKey("state")) {
             sql.append(" and state =:state ");
@@ -61,13 +63,18 @@ public class AssetService extends BasePageService<Asset, String> {
         for(Asset entity:list){
             if(StringUtils.isNotBlank(entity.getWarehouse_id())){
                 BaseWarehouse baseWarehouse=  baseWarehouseService.findOne(entity.getWarehouse_id());
-                if(null != baseWarehouse){
-                    entity.setWarehous_location(baseWarehouse.getLocation());
-                    entity.setWarehous_name(baseWarehouse.getName());
-                    entity.setWarehous_user_name(baseWarehouse.getUsername());
-                }
+               if(baseWarehouse!=null) {
+                   entity.setWarehous_location(baseWarehouse.getLocation());
+                   entity.setWarehous_name(baseWarehouse.getName());
+                   entity.setWarehous_user_name(baseWarehouse.getUsername());
+               }
             }
+            if(entity.getState()!=null){
+                entity.setStateName(AssetStateEnum.findByValue(entity.getState()));
+            }
+            /*if(entity.getCode()!=null){
 
+            }*/
         }
     }
 

@@ -46,25 +46,14 @@
   </th>
   <td>{{idx+1}}</td>
   <td>{{item.name}}</td>
-  <td>{{item.name}}/td>
-  <td>{{item.state}}</td>
-  <td>{{item.location}}</td>
+  <td>{{item.stateName}}/td>
+  <td>{{item.stateName}}</td>
+  <td>{{item.warehous_name}}</td>
   <!--  [routerLink]="['/editAsset', item.id]"-->
   <td style="text-align: center"><a routerLink="/attendanceRecord/bookDetail"  class="btn btn-info btn-sm">查看</a>
-    <a [routerLink]="['/attendanceRecord/booksPublishing']" class="btn btn-info btn-sm">发布</a></td>
+    <a *ngIf="item.stateName=='未发布'" [routerLink]="['/attendanceRecord/booksPublishing']" class="btn btn-info btn-sm">发布</a></td>
  </tr>
-  <tr>
-  <th>
-    <input type="checkbox">
-  </th>
-  <td>2</td>
-  <td>SSH教程</td>
-  <td>987654</td>
-  <td>未发布</td>
-  <td>413</td>
-  <td style="text-align: center"><a routerLink="/" class="btn btn-info btn-sm">查看</a>
-  <a routerLink="/" class="btn btn-info btn-sm">发布</a></td>
-  </tr>
+
 </table>
 <div class="center">
 
