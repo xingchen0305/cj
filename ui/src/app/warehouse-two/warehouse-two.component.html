@@ -1,0 +1,113 @@
+<section class="content" style="padding: 0px">
+  <h3 style="display:inline;margin-left:1%;">
+    鸿通楼资产列表---<small>资产信息管理</small>
+  </h3>
+  <form class="form-inline" style="margin:10px;padding: 10px;  ">
+    <div class="form-group">
+      <label for="exampleInputName2" >物品名称:</label>
+      <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail2">所属仓库:</label>
+      <select class="select" style="width: 221px;height: 38px">
+        <option value ="volvo">Volvo</option>
+        <option value ="saab">Saab</option>
+        <option value="opel">Opel</option>
+        <option value="audi">Audi</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail2">状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态:</label>
+      <select class="select" style="width: 221px;height: 38px">
+        <option value ="volvo">Volvo</option>
+        <option value ="saab">Saab</option>
+        <option value="opel">Opel</option>
+        <option value="audi">Audi</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-outline-primary">查询</button>
+
+  </form>
+  <hr>
+  <table class="table table-hover">
+    <tr>
+      <th>
+        <input type="checkbox">
+      </th>
+      <th>编号</th>
+      <th>物品姓名</th>
+      <th>属性</th>
+      <th>数量</th>
+      <th>所属仓库</th>
+      <th>状态</th>
+      <th>操作</th>
+    </tr>
+    <tr>
+      <th>
+        <input type="checkbox">
+      </th>
+      <td>1</td>
+      <td>服务器</td>
+      <td>computer</td>
+      <td>1</td>
+      <td>413</td>
+      <td>已发布</td>
+      <td><a routerLink="/heroes" class="btn btn-info btn-sm">查看</a></td></tr>
+    <tr>
+      <th>
+        <input type="checkbox">
+      </th>
+      <td>2</td>
+      <td>SSH教程</td>
+      <td>book</td>
+      <td>2</td>
+      <td>413</td>
+      <td>未发布</td>
+      <td><a routerLink="/heroes" class="btn btn-info btn-sm">查看</a></td></tr>
+    <tr>
+      <th>
+        <input type="checkbox">
+      </th>
+      <td>2</td>
+      <td>空调</td>
+      <td>airConditioner</td>
+      <td>2</td>
+      <td>413</td>
+      <td>未发布</td>
+      <td><a routerLink="/heroes" class="btn btn-info btn-sm">查看</a></td></tr>
+  </table>
+  <div class="center">
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+      Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button  type="button" class="btn btn-info">删除人员</button>
+  </div>
+  <div class="center">
+    <a href="#" >上一页</a>
+    <a href="#" >下一页</a>
+    <a href="#" >首页</a>
+    <a href="#" >末页</a>
+  </div>
+</section>
