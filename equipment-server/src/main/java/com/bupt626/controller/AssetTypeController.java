@@ -43,12 +43,17 @@ public class AssetTypeController extends BaseCommonController {
     }
 
     //查询属性信息
-    @RequestMapping(value = "/AssetType/{id}", method = RequestMethod.GET)
+   /* @RequestMapping(value = "/AssetType/{id}", method = RequestMethod.GET)
     public String findById(@PathVariable(value = "id") String id) {
         AssetType assetType = assetTypeService.findOne(id);
         return sendMessage("true", "", assetType, DateUtil.DATE);
+    }*/
+    //查询属性信息
+    @RequestMapping(value = "/AssetType/{code}", method = RequestMethod.GET)
+    public String findByCode(@PathVariable(value = "code") String code) {
+        AssetType assetType = assetTypeService.findByCode(code);
+        return sendMessage("true", "", assetType, DateUtil.DATE);
     }
-
     //删除属性信息
     @RequestMapping(value = "/AssetType/{id}", method = RequestMethod.DELETE)
     public String deleteById(@PathVariable(value = "id") String ids) {

@@ -27,6 +27,8 @@ public class AssetService extends BasePageService<Asset, String> {
     private AssetRepository assetRepository;
     @Autowired
     private BaseWarehouseService baseWarehouseService;
+    @Autowired
+    private AssetTypeService assetTypeService;
     public void save(Asset entity) {
         assetRepository.save(entity);
         assetRepository.findAll();
@@ -72,9 +74,10 @@ public class AssetService extends BasePageService<Asset, String> {
             if(entity.getState()!=null){
                 entity.setStateName(AssetStateEnum.findByValue(entity.getState()));
             }
-            /*if(entity.getCode()!=null){
-
-            }*/
+            if(entity.getCode()!=null){
+               AssetType assetType=assetTypeService.findByCode(entity.getCode());
+               entity.setType(assetType.getName());
+            }
         }
     }
 

@@ -23,7 +23,7 @@ public class Asset {
   //  private String location;
     private Integer state;
     private String warehouse_id;
-
+    private String barcode;
     //游离态
     private String warehous_name;
     private String warehous_location;
@@ -125,8 +125,15 @@ public class Asset {
     public void setWarehouse_id(String warehouse_id) {
         this.warehouse_id = warehouse_id;
     }
+    @Basic
+    @Column(name = "BARCODE")
+    public String getBarcode() {
+        return barcode;
+    }
 
-
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
+    }
 
     @Transient
     public String getWarehous_name() {
