@@ -19,16 +19,17 @@ public class Asset {
     private String name;
     private String property;//公有或私有
     private String count;
+    private String code;
   //  private String location;
-    private String state;
-    private String type;
+    private Integer state;
     private String warehouse_id;
 
     //游离态
     private String warehous_name;
     private String warehous_location;
     private String warehous_user_name;
-
+    private String stateName;
+    private String type;
     //@Id,@GeneratedValue,@GenericGenerator. ,@GeneratedValue作用是JPA的默认实现自定义主键生成策略
     @Id
     @Column(name = "ID", updatable = false)
@@ -87,33 +88,34 @@ public class Asset {
         this.count = count;
     }
 
-    /*@Basic
-    @Column(name = "LOCATION")
-    public String getLocation() {
-        return location;
-    }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
-*/
+    /*@Basic
+        @Column(name = "LOCATION")
+        public String getLocation() {
+            return location;
+        }
+
+        public void setLocation(String location) {
+            this.location = location;
+        }
+    */
     @Basic
     @Column(name = "STATE")
-    public String getState() {
+    public Integer getState() {
         return state;
     }
-
-    public void setState(String state) {
+    public void setState(Integer state) {
         this.state = state;
     }
 
     @Basic
-    @Column(name = "TYPE")
-    public String getType() {
-        return type;
+    @Column(name = "CODE")
+    public String getCode() {
+        return code;
     }
-    public void setType(String type) {
-        this.type = type;
+
+    public void setCode(String code) {
+        this.code = code;
     }
     @Basic
     @Column(name = "WAREHOUSE_ID")
@@ -149,5 +151,17 @@ public class Asset {
 
     public void setWarehous_user_name(String warehous_user_name) {
         this.warehous_user_name = warehous_user_name;
+    }
+    @Transient
+    public String getStateName() {  return stateName;  }
+
+    public void setStateName(String stateName) {  this.stateName = stateName;}
+    @Transient
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

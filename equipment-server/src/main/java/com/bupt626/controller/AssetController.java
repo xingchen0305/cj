@@ -94,16 +94,15 @@ public class AssetController extends BaseCommonController {
         assetService.pageByHql(pageEntity, buildParameter(entity));
         return sendSuccessMessage(pageEntity);
     }
-
     private Map<String, Object> buildParameter(Asset entity) {
         Map<String, Object> parameterMap = new HashMap<>();
         if (StringUtils.isNotBlank(entity.getProperty())) {
             parameterMap.put("property", entity.getProperty());
         }
         if (StringUtils.isNotBlank(entity.getType())){
-            parameterMap.put("type", entity.getType());
+            parameterMap.put("code", entity.getType());
         }
-        if (StringUtils.isNotBlank(entity.getState())){
+        if (entity.getState()!=null){
             parameterMap.put("state", entity.getState());
         }
         return parameterMap;
