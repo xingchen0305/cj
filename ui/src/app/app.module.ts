@@ -30,6 +30,7 @@ import {WarehouseService} from "./common/service/warehouse.service";
 import {AssetService} from "./common/service/asset.service";
 import { EditAssetComponent } from './edit-asset/edit-asset.component';
 import {AuthWithTokenService} from "./common/auth/auth-with-token.service";
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import {AuthWithTokenService} from "./common/auth/auth-with-token.service";
     WarehouseTwoComponent,
     EditInfoComponent,
     CreateWarehouseComponent,
-    EditAssetComponent
+    EditAssetComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,

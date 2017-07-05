@@ -5,12 +5,15 @@ import com.bupt626.common.base.Constants;
 import com.bupt626.common.base.PageEntity;
 import com.bupt626.common.utils.BeanUtills;
 import com.bupt626.common.utils.DateUtil;
+import com.bupt626.domain.Account;
 import com.bupt626.domain.BaseWarehouse;
 import com.bupt626.service.BaseWarehouseService;
+import com.bupt626.service.UserClient;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,6 +25,9 @@ import java.util.Map;
 public class BaseWarehouseController extends BaseCommonController {
     @Autowired
     private BaseWarehouseService baseWarehouseService;
+
+    @Autowired
+    UserClient userClient;
 
     @RequestMapping("/saveOrUpdate")
     public String saveOrUpdate(@RequestBody BaseWarehouse entity){
@@ -45,7 +51,10 @@ public class BaseWarehouseController extends BaseCommonController {
         }
     }
     @RequestMapping(value = "/findById",method = RequestMethod.POST )
-    public String findById(String id){
+    public String findById(String id, Principal user){
+        System.out.println(user.getName());
+        Account account = userClient.currentAccount();
+
         BaseWarehouse baseWarehouse = baseWarehouseService.findOne(id);
         return sendSuccessMessage(baseWarehouse);
     }
