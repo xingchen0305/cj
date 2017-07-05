@@ -24,6 +24,7 @@ public class BaseWarehouse  {
     private String orgId;
     //游离态字段
     private String orgName;
+    private String displayName;
 
     @Id
     @Column(name = "ID", updatable = false)
@@ -75,4 +76,7 @@ public class BaseWarehouse  {
     @Transient
     public String getOrgName() { return orgName; }
     public void setOrgName(String orgName) { this.orgName = orgName; }
+    @Transient
+    public String getDisplayName() { return displayName; }
+    public void setDisplayName(String displayName) { this.displayName = displayName; }
 }
