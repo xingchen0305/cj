@@ -15,6 +15,7 @@ import { BooksPublishingComponent } from '../book/books-publishing/books-publish
 import {HomeRootComponentGuard} from "./home-root.guard";
 import { PurchaseBookComponent } from '../book/purchase-book/purchase-book.component';
 import { RentingBookComponent } from '../book/renting-book/renting-book.component';
+import { OrganizationManagementComponent } from '../organization/organization-management/organization-management.component';
 export const HomeRootRoutes: Routes = [
   {
     path: '',
@@ -39,6 +40,7 @@ export const HomeRootRoutes: Routes = [
       {path:'stationBrowsing/createWarehouse',component: CreateWarehouseComponent},
       {path:'editAsset/:id',component:EditAssetComponent},
       {path:'newAsset',component:NewAssetsComponent},
+      {path:'organizationManagementComponent',component:OrganizationManagementComponent},
       {path:'detailAssets/:id',component:DetailAssetsComponent},
       { path: 'attendanceRecord/bookDetail', component: BookDetailComponent },
       { path: 'attendanceRecord/booksPublishing/:id', component: BooksPublishingComponent},

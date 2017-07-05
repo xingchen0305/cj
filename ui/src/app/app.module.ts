@@ -37,6 +37,7 @@ import { BookDetailComponent } from './book/book-detail/book-detail.component';
 import { BooksPublishingComponent } from './book/books-publishing/books-publishing.component';
 import { PurchaseBookComponent } from './book/purchase-book/purchase-book.component';
 import { RentingBookComponent } from './book/renting-book/renting-book.component';
+import { OrganizationManagementComponent } from './organization/organization-management/organization-management.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { RentingBookComponent } from './book/renting-book/renting-book.component
     BookDetailComponent,
     BooksPublishingComponent,
     PurchaseBookComponent,
-    RentingBookComponent
+    RentingBookComponent,
+    OrganizationManagementComponent
   ],
   imports: [
     BrowserModule,

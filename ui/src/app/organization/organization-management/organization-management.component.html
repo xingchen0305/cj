@@ -1,0 +1,18 @@
+<div class="selectLocation">
+    <select style="width:200px;" class="btn btn-info btn-sm" ng-change="changeCountry()" ng-model="country" ng-options="C.name for C in countryList">
+      <option value="">国家</option>
+    </select>
+
+    <select  style="width:200px;" class="btn btn-info btn-sm" ng-change="changeProvince()" ng-model="province" ng-options="p.name for p in country.province">
+      <option value="">省份/直轄市</option>
+    </select>
+
+
+    <select  style="width:200px;"class="btn btn-info btn-sm" ng-change="changeCity()" ng-model="city" ng-options="c for c in province.city">
+      <option value="">市</option>
+    </select>
+</div>
+  <div style="width:348px;" style="margin:20px">
+    <input type="text" class="form-control" ng-model="detailAddress" placeholder="详细地址" ng-disabled="country=='' || country==null" />
+  </div>
+
