@@ -74,7 +74,7 @@ public class AssetService extends BasePageService<Asset, String> {
             if(entity.getState()!=null){
                 entity.setStateName(AssetStateEnum.findByValue(entity.getState()));
             }
-            if(entity.getCode()!=null){
+            if(StringUtils.isNotBlank(entity.getCode())){
                AssetType assetType=assetTypeService.findByCode(entity.getCode());
                entity.setType(assetType.getName());
             }

@@ -3,6 +3,7 @@ package com.bupt626.controller;
 import com.bupt626.common.base.BaseCommonController;
 import com.bupt626.common.base.Constants;
 import com.bupt626.common.base.PageEntity;
+import com.bupt626.common.enums.AssetStateEnum;
 import com.bupt626.common.utils.BeanUtills;
 import com.bupt626.common.utils.DateUtil;
 import com.bupt626.domain.Asset;
@@ -41,6 +42,7 @@ public class AssetController extends BaseCommonController {
     //添加资产信息
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(@RequestBody Asset entity) {
+        entity.setState(0);
         assetService.save(entity);
         return sendSuccessMessage();
     }
@@ -64,10 +66,16 @@ public class AssetController extends BaseCommonController {
         Asset asset = assetService.findOne(id);
        if(StringUtils.isNotBlank(asset.getWarehouse_id())){
             BaseWarehouse baseWarehouse=  baseWarehouseService.findOne(asset.getWarehouse_id());
-            AssetType assetType = assetTypeService.findByCode(asset.getCode());
             asset.setWarehous_location(baseWarehouse.getLocation());
             asset.setWarehous_name(baseWarehouse.getName());
             asset.setWarehous_user_name(baseWarehouse.getUsername());
+        }
+        if(asset.getState()!=null){
+            String stateName=AssetStateEnum.findByValue(asset.getState());
+            asset.setStateName(stateName);
+        }
+        if(StringUtils.isNotBlank(asset.getCode())){
+            AssetType assetType = assetTypeService.findByCode(asset.getCode());
             asset.setType(assetType.getName());
         }
         return sendMessage("true", "", asset, DateUtil.DATE);
