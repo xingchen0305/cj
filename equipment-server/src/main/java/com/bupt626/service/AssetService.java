@@ -2,6 +2,7 @@ package com.bupt626.service;
 
 import com.bupt626.common.base.BasePageService;
 import com.bupt626.common.base.PageEntity;
+import com.bupt626.common.enums.AssetPropertyEnum;
 import com.bupt626.common.enums.AssetStateEnum;
 import com.bupt626.domain.Asset;
 
@@ -71,12 +72,18 @@ public class AssetService extends BasePageService<Asset, String> {
                    entity.setWarehous_user_name(baseWarehouse.getUsername());
                }
             }
+            //是否发布
             if(entity.getState()!=null){
                 entity.setStateName(AssetStateEnum.findByValue(entity.getState()));
             }
+            //资产属性解析
             if(StringUtils.isNotBlank(entity.getCode())){
                AssetType assetType=assetTypeService.findByCode(entity.getCode());
                entity.setType(assetType.getName());
+            }
+            //私有or公有
+            if(entity.getProperty()!=null){
+               entity.setPropertyName(AssetPropertyEnum.findByValue(entity.getProperty()));
             }
         }
     }

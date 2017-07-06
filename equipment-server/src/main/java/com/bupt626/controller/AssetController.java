@@ -3,6 +3,7 @@ package com.bupt626.controller;
 import com.bupt626.common.base.BaseCommonController;
 import com.bupt626.common.base.Constants;
 import com.bupt626.common.base.PageEntity;
+import com.bupt626.common.enums.AssetPropertyEnum;
 import com.bupt626.common.enums.AssetStateEnum;
 import com.bupt626.common.utils.BeanUtills;
 import com.bupt626.common.utils.DateUtil;
@@ -19,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -79,6 +81,10 @@ public class AssetController extends BaseCommonController {
             AssetType assetType = assetTypeService.findByCode(asset.getCode());
             asset.setType(assetType.getName());
         }
+        //私有or公有
+        if(asset.getProperty()!=null){
+            asset.setPropertyName(AssetPropertyEnum.findByValue(asset.getProperty()));
+        }
         return sendMessage("true", "", asset, DateUtil.DATE);
     }
 
@@ -111,11 +117,11 @@ public class AssetController extends BaseCommonController {
     }
     private Map<String, Object> buildParameter(Asset entity) {
         Map<String, Object> parameterMap = new HashMap<>();
-        if (StringUtils.isNotBlank(entity.getProperty())) {
+        if (entity.getProperty()!=null) {
             parameterMap.put("property", entity.getProperty());
         }
-        if (StringUtils.isNotBlank(entity.getType())){
-            parameterMap.put("code", entity.getType());
+        if (StringUtils.isNotBlank(entity.getCode())){
+            parameterMap.put("code", entity.getCode());
         }
         if (entity.getState()!=null){
             parameterMap.put("state", entity.getState());

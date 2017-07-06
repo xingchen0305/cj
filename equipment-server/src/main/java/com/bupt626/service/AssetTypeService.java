@@ -26,7 +26,7 @@ public class AssetTypeService extends BasePageService<AssetType,String> {
     public AssetType findOne(String id) {
         return assetTypeRepository.findOne(id);
     }
-    public AssetType findByCode(String code){return assetTypeRepository.findAllByCode(code);}
+    public AssetType findByCode(String code){return assetTypeRepository.findByCode(code);}
     public List<AssetType> findAll(String id) {
         return assetTypeRepository.findAll();
     }

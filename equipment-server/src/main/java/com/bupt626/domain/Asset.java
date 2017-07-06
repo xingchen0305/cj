@@ -17,7 +17,7 @@ public class Asset {
     private Date createTime;
     private Date lastUpdate;
     private String name;
-    private String property;//公有或私有
+    private Integer property;//公有或私有
     private String count;
     private String code;
   //  private String location;
@@ -30,6 +30,7 @@ public class Asset {
     private String warehous_user_name;
     private String stateName;
     private String type;
+    private String propertyName;
     //@Id,@GeneratedValue,@GenericGenerator. ,@GeneratedValue作用是JPA的默认实现自定义主键生成策略
     @Id
     @Column(name = "ID", updatable = false)
@@ -68,13 +69,14 @@ public class Asset {
         this.name = name;
     }
 
+
     @Basic
     @Column(name = "PROPERTY")
-    public String getProperty() {
+    public Integer getProperty() {
         return property;
     }
 
-    public void setProperty(String property) {
+    public void setProperty(Integer property) {
         this.property = property;
     }
 
@@ -170,5 +172,13 @@ public class Asset {
 
     public void setType(String type) {
         this.type = type;
+    }
+    @Transient
+    public String getPropertyName() {
+        return propertyName;
+    }
+
+    public void setPropertyName(String propertyName) {
+        this.propertyName = propertyName;
     }
 }
