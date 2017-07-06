@@ -13,7 +13,8 @@ import com.bupt626.service.AssetService;
 
 import com.bupt626.service.AssetTypeService;
 import com.bupt626.service.BaseWarehouseService;
-import org.apache.commons.lang.StringUtils;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,7 +51,7 @@ public class AssetController extends BaseCommonController {
     //更新资产信息
     @RequestMapping(value = "/Asset", method = RequestMethod.PUT)
     public String update(@RequestBody Asset entity) {
-        if (org.apache.commons.lang3.StringUtils.isNotBlank(entity.getId())) {
+        if (StringUtils.isNotBlank(entity.getId())) {
             Asset asset = assetService.findOne(entity.getId());
             BeanUtills.copyProperties(entity, asset);
             assetService.save(asset);
