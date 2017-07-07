@@ -1,32 +1,27 @@
-<section class="content" style="padding: 0px">
+<section class="content" style="padding: 0px" *ngIf="data">
   <h3 style="display:inline;margin-left:1%;">
     总资产列表---
     <small>资产信息管理</small>
   </h3>
-  <form class="form-inline" style="margin:10px;padding: 10px;  ">
+  <form class="form-inline" style="margin:10px;padding: 10px;  " *ngIf="data" >
     <div class="form-group">
       <label for="exampleInputName2">物品名称:</label>
-      <input type="text" class="form-control" id="exampleInputName2" placeholder="请输入物品名称">
+      <input type="text" class="form-control" id="exampleInputName2" name="name" placeholder="请输入物品名称" [(ngModel)]="name">
     </div>
     <div class="form-group">
       <label>所属仓库:</label>
-      <select class="select" style="width: 221px;height: 38px">
-        <option value="volvo">Volvo</option>
-        <option value="saab">Saab</option>
-        <option value="opel">Opel</option>
-        <option value="audi">Audi</option>
+      <select class="select" style="width: 221px;height: 38px" [(ngModel)]="warse" name="warsehousename" >
+        <option  *ngFor="let item of warsehouse"  [value]="item.name" >{{item.name}}</option>
       </select>
     </div>
     <div class="form-group">
       <label>状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态:</label>
-      <select class="select" style="width: 221px;height: 38px">
-        <option value="volvo">Volvo</option>
-        <option value="saab">Saab</option>
-        <option value="opel">Opel</option>
-        <option value="audi">Audi</option>
+      <select class="select" style="width: 221px;height: 38px"    [(ngModel)]="state" name="state" >
+        <option  [value]="1" selected>已发布</option>
+        <option  [value]="0" >未发布</option>
       </select>
     </div>
-    <button type="submit" class="btn btn-outline-primary">查询</button>
+    <button type="submit" class="btn btn-outline-primary" (click)="pageChanged3($event)">查询</button>
 
   </form>
   <hr>
@@ -43,15 +38,15 @@
       <th>状态</th>
       <th style="text-align: center">操作</th>
     </tr>
-    <tr *ngFor="let item of data | paginate: { itemsPerPage: pageSize, currentPage: 3, totalItems: totalResults }; let idx=index" >
+    <tr *ngFor="let item of data | paginate: { itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalResults }; let idx=index" >
       <th>
         <input type="checkbox">
       </th>
-      <td>{{item.id}}</td>
+      <td>{{(currentPage-1)*pageSize + idx+1}}</td>
       <td>{{item.name}}</td>
       <td>{{item.type}}</td>
       <td>{{item.count}}</td>
-      <td>{{item.location}}</td>
+      <td>{{item.warehous_name}}</td>
       <td>{{item.state}}</td>
       <td style="text-align: center">
         <!--<button [routerLink]="['/warehouseOne', item.id]"  class="btn btn-info btn-sm" >查看资产</button>-->

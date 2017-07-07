@@ -40,18 +40,18 @@
   <th>所属仓库</th>
   <th style="text-align: center">操作</th>
   </tr>
-  <tr *ngFor="let item of data | paginate: { itemsPerPage: pageSize, currentPage:2, totalItems: totalResults }; let idx=index">
+  <tr *ngFor="let item of data | paginate: { itemsPerPage: pageSize, currentPage:currentPage, totalItems: totalResults }; let idx=index">
   <th>
     <input type="checkbox">
   </th>
-  <td>{{idx+1}}</td>
+  <td>{{(currentPage-1)*pageSize + idx+1}}</td>
   <td>{{item.name}}</td>
   <td>{{item.barcode}}</td>
   <td>{{item.stateName}}</td>
   <td>{{item.warehous_name}}</td>
   <!--  [routerLink]="['/editAsset', item.id]"-->
   <td style="text-align: center"><a [routerLink]="['/attendanceRecord/bookDetail']"  class="btn btn-info btn-sm">查看</a>
-    <a *ngIf="item.stateName=='未发布'" [routerLink]="['/attendanceRecord/booksPublishing',item.id]" class="btn btn-info btn-sm">发布</a></td>
+    <a *ngIf="item.stateName=='发布'" [routerLink]="['/attendanceRecord/booksPublishing',item.id]" class="btn btn-info btn-sm">发布</a></td>
  </tr>
 
 </table>

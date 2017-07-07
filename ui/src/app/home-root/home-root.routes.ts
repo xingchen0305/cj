@@ -29,10 +29,11 @@ export const HomeRootRoutes: Routes = [
         {path:'warehouseTwo',component:WarehouseTwoComponent}*/
       ]},
       {path:'memberBrowsing',component:MemberBrowsingComponent},
-      {path:'attendanceRecord',component:AttendanceRecordComponent,
-    /*    children:[
-          { path: 'bookDetail', component: BookDetailComponent },
-          { path: 'booksPublishing', component: BooksPublishingComponent }
+      {path:'attendanceRecord',
+        children:[
+          { path: '', component: AttendanceRecordComponent },
+          { path: 'bookDetail', component: BookDetailComponent }]
+     /*      { path: 'booksPublishing', component: BooksPublishingComponent }
         ]*/
       },
       {path:'stationBrowsing/warehouseOne/:id',component:WarehouseOneComponent},
@@ -42,7 +43,7 @@ export const HomeRootRoutes: Routes = [
       {path:'newAsset',component:NewAssetsComponent},
       {path:'organizationManagementComponent',component:OrganizationManagementComponent},
       {path:'detailAssets/:id',component:DetailAssetsComponent},
-      { path: 'attendanceRecord/bookDetail', component: BookDetailComponent },
+      // { path: 'attendanceRecord/bookDetail', component: BookDetailComponent },
       { path: 'attendanceRecord/booksPublishing/:id', component: BooksPublishingComponent},
       { path: 'attendanceRecord/booksPublishing/purchase/:id', component: PurchaseBookComponent},
       { path: 'attendanceRecord/booksPublishing/renting/:id', component: RentingBookComponent }

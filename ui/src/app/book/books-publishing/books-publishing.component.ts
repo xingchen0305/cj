@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class BooksPublishingComponent implements OnInit {
   book_id:string;
+  book_type: number= -1;
   constructor(private activatedRoute:ActivatedRoute) { }
 
   ngOnInit() {

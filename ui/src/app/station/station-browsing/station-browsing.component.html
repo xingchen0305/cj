@@ -15,11 +15,11 @@
   <th style="text-align: center">操作</th>
   </tr>
   <tr>
-  <tr *ngFor="let item of data | paginate: { itemsPerPage: pageSize, currentPage:2, totalItems: totalResults }; let idx=index" >
+  <tr *ngFor="let item of data | paginate: { itemsPerPage: pageSize, currentPage:currentPage, totalItems: totalResults }; let idx=index" >
   <th >
     <input type="checkbox">
   </th>
-  <td *ngIf="currentPage">{{idx+1}}</td>
+  <td *ngIf="currentPage">{{(currentPage-1)*pageSize + idx+1}}</td>
   <td>{{item.name}}</td>
   <td>{{item.location}}</td>
   <td  style="text-align: center">

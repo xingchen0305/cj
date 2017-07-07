@@ -1,16 +1,40 @@
-<div class="selectLocation">
-    <select style="width:200px;" class="btn btn-info btn-sm" ng-change="changeCountry()" ng-model="country" ng-options="C.name for C in countryList">
-      <option value="">国家</option>
+<div  *ngIf="data" class="selectLocation" >
+  <h3 style="display:block;margin-left:1%;margin-bottom:5%;">
+    组织列表---<small>组织信息管理</small>
+  </h3>
+
+  <select style="width:150px;" class="btn btn-info btn-sm"  (change)="postSuperior($event.target.value)" >
+      <option value="" style="display: none">请选择国家</option>
+    <option *ngFor="let item of data" [value]="item.value"  >{{item.name}}</option>
     </select>
 
-    <select  style="width:200px;" class="btn btn-info btn-sm" ng-change="changeProvince()" ng-model="province" ng-options="p.name for p in country.province">
-      <option value="">省份/直轄市</option>
+    <select *ngIf="city" style="width:150px;"class="btn btn-info btn-sm" (change)="postSuperior1($event.target.value)" >
+      <option value="" style="display: none">请选择城市</option>
+      <option *ngFor="let item of city" [value]="item.id">{{item.name}}</option>
     </select>
 
+  <select *ngIf="distract" style="width:150px;"class="btn btn-info btn-sm" (change)="postSuperior2($event.target.value)" >
+    <option value="" style="display: none">请选择区</option>
+    <option *ngFor="let item of distract" [value]="item.id">{{item.name}}</option>
+  </select>
 
-    <select  style="width:200px;"class="btn btn-info btn-sm" ng-change="changeCity()" ng-model="city" ng-options="c for c in province.city">
-      <option value="">市</option>
+    <select *ngIf="school" style="width:150px;"class="btn btn-info btn-sm"  (change)="postSuperior3($event.target.value)"  >
+      <option value="" style="display: none">请选择学校</option>
+      <option *ngFor="let item of school" [value]="item.id">{{item.name}}</option>
     </select>
+
+  <select *ngIf="room" style="width:150px;"class="btn btn-info btn-sm"    >
+    <option value="" style="display: none">请选择教室</option>
+    <option *ngFor="let item of room" [value]="item.id">{{item.name}}</option>
+  </select>
+</div>
+
+<br>
+<div class="center">
+  <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModalLong"  [routerLink]="['/newAsset']" >
+    新增地址
+  </button>
+
 </div>
   <div style="width:348px;" style="margin:20px">
     <input type="text" class="form-control" ng-model="detailAddress" placeholder="详细地址" ng-disabled="country=='' || country==null" />

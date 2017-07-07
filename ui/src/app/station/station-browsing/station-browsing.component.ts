@@ -21,7 +21,7 @@ export class StationBrowsingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getWarehouses();
+    this.pageChanged(1);
   }
   data: any;
   totalResults:number;
@@ -33,15 +33,6 @@ export class StationBrowsingComponent implements OnInit {
     size: this.pageSize,
     page: 1
   };
-  getWarehouses(){
-    this.warehouseService.getWareHouses(this.searchArgs).subscribe(
-      (response)=>{
-        console.log(this.searchArgs);
-        this.data = response.json().data.results;
-        //console.log(this.data)
-      }
-    );
-  }
 
   delete(id, index) {
     console.log(id);

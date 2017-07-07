@@ -20,6 +20,7 @@ import {HomeRootComponentGuard} from "./home-root/home-root.guard";
 import {TopnavComponent} from "./home-root/topnav/topnav.component";
 import {SidebarComponent} from "./home-root/sidebar/sidebar.component";
 import {DemoService} from "./common/service/demo.service";
+import {OrganizationService} from "./common/service/organization.service";
 import {provideAppConfig} from "./app.config";
 import { WarehouseOneComponent } from './warehouse-one/warehouse-one.component';
 import { EditInfoComponent } from './edit-info/edit-info.component';
@@ -95,7 +96,8 @@ import { OrganizationManagementComponent } from './organization/organization-man
     WarehouseService,
     AssetService,
     AuthWithTokenService,
-    BookService
+    BookService,
+    OrganizationService
   ],
   bootstrap: [AppComponent]
 })

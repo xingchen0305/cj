@@ -13,7 +13,7 @@ export class AttendanceRecordComponent implements OnInit {
   constructor(private bookService: BookService, private http: HttpInterceptor, private _router: Router,) { }
 
   ngOnInit() {
-    this.getBooks();
+    this.pageChanged(1);
   }
   data:any;
   totalResults:number;
@@ -25,14 +25,6 @@ export class AttendanceRecordComponent implements OnInit {
     page: 1,
     type:'book'
   };
-  getBooks(){
-    this.bookService.getBooks(this.searchArgs).subscribe(
-      (response)=>{
-        this.data=response.json().data.results;
-        console.log(this.data)
-      }
-    )
-  }
   pageChanged(event){
     console.log(event);
     this.searchArgs['page'] = event;
@@ -46,5 +38,6 @@ export class AttendanceRecordComponent implements OnInit {
       }
     );
   }
+
 
 }
