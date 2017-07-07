@@ -18,3 +18,11 @@
 
 
 注：密码群里问，或者私信我
+
+ssh 登录：
+ssh root@10.105.242.65
+
+校园网登录： 
+1. python /data/bupt/login.py
+2. 用户名/密码
+3. python /data/bupt/logout.py
