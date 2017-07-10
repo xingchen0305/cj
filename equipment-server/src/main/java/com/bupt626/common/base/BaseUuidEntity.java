@@ -2,17 +2,17 @@ package com.bupt626.common.base;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.google.gson.annotations.Expose;
+import org.hibernate.annotations.UpdateTimestamp;
+
 /**
- * @author chzhao
- * @Title: UUIDBasePo.java
+ * @author ycliu
+ * @Title: BaseUuidEntity.java
  * @Description: 基础的PO
  * @date 2017年6月7日 上午10:31:48
  */
@@ -32,9 +32,13 @@ public class BaseUuidEntity implements Serializable{
     @GenericGenerator(name = "system-uuid", strategy = "org.hibernate.id.UUIDGenerator")
     public String id;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     @Column(name= "CREATE_TIME")
     private Date createTime;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @UpdateTimestamp
     @Column(name= "LAST_UPDATE")
     private Date lastUpdate;
 

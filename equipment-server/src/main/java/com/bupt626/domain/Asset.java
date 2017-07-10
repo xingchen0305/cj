@@ -1,7 +1,8 @@
 package com.bupt626.domain;
 
-import com.bupt626.common.base.BaseUuidEntity;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -11,54 +12,53 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "base_asset")
-public class Asset extends BaseUuidEntity {
-   /* private String id;
+public class Asset {
+    private String id;
     private Date createTime;
-    private Date lastUpdate;*/
+    private Date lastUpdate;
     private String name;
-    private String property;//公有或私有
+    private Integer property;//公有或私有
     private String count;
-    private String location;
-    private String state;
-    private String type;
+    private String code;
+  //  private String location;
+    private Integer state;
     private String warehouse_id;
-
+    private String barcode;
     //游离态
-   /* private String warehous_name;
+    private String warehous_name;
     private String warehous_location;
-    private String warehous_user_name;*/
+    private String warehous_user_name;
+    private String stateName;
+    private String type;
+    private String propertyName;
+    //@Id,@GeneratedValue,@GenericGenerator. ,@GeneratedValue作用是JPA的默认实现自定义主键生成策略
+    @Id
+    @Column(name = "ID", updatable = false)
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "org.hibernate.id.UUIDGenerator")
 
-    /*@Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid")
-    @Column(name = "ID")
-    public String getId() {
-        return id;
-    }
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    @Basic
-    @Column(name = "CREATE_TIME")
-    public Date getCreateTime() {
+    @Temporal(TemporalType.TIMESTAMP)//指定映射数据库中的日期事件类型
+    @CreationTimestamp
+    @Column(name= "CREATE_TIME", updatable = false )
+    public Date getCreateTime(){
         return createTime;
     }
-
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Date createTime){
         this.createTime = createTime;
     }
 
-    @Basic
-    @Column(name = "LAST_UPDATE")
-    public Date getLastUpdate() {
+    @Temporal(TemporalType.TIMESTAMP)
+    @UpdateTimestamp
+    @Column(name= "LAST_UPDATE")
+    public Date getLastUpdate(){
         return lastUpdate;
     }
-
-    public void setLastUpdate(Date lastUpdate) {
+    public void setLastUpdate(Date lastUpdate){
         this.lastUpdate = lastUpdate;
-    }*/
+    }
     @Basic
     @Column(name = "NAME")
     public String getName() {
@@ -69,13 +69,14 @@ public class Asset extends BaseUuidEntity {
         this.name = name;
     }
 
+
     @Basic
     @Column(name = "PROPERTY")
-    public String getProperty() {
+    public Integer getProperty() {
         return property;
     }
 
-    public void setProperty(String property) {
+    public void setProperty(Integer property) {
         this.property = property;
     }
 
@@ -89,33 +90,34 @@ public class Asset extends BaseUuidEntity {
         this.count = count;
     }
 
-    @Basic
-    @Column(name = "LOCATION")
-    public String getLocation() {
-        return location;
-    }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
+    /*@Basic
+        @Column(name = "LOCATION")
+        public String getLocation() {
+            return location;
+        }
 
+        public void setLocation(String location) {
+            this.location = location;
+        }
+    */
     @Basic
     @Column(name = "STATE")
-    public String getState() {
+    public Integer getState() {
         return state;
     }
-
-    public void setState(String state) {
+    public void setState(Integer state) {
         this.state = state;
     }
 
     @Basic
-    @Column(name = "TYPE")
-    public String getType() {
-        return type;
+    @Column(name = "CODE")
+    public String getCode() {
+        return code;
     }
-    public void setType(String type) {
-        this.type = type;
+
+    public void setCode(String code) {
+        this.code = code;
     }
     @Basic
     @Column(name = "WAREHOUSE_ID")
@@ -125,10 +127,17 @@ public class Asset extends BaseUuidEntity {
     public void setWarehouse_id(String warehouse_id) {
         this.warehouse_id = warehouse_id;
     }
+    @Basic
+    @Column(name = "BARCODE")
+    public String getBarcode() {
+        return barcode;
+    }
 
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
+    }
 
-
-    /*@Transient
+    @Transient
     public String getWarehous_name() {
         return warehous_name;
     }
@@ -151,5 +160,25 @@ public class Asset extends BaseUuidEntity {
 
     public void setWarehous_user_name(String warehous_user_name) {
         this.warehous_user_name = warehous_user_name;
-    }*/
+    }
+    @Transient
+    public String getStateName() {  return stateName;  }
+
+    public void setStateName(String stateName) {  this.stateName = stateName;}
+    @Transient
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+    @Transient
+    public String getPropertyName() {
+        return propertyName;
+    }
+
+    public void setPropertyName(String propertyName) {
+        this.propertyName = propertyName;
+    }
 }

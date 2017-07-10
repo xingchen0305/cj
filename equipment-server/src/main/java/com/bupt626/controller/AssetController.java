@@ -1,20 +1,26 @@
 package com.bupt626.controller;
 
-
 import com.bupt626.common.base.BaseCommonController;
 import com.bupt626.common.base.Constants;
 import com.bupt626.common.base.PageEntity;
+import com.bupt626.common.enums.AssetPropertyEnum;
+import com.bupt626.common.enums.AssetStateEnum;
+import com.bupt626.common.utils.BeanUtills;
+import com.bupt626.common.utils.DateUtil;
 import com.bupt626.domain.Asset;
+import com.bupt626.domain.AssetType;
+import com.bupt626.domain.BaseWarehouse;
 import com.bupt626.service.AssetService;
 
-import org.apache.commons.lang.StringUtils;
+import com.bupt626.service.AssetTypeService;
+import com.bupt626.service.BaseWarehouseService;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,28 +32,65 @@ public class AssetController extends BaseCommonController {
 
     @Autowired
     private AssetService assetService;
+    @Autowired
+    private BaseWarehouseService baseWarehouseService;
+    @Autowired
+    private AssetTypeService assetTypeService;
+    @RequestMapping("/saveOrUpdate")
+    public String saveOrUpdate(Asset entity) {
+        assetService.save(entity);
+        return sendSuccessMessage();
+    }
 
-
-    @RequestMapping(value="/testAsset", method= RequestMethod.POST)
+    //添加资产信息
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(@RequestBody Asset entity) {
+        entity.setState(0);
         assetService.save(entity);
         return sendSuccessMessage();
     }
-    @RequestMapping(value="/testAsset", method= RequestMethod.PUT)
+
+    //更新资产信息
+    @RequestMapping(value = "/Asset", method = RequestMethod.PUT)
     public String update(@RequestBody Asset entity) {
-        assetService.save(entity);
-        return sendSuccessMessage();
+        if (StringUtils.isNotBlank(entity.getId())) {
+            Asset asset = assetService.findOne(entity.getId());
+            BeanUtills.copyProperties(entity, asset);
+            assetService.save(asset);
+            return sendSuccessMessage();
+        } else {
+            return sendFailMessage();
+        }
     }
 
-    @RequestMapping(value="/testAsset/{id}", method= RequestMethod.GET)
-       public String findById(@PathVariable(value="id") String id) {
+    //查询资产信息
+    @RequestMapping(value = "/Asset/{id}", method = RequestMethod.GET)
+    public String findById(@PathVariable(value = "id") String id) {
         Asset asset = assetService.findOne(id);
-        return sendSuccessMessage(asset);
+       if(StringUtils.isNotBlank(asset.getWarehouse_id())){
+            BaseWarehouse baseWarehouse=  baseWarehouseService.findOne(asset.getWarehouse_id());
+            asset.setWarehous_location(baseWarehouse.getLocation());
+            asset.setWarehous_name(baseWarehouse.getName());
+            asset.setWarehous_user_name(baseWarehouse.getUsername());
+        }
+        if(asset.getState()!=null){
+            String stateName=AssetStateEnum.findByValue(asset.getState());
+            asset.setStateName(stateName);
+        }
+        if(StringUtils.isNotBlank(asset.getCode())){
+            AssetType assetType = assetTypeService.findByCode(asset.getCode());
+            asset.setType(assetType.getName());
+        }
+        //私有or公有
+        if(asset.getProperty()!=null){
+            asset.setPropertyName(AssetPropertyEnum.findByValue(asset.getProperty()));
+        }
+        return sendMessage("true", "", asset, DateUtil.DATE);
     }
 
-
-    @RequestMapping(value="/testAsset/{id}", method=RequestMethod.DELETE)
-    public String deleteById(@PathVariable(value="id")String ids) {
+    //删除资产信息
+    @RequestMapping(value = "/Asset/{id}", method = RequestMethod.DELETE)
+    public String deleteById(@PathVariable(value = "id") String ids) {
         if (StringUtils.isNotBlank(ids)) {
             assetService.deleteById(ids);
             return sendSuccessMessage();
@@ -55,27 +98,33 @@ public class AssetController extends BaseCommonController {
             return sendFailMessage();
         }
     }
+    /* @RequestMapping("/deleteById")
+     public String deleteById(String ids) {
+         if (StringUtils.isNotBlank(ids)) {
+             assetService.deleteById(ids);
+             return sendSuccessMessage();
+         } else {
+             return sendFailMessage();
+         }
+     }*/
 
-   /* @RequestMapping("/deleteById")
-    public String deleteById(String ids) {
-        if (StringUtils.isNotBlank(ids)) {
-            assetService.deleteById(ids);
-            return sendSuccessMessage();
-        } else {
-            return sendFailMessage();
-        }
-    }*/
-   @RequestMapping("/page")
-   public String page(Asset entity, int start) {
-       PageEntity<Asset> pageEntity = new PageEntity<>(start, Constants.PAGE_SIZE);
-       assetService.pageByHql(pageEntity, buildParameter(entity));
-       return sendSuccessMessage(pageEntity);
-   }
-
+    @RequestMapping("/page")
+    public String page( Asset entity,int page,int size) {
+        int start=(page-1)*size;
+        PageEntity<Asset> pageEntity = new PageEntity<>(start,size,page);
+        assetService.pageByHql(pageEntity, buildParameter(entity));
+        return sendSuccessMessage(pageEntity);
+    }
     private Map<String, Object> buildParameter(Asset entity) {
         Map<String, Object> parameterMap = new HashMap<>();
-        if (StringUtils.isNotBlank(entity.getProperty())) {
+        if (entity.getProperty()!=null) {
             parameterMap.put("property", entity.getProperty());
+        }
+        if (StringUtils.isNotBlank(entity.getCode())){
+            parameterMap.put("code", entity.getCode());
+        }
+        if (entity.getState()!=null){
+            parameterMap.put("state", entity.getState());
         }
         return parameterMap;
     }
