@@ -30,9 +30,10 @@ public class AssetService extends BasePageService<Asset, String> {
     private BaseWarehouseService baseWarehouseService;
     @Autowired
     private AssetTypeService assetTypeService;
+    @Autowired
+    private UserClient userClient;
     public void save(Asset entity) {
         assetRepository.save(entity);
-        assetRepository.findAll();
     }
 
     public Asset findOne(String id) {
@@ -67,9 +68,10 @@ public class AssetService extends BasePageService<Asset, String> {
             if(StringUtils.isNotBlank(entity.getWarehouse_id())){
                 BaseWarehouse baseWarehouse=  baseWarehouseService.findOne(entity.getWarehouse_id());
                if(baseWarehouse!=null) {
-                   entity.setWarehous_location(baseWarehouse.getLocation());
-                   entity.setWarehous_name(baseWarehouse.getName());
-                   entity.setWarehous_user_name(baseWarehouse.getUsername());
+                   String warehouseName=userClient.currentAccount().getDisplayName();
+                   entity.setWarehouse_name(warehouseName);
+                   entity.setWarehouse_location(baseWarehouse.getLocation());
+                   entity.setWarehouse_user_name(baseWarehouse.getUsername());
                }
             }
             //是否发布

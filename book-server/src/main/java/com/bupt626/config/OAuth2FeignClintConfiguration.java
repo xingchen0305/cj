@@ -19,7 +19,7 @@ public class OAuth2FeignClintConfiguration {
         return new RequestInterceptor() {
             @Override
             public void apply(RequestTemplate requestTemplate) {
-                SecurityContext context = SecurityContextHolder.getContext();
+                               SecurityContext context = SecurityContextHolder.getContext();
                 Authentication authentication = context.getAuthentication();
                 OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails)authentication.getDetails();
 
