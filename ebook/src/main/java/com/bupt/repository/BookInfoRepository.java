@@ -1,5 +1,6 @@
 package com.bupt.repository;
 
+
 import com.bupt.domain.BookInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 

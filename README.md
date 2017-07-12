@@ -6,14 +6,34 @@ School Asset Management
 
 
 
-+ #### 配置中心 config-server
+## 基础服务
 
-> 1. 统一配置中心，每个项目的类路径下如果存在`spring-cloud-config-client` 包，会自动去找配置中心，配置中心地址默认是localhost:8888, 可配置属性`spring.cloud.cinfig.uri`
-> 2. 配置中心由git管理，可配置 `spring.cloud.config.server.git.uri`属性。本项目配置为`file://${HOME}/work/config-repo` （暂时），配置文件存放在本地目录，并且由git管理，本项目配置文件的github地址为[https://github.com/xiuyuhe/config-repo.git](https://github.com/xiuyuhe/config-repo.git)，clone到本地上述位置，每次变化commit后方能生效
+1. 服务发现
+2. API 网关
+3. 日志/监控
+4. 统一配置
 
-- #### 服务发现 discovery-server
 
-> 1. 使用NetFlix Eureka（暂时），使用`@EnableEurekaServer`开启
-> 2. 其他服务，开启服务发现客户端，`@EnableDiscoveryClient`
-> 3. 详细配置请查看spring cloud eureka 文档
 
+## 资产管理交易系统
+
+1. 认证授权服务
+2. 资产管理服务
+3. 商品服务        
+4. 账户服务
+   - 收货地址
+   - 收藏店铺/ 商品
+5. 购物车服务
+6. 订单服务
+7. 支付服务
+8. 评价服务
+9. 聊天服务
+   - web 即时通讯
+10. 推荐服务
+    - 相关商品推荐
+    - 感兴趣推荐
+11. 搜索服务
+12. 邮件服务
+    - 注册激活
+    - 忘记密码
+    - 下订单

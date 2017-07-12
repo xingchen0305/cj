@@ -1,5 +1,6 @@
-package com.bupt626.common;
+package com.bupt626.common.base;
 
+import com.google.gson.annotations.Expose;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -23,6 +24,7 @@ public class BaseUuidEntity implements Serializable{
      * Hibernate3.6以后,UUIDHexGenerator(uuid)已不推荐使用，改用UUIDGenerator(org.hibernate
      * .id.UUIDGenerator)
      */
+    @Expose
     @Id
     @Column(name = "ID", updatable = false)
     @GeneratedValue(generator = "system-uuid")

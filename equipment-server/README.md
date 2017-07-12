@@ -7,4 +7,4 @@
 
 
 ### Get Token 
-curl localhost:9999/uaa/oauth/token -d "grant_type=password&scope=read&username=hexiuyu&password=123456" -u bupt-client:bupt626
+curl 10.105.242.74:9999/uaa/oauth/token -d "grant_type=password&scope=read&username=hexiuyu&password=123456" -u bupt-client:bupt626
