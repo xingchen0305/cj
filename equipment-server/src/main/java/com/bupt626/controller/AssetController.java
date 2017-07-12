@@ -114,7 +114,6 @@ public class AssetController extends BaseCommonController {
         }
     }
 
-    //发布图书
     @RequestMapping("/page")
     public String page(Asset entity, int page, int size) {
         int start = (page - 1) * size;
