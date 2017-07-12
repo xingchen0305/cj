@@ -6,15 +6,15 @@
 <form  #planetform="ngForm"  (ngSubmit)="onSubmit(planetform.value)" style="margin-top: 20px">
   <div class="form-group">
     <label for="exampleInputPassword9">书籍出版社</label>
-    <input type="text" class="form-control" id="exampleInputPassword9" placeholder="请输入书籍出版社" name="location"    >
+    <input type="text" class="form-control" id="exampleInputPassword9" placeholder="请输入书籍出版社" name="press"    [(ngModel)]="data.press" >
   </div>
   <div class="form-group">
     <label for="exampleInputPassword8">书籍原始价格</label>
-    <input type="text" class="form-control" id="exampleInputPassword8" placeholder="请输入价格" name="location"     >
+    <input type="text" class="form-control" id="exampleInputPassword8" placeholder="请输入价格" name="price"   [(ngModel)]="data.price"   >
   </div>
   <div class="form-group">
     <label for="exampleInputPassword7">书籍新旧程度</label>
-    <input type="text" class="form-control" id="exampleInputPassword7" placeholder="请输入新旧程度（几成新）" name="location"     >
+    <input type="text" class="form-control" id="exampleInputPassword7" placeholder="请输入新旧程度（几成新）" name="grade"  [(ngModel)]="data.grade"    >
   </div>
   <div class="form-group">
     <!--<input type="hidden" name="id" [(ngModel)]="data.id">-->
@@ -23,11 +23,11 @@
         书籍类型 <span class="caret"></span>
       </button>
       <ul *dropdownMenu class="dropdown-menu" role="menu">
-        <li role="menuitem"><a class="dropdown-item"  href="#">文学</a></li>
-        <li role="menuitem"><a class="dropdown-item" href="#">计算机</a></li>
-        <li role="menuitem"><a class="dropdown-item" href="#">历史</a></li>
-        <li role="menuitem"><a class="dropdown-item" href="#">心灵</a></li>
-        <li role="menuitem"><a class="dropdown-item" href="#">小说</a></li>
+        <li role="menuitem"><a class="dropdown-item"  >文学</a></li>
+        <li role="menuitem"><a class="dropdown-item" >计算机</a></li>
+        <li role="menuitem"><a class="dropdown-item" >历史</a></li>
+        <li role="menuitem"><a class="dropdown-item" >心灵</a></li>
+        <li role="menuitem"><a class="dropdown-item" >小说</a></li>
       </ul>
     </div>
   </div>

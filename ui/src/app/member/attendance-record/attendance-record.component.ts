@@ -31,7 +31,9 @@ export class AttendanceRecordComponent implements OnInit {
     //console.log(this.searchArgs['page']);
     this.bookService.getBooks(this.searchArgs).subscribe(
       (response) => {
+
         let body = response.json().data;
+        console.log(body);
         this.data = body.results;
         this.totalResults = body.totalResults;
         this.currentPage=body.currentPage;

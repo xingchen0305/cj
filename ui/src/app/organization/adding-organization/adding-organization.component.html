@@ -1,0 +1,22 @@
+<div  class="selectLocation" >
+  <h3 style="display:block;margin-left:1%;margin-bottom:5%;">
+    组织列表---<small>组织信息管理</small>
+  </h3>
+
+  <select style="width:150px;" class="btn btn-info btn-sm"  (change)="postSuperior($event.target.value)" >
+    <option value="" style="display: none">选择新增的组织</option>
+    <option  [value]="item.value"  >国家</option>
+    <option  [value]="item.value"  >城市</option>
+    <option  [value]="item.value"  >区</option>
+    <option  [value]="item.value"  >学校</option>
+    <option  [value]="item.value"  >教室</option>
+  </select>
+
+</div>
+
+<br>
+
+<div style="width:348px;" style="margin:20px">
+  <input type="text" class="form-control" ng-model="detailAddress" placeholder="详细地址" ng-disabled="country=='' || country==null" />
+</div>
+

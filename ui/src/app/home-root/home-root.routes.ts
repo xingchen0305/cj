@@ -16,6 +16,7 @@ import {HomeRootComponentGuard} from "./home-root.guard";
 import { PurchaseBookComponent } from '../book/purchase-book/purchase-book.component';
 import { RentingBookComponent } from '../book/renting-book/renting-book.component';
 import { OrganizationManagementComponent } from '../organization/organization-management/organization-management.component';
+import { AddingOrganizationComponent } from '../organization/adding-organization/adding-organization.component';
 export const HomeRootRoutes: Routes = [
   {
     path: '',
@@ -46,7 +47,8 @@ export const HomeRootRoutes: Routes = [
       // { path: 'attendanceRecord/bookDetail', component: BookDetailComponent },
       { path: 'attendanceRecord/booksPublishing/:id', component: BooksPublishingComponent},
       { path: 'attendanceRecord/booksPublishing/purchase/:id', component: PurchaseBookComponent},
-      { path: 'attendanceRecord/booksPublishing/renting/:id', component: RentingBookComponent }
+      { path: 'attendanceRecord/booksPublishing/renting/:id', component: RentingBookComponent },
+      { path: 'addingOrganization', component: AddingOrganizationComponent }
     ]
   }
 ];

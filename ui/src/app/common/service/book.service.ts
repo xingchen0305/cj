@@ -34,20 +34,13 @@ export class BookService{
   updateBook(assetData){
     return this.http.put(this.assetUrl+'/Asset/',assetData);
   }
+
   /*
-   * 新增
+   * 根据书籍唯一id发布书籍
    * */
-  addBook(assetData){
-    return this.http.post(this.assetUrl+'/save/',assetData);
-  }
-  deleteById(index){
-    return this.http.delete(this.assetUrl+'/Asset/'+index);
-  }
-  /*
-   * 根据资产唯一id查询详情
-   * */
-  getDetailById(index):Observable<any>{
+  rentBookById(assetData,index):Observable<any>{
     return this.http.get(this.assetUrl+'/Asset/'+index);
   }
+
 }
 
