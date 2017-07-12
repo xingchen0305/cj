@@ -24,6 +24,8 @@ public class Book {
     private String doubanJson;
     private String grade;
     private String coverUrl;
+    private String press;
+    private String description;
 
     //游离态
     private String typeName;
@@ -138,7 +140,26 @@ public class Book {
     public void setCoverUrl(String coverUrl) {
         this.coverUrl = coverUrl;
     }
-   @Transient
+    @Basic
+    @Column(name = "PRESS")
+    public String getPress() {
+        return press;
+    }
+
+    public void setPress(String press) {
+        this.press = press;
+    }
+    @Basic
+    @Column(name = "DESCRIPTION")
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Transient
     public String getRent() {
         return rent;
     }

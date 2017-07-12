@@ -1,16 +1,21 @@
 package com.bupt626.controller;
 
 import com.bupt626.common.base.BaseCommonController;
+import com.bupt626.common.base.PageEntity;
 import com.bupt626.common.enums.PublicationTypeEnum;
 import com.bupt626.domain.*;
 
 import com.bupt626.service.*;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import java.security.Principal;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by Xtj on 2017/7/11.
  */
@@ -64,5 +69,19 @@ public class BookController extends BaseCommonController {
         bookService.save(entity);
         return sendSuccessMessage();
     }
+    @RequestMapping("/page")
+    public String page(Book entity, int page, int size) {
+        int start = (page - 1) * size;
+        PageEntity<Book> pageEntity = new PageEntity<>(start, size, page);
+        bookService.pageByHql(pageEntity, buildParameter(entity));
+        return sendSuccessMessage(pageEntity);
+    }
 
+    private Map<String, Object> buildParameter(Book entity) {
+        Map<String, Object> parameterMap = new HashMap<>();
+        if (entity.getType()!=0) {
+            parameterMap.put("type", entity.getType());
+        }
+        return parameterMap;
+    }
 }
