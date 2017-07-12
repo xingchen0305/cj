@@ -24,7 +24,6 @@ public class OrganizationServiceImpl extends BasePageService<Organization,String
     public void save(Organization organization){
 
         organizationRepository.save(organization);
-
     }
     public List<Text> findByLevel(int level){
         List<Organization> OrganizationList;

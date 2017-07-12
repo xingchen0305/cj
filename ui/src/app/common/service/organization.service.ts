@@ -28,6 +28,14 @@ export class OrganizationService{
   postSuperior(index):Observable<any>{
     return this.http.get(this.organizationUrl+'/superior/'+index);
   }
+
+  /*
+   * 新增组织
+   * */
+ addAsset(orgData){
+   return this.http.post(this.organizationUrl+'/saveOrUpdate/',orgData);
+   }
+
   /*getAssetById(index): Observable<any> {
     return this.http.get(this.organizationUrl+'/Asset/'+index);
   }

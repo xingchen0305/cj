@@ -4,12 +4,14 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { EQUIPMENT_URI } from '../backen-const';
+import { BOOK_URI } from '../backen-const';
 import { Observable } from 'rxjs';
 import {HttpInterceptor} from "../auth/HttpInterceptor";
 
 @Injectable()
 export class BookService{
   assetUrl: string = EQUIPMENT_URI + '/asset';
+  bookUrl:string=BOOK_URI+'/book';
   constructor(private http: HttpInterceptor) { }
   /*
    * 获取书籍表
@@ -36,10 +38,10 @@ export class BookService{
   }
 
   /*
-   * 根据书籍唯一id发布书籍
+   * 根据书籍唯一id、出租、出售书籍
    * */
-  rentBookById(assetData,index):Observable<any>{
-    return this.http.get(this.assetUrl+'/Asset/'+index);
+  rentBookById(bookData,index):Observable<any>{
+    return this.http.post(this.bookUrl+'/save/'+index,bookData);
   }
 
 }

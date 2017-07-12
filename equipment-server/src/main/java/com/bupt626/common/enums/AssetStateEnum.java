@@ -5,7 +5,7 @@ package com.bupt626.common.enums;
  */
 public enum AssetStateEnum {
     PUBLISH(1,"发布"),
-    UNPUBLISH(0,"未发布");
+    UNPUBLISH(2,"未发布");
     private int value;
     private  String name;
 

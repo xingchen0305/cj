@@ -29,8 +29,9 @@ export class RentingBookComponent implements OnInit {
     this.bookService.rentBookById(value,this.book_id).subscribe(
       res=> {
         console.log(res);
-        this.router.navigateByUrl("/attendanceRecord");
-        /*alert(" edit success")*/}
+        alert(" edit success")
+        /*this.router.navigateByUrl("/attendanceRecord");*/
+        /**/}
     )
   }
 }

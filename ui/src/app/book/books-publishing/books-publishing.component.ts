@@ -19,14 +19,6 @@ export class BooksPublishingComponent implements OnInit {
     console.log(this.book_id);
   }
 
-  onSubmit(value){
-    console.log(value);
-    this.bookService.addBook(value).subscribe(
-      res=> {
-        // console.log(res);
-        this.router.navigateByUrl("/attendanceRecord");
-        /*alert(" edit success")*/}
-    )
-  }
+
 
 }
