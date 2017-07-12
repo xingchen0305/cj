@@ -1,5 +1,7 @@
 package com.bupt626.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 /**
@@ -54,6 +56,7 @@ public class CommodityExt {
         this.regex = regex;
     }
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "T_ID")
     public CommodityType getCommodityType() {

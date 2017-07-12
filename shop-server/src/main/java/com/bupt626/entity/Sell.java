@@ -34,7 +34,7 @@ public class Sell {
     }
 
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "C_ID")
     public Commodity getCommodity() {
         return commodity;
