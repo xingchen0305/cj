@@ -4,8 +4,8 @@ package com.bupt626.common.enums;
  * Created by Xtj on 2017/7/3.
  */
 public enum AssetStateEnum {
-    UNPUBLISH(1,"未发布"),
-    PUBLISH(2,"发布");
+    PUBLISH(1,"发布"),
+    UNPUBLISH(2,"未发布");
     private int value;
     private  String name;
 
