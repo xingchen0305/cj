@@ -1,5 +1,5 @@
 package com.bupt626.domain;
-import com.bupt626.common.BaseUuidEntity;
+import com.bupt626.common.base.BaseUuidEntity;
 
 import javax.persistence.*;
 
