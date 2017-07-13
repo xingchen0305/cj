@@ -26,4 +26,11 @@ public class AccountController {
         Account account = accountRepository.findAccountInfoByUsername(username);
         return account;
     }
+
+    @GetMapping("/currentAccount")
+    public Account currentAccount(Principal principal) {
+        String username = principal.getName();
+        Account account = accountRepository.findAccountInfoByUsername(username);
+        return account;
+    }
 }
