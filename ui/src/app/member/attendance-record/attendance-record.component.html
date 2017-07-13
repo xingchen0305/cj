@@ -48,19 +48,14 @@
   <td>{{item.name}}</td>
   <td>{{item.barcode}}</td>
   <td>{{item.stateName}}</td>
-  <td>{{item.warehous_name}}</td>
+  <td>{{item.warehouse_location}}</td>
   <!--  [routerLink]="['/editAsset', item.id]"-->
   <td style="text-align: center"><a [routerLink]="['/attendanceRecord/bookDetail']"  class="btn btn-info btn-sm">查看</a>
     <a *ngIf="item.stateName=='未发布'" [routerLink]="['/attendanceRecord/booksPublishing',item.id]" class="btn btn-info btn-sm">发布</a></td>
  </tr>
 
 </table>
-<div class="center">
 
-<button class="btn btn-primary" (click)="lgModal.show()">新增书籍</button>
-
-
-</div>
   <div class="center" style="margin-top: 20px" >
     <pagination-controls previousLabel="上一页" nextLabel="下一页"(pageChange)="pageChanged($event)"></pagination-controls>
   </div>

@@ -37,6 +37,14 @@ export class WarehouseService{
   editWareHouse(wareHouseData){
     return this.http.post(this.warehouseUrl +"/saveOrUpdate", wareHouseData);
   }
+  /**
+   *  新增
+   * @param wareHouseData
+   * @returns {Observable<Response>}
+   */
+  addWareHouse(wareHouseData){
+    return this.http.post(this.warehouseUrl +"/save", wareHouseData);
+  }
 
 
 }
