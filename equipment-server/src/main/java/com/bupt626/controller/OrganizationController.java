@@ -1,16 +1,26 @@
 package com.bupt626.controller;
 
 import com.bupt626.common.base.Text;
+import com.bupt626.common.utils.Connection;
+import com.bupt626.domain.BaseWarehouse;
 import com.bupt626.domain.Organization;
 import com.bupt626.service.OrganizationServiceImpl;
+
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import static com.bupt626.common.utils.MessageUtil.sendFailMessage;
 import static com.bupt626.common.utils.MessageUtil.sendSuccessMessage;
-import static org.bouncycastle.asn1.x509.X509ObjectIdentifiers.organization;
 
 /**
  * Created by CJ on 2017/6/18.
@@ -45,7 +55,7 @@ public class OrganizationController {
     }
 
     /**
-     * 查询祖师ID为id的所有信息，（名字、上级）
+     * 查询组织ID为id的所有信息，（名字、上级）
      * @param id
      * @return
      */
@@ -83,12 +93,40 @@ public class OrganizationController {
         else return sendFailMessage();
     }
 
+    @RequestMapping(value="/isbn/{isbn}",method=RequestMethod.GET)
+    public String getBookInfo(@PathVariable(value="isbn") String isbn){
+        //  String url="http://book.douban.com/isbn/"+isbn+"/";
+        // String url="http://book.douban.com/isbn/9787560049724/";
+        String url="https://api.douban.com/v2/book/isbn/"+isbn;
+        // String url="https://api.douban.com/v2/book/isbn/:9787111128069";
+        return Connection.getPolicyJson(url);
+    }
+
     /**
      * 测试
      * @return
      */
-    @RequestMapping("/getUserInfo")
-    public String getUserInfo(){
-        return "棒极了！哈哈";
+    @RequestMapping("/getUserInfo/{isbn}")
+    public String getUserInfo(@PathVariable(value="isbn") String isbn){
+      //  String url="http://book.douban.com/isbn/"+isbn+"/";
+       // String url="http://book.douban.com/isbn/9787560049724/";
+       String url="https://api.douban.com/v2/book/isbn/"+isbn;
+       // String url="https://api.douban.com/v2/book/isbn/:9787111128069";
+        return Connection.getPolicyJson(url);
     }
+
+    @RequestMapping("/export")
+    public void export() throws IOException {
+        String url = "https://img3.doubanio.com/lpic/s1106934.jpg";
+        byte[] btImg = Connection.getImageFromNetByUrl(url);
+        if (null != btImg && btImg.length > 0) {
+            System.out.println("读取到：" + btImg.length + " 字节");
+            String fileName = "百度.gif";
+            Connection.writeImageToDisk(btImg, fileName);
+        } else {
+            System.out.println("没有从该连接获得内容");
+        }
+
+    }
+
 }
