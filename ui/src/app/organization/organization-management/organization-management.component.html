@@ -5,7 +5,7 @@
 
   <select style="width:150px;" class="btn btn-info btn-sm"  (change)="postSuperior($event.target.value)" >
       <option value="" style="display: none">请选择国家</option>
-    <option *ngFor="let item of data" [value]="item.value"  >{{item.name}}</option>
+    <option *ngFor="let item of data" [value]="item.value" >{{item.name}}</option>
     </select>
 
     <select *ngIf="city" style="width:150px;"class="btn btn-info btn-sm" (change)="postSuperior1($event.target.value)" >

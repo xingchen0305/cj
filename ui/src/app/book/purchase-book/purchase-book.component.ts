@@ -25,8 +25,8 @@ export class PurchaseBookComponent implements OnInit {
       res=> {
         console.log(res);
         alert(" edit success")
-        /*this.router.navigateByUrl("/attendanceRecord");*/
-        /**/}
+        this.router.navigateByUrl("/attendanceRecord");
+        }
     )
   }
 

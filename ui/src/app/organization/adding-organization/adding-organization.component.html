@@ -4,24 +4,36 @@
   <div class="form-group">
    <!-- <input type="hidden" name="id" [(ngModel)]="data.id">-->
     <label for="exampleInputEmail1">国家</label>
+    <select style="width:150px;" class="btn btn-info btn-sm"  (change)="postSuperior($event.target.value)" >
+      <option value="" style="display: none">请选择国家</option>
+      <option *ngFor="let item of data" [value]="item.value"  >{{item.name}}</option>
+    </select>
+
     <!-- .在ng2表单中使用ngModel需要注意,必须带有name属性或者使用 [ngModelOptions]=”{standalone: true}”，二选其一-->
-    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="country" name="country"  [(ngModel)]="data.country" >
+    <!--<input type="text" class="form-control" id="exampleInputEmail1" placeholder="country" name="country"  [(ngModel)]="data.country" >-->
+
+    <input type="text" placeholder="名称">
+    <button>新增</button>
   </div>
   <div class="form-group">
     <label for="exampleInputPassword2">城市</label>
     <input type="text" class="form-control" id="exampleInputPassword2" placeholder="city" name="city"  [(ngModel)]="data.city"   >
+    <button>新增</button>
   </div>
   <div class="form-group">
     <label for="exampleInputPassword3">区</label>
     <input type="text" class="form-control" id="exampleInputPassword3" placeholder="dis" name="dis" [(ngModel)]="data.dis"    >
+    <button>新增</button>
   </div>
   <div class="form-group">
     <label for="exampleInputPassword4">学校</label>
     <input type="text" class="form-control" id="exampleInputPassword4" placeholder="school" name="school"  [(ngModel)]="data.school"  >
+    <button>新增</button>
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">教室</label>
     <input type="text" class="form-control" id="exampleInputPassword1" placeholder="classroom" name="classroom"  [(ngModel)]="data.classroom"  >
+    <button>新增</button>
   </div>
 
   <div class="form-group">

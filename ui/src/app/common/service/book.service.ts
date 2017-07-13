@@ -41,7 +41,7 @@ export class BookService{
    * 根据书籍唯一id、出租、出售书籍
    * */
   rentBookById(bookData,index):Observable<any>{
-    return this.http.post(this.bookUrl+'/save/'+index,bookData);
+    return this.http.post(this.bookUrl+'/save/?id='+index,bookData);
   }
 
 }
