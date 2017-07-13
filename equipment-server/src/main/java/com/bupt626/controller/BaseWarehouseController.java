@@ -5,15 +5,12 @@ import com.bupt626.common.base.Constants;
 import com.bupt626.common.base.PageEntity;
 import com.bupt626.common.utils.BeanUtills;
 import com.bupt626.common.utils.DateUtil;
-import com.bupt626.domain.Account;
 import com.bupt626.domain.BaseWarehouse;
 import com.bupt626.service.BaseWarehouseService;
-import com.bupt626.service.UserClient;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,9 +22,6 @@ import java.util.Map;
 public class BaseWarehouseController extends BaseCommonController {
     @Autowired
     private BaseWarehouseService baseWarehouseService;
-
-    @Autowired
-    UserClient userClient;
 
     @RequestMapping("/saveOrUpdate")
     public String saveOrUpdate(@RequestBody BaseWarehouse entity){
@@ -50,11 +44,8 @@ public class BaseWarehouseController extends BaseCommonController {
             return sendFailMessage();
         }
     }
-    @RequestMapping(value = "/findById",method = RequestMethod.POST )
-    public String findById(String id, Principal user){
-        System.out.println(user.getName());
-        Account account = userClient.currentAccount();
-
+    @RequestMapping(value = "/findById",method = RequestMethod.GET )
+    public String findById(String id){
         BaseWarehouse baseWarehouse = baseWarehouseService.findOne(id);
         return sendSuccessMessage(baseWarehouse);
     }
@@ -81,16 +72,21 @@ public class BaseWarehouseController extends BaseCommonController {
         if (StringUtils.isNotBlank(entity.getLocation())){
             parameterMap.put("location", entity.getLocation());
         }
+        if (StringUtils.isNotBlank(entity.getUsername())){
+            parameterMap.put("username", entity.getUsername());
+        }
         return parameterMap;
     }
 
     @RequestMapping("/deleteById")
-    public String deleteById(String ids){
-        if (StringUtils.isNotBlank(ids)){
-            baseWarehouseService.deleteById(ids);
-            return sendSuccessMessage();
-        }else {
-            return sendFailMessage();
-        }
+    public String deleteById(String id){
+        baseWarehouseService.deleteById(id);
+        return sendSuccessMessage();
+    }
+
+    @RequestMapping(value = "/find/{id}",method = RequestMethod.DELETE)
+    public String delete(@PathVariable ("id") String id) {
+        baseWarehouseService.deleteById(id);
+        return sendSuccessMessage();
     }
 }

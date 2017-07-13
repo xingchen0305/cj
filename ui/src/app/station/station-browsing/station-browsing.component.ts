@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
 import {URLSearchParams, RequestOptionsArgs} from '@angular/http';
 import {EQUIPMENT_URI} from "../../common/backen-const";
 import {WarehouseService} from "../../common/service/warehouse.service";
+import {isNumber} from "util";
 
 
 @Component({
@@ -20,21 +21,22 @@ export class StationBrowsingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getWarehouses();
+    this.pageChanged(1);
   }
   data: any;
-  getWarehouses() {
-    this.warehouseService.getWareHouses().subscribe(
-      (response) => {
-        this.data = response.json().data.results;
-        console.log(this.data)
-      }
-    );
-  }
+  totalResults:number;
+  start:number;
+  pageSize:number = 5;
+  currentPage:number;
+  p: number = 3;
+  searchArgs: Object = {
+    size: this.pageSize,
+    page: 1
+  };
 
   delete(id, index) {
     console.log(id);
-    this.http.get(EQUIPMENT_URI + "/baseWarehouse/deleteById" + "?ids=" + id)
+    this.http.get(EQUIPMENT_URI + "/baseWarehouse/deleteById" + "?id=" + id)
       .subscribe(
         res => {
           console.log(this.data);
@@ -44,7 +46,19 @@ export class StationBrowsingComponent implements OnInit {
         });
   }
 
-
+  pageChanged(event){
+    console.log(event);
+    this.searchArgs['page'] = event;
+    //console.log(this.searchArgs['page']);
+    this.warehouseService.getWareHouses(this.searchArgs).subscribe(
+      (response) => {
+        let body = response.json().data;
+        this.data = body.results;
+        this.totalResults = body.totalResults;
+        this.currentPage=body.currentPage;
+      }
+    );
+  }
 
 
 }

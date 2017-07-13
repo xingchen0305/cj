@@ -5,6 +5,7 @@ import { DemoService } from '../common/service/demo.service';
 import {HttpInterceptor} from "../common/auth/HttpInterceptor";
 import { Http, Request,URLSearchParams, RequestOptionsArgs, Response, RequestOptions, ConnectionBackend, Headers } from '@angular/http';
 import {WarehouseService} from "../common/service/warehouse.service";
+import {AssetService} from "../common/service/asset.service";
 import {warehouse} from "../create-warehouse/warehouse";
 
 @Component({
@@ -15,7 +16,7 @@ import {warehouse} from "../create-warehouse/warehouse";
 export class WarehouseOneComponent implements OnInit {
   warehouse_id:string;
 
-  constructor(private activatedRoute:ActivatedRoute,private warehouseService: WarehouseService,private http: HttpInterceptor) { }
+  constructor(private activatedRoute:ActivatedRoute,private assetService: AssetService,private http: HttpInterceptor) { }
 
   ngOnInit() {
     this.warehouse_id=this.activatedRoute.snapshot.params['id'];
@@ -24,9 +25,10 @@ export class WarehouseOneComponent implements OnInit {
   data:any;
 
   getWareHouse(index){
-    this.warehouseService.getWareHouseById(index).subscribe(
+    this.assetService.getAssetById(index).subscribe(
       (res) =>{
         this.data = res.json().data;
+        console.log(res);
       }
     )
   }
