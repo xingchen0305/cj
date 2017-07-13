@@ -22,7 +22,7 @@ export class MemberBrowsingComponent implements OnInit {
     this.pageChanged2(1);
   }
   name:any;
-  warse:any
+  warehouse_id:any
   state:any;
   data:any;
   warsehouse:any;
@@ -48,6 +48,7 @@ export class MemberBrowsingComponent implements OnInit {
       (response) => {
         let body = response.json().data;
         this.data = body.results;
+        console.log(this.data);
         this.totalResults = body.totalResults;
         this.currentPage=body.currentPage;
       }
@@ -61,22 +62,21 @@ export class MemberBrowsingComponent implements OnInit {
     this.warehouseService.getWareHouses(this.searchArgs).subscribe(
       (response) => {
         this.warsehouse = response.json().data.results;
-        console.log(this.warsehouse);
-
+        console.log(this.warsehouse );
       }
     );
   }
   pageChanged3(event){
     console.log(event);
-    this.searchArgs['page'] = event;
+   /* this.searchArgs['page'] = event;*/
     this.searchArgs['state'] = this.state;
     this.searchArgs['name'] = this.name;
-    this.searchArgs['warse'] = this.warse;
+    this.searchArgs['warehouse_id'] = this.warehouse_id;
     //console.log(this.searchArgs['page']);
     this.warehouseService.getWareHouses(this.searchArgs).subscribe(
       (response) => {
-        this.warsehouse = response.json().data.results;
-        console.log(this.warsehouse);
+        this.data = response.json().data.results;
+        console.log(this.data);
 
       }
     );

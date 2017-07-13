@@ -10,8 +10,8 @@
     </div>
     <div class="form-group">
       <label>所属仓库:</label>
-      <select class="select" style="width: 221px;height: 38px" [(ngModel)]="warse" name="warsehousename" >
-        <option  *ngFor="let item of warsehouse"  [value]="item.name" >{{item.name}}</option>
+      <select class="select" style="width: 221px;height: 38px" [(ngModel)]="warehouse_id" name="warsehousename" >
+        <option  *ngFor="let item of warsehouse"  [value]="item.name" >{{item.location}}</option>
       </select>
     </div>
     <div class="form-group">
@@ -46,8 +46,8 @@
       <td>{{item.name}}</td>
       <td>{{item.type}}</td>
       <td>{{item.count}}</td>
-      <td>{{item.warehous_name}}</td>
-      <td>{{item.state}}</td>
+      <td>{{item.warehouse_location}}</td>
+      <td>{{item.stateName}}</td>
       <td style="text-align: center">
         <!--<button [routerLink]="['/warehouseOne', item.id]"  class="btn btn-info btn-sm" >查看资产</button>-->
         <button   [routerLink]="['/detailAssets',item.id]"  class="btn btn-primary btn-sm" >查看详情</button>
