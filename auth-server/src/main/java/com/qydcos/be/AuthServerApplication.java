@@ -43,7 +43,7 @@ import java.security.KeyPair;
  * After you launch the app, you can seek a bearer token like this:
  *
  * <pre>
- *     curl localhost:9999/uaa/controller/token -d "grant_type=password&scope=read&username=hexiuyu&password=123456" -u bupt-client:bupt626
+ *     curl localhost:9999/uaa/api/token -d "grant_type=password&scope=read&username=hexiuyu&password=123456" -u bupt-client:bupt626
  * </pre>
  *
  * <ul>
@@ -92,7 +92,7 @@ public class AuthServerApplication {
 					.csrf().disable()
 					.formLogin().loginPage("/login").permitAll()
 					.and()
-					.requestMatchers().antMatchers("/login", "/controller/authorize", "/controller/confirm_access")
+					.requestMatchers().antMatchers("/login", "/api/authorize", "/api/confirm_access")
 					.and()
 					.authorizeRequests().anyRequest().authenticated();
 		}

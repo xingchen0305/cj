@@ -1,4 +1,4 @@
-package com.bupt626.controller;
+package com.bupt626.api;
 
 import com.bupt626.entity.Commodity;
 import com.bupt626.entity.CommodityType;
@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.ws.Response;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;

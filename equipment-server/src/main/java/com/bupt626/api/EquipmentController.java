@@ -1,4 +1,4 @@
-package com.bupt626.controller;
+package com.bupt626.api;
 
 import com.bupt626.domain.Equipment;
 import com.bupt626.service.EquipmentServiceImpl;
