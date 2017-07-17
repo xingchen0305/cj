@@ -54,4 +54,20 @@ public class Star {
     public void setAccount(Account account) {
         this.account = account;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Star)) return false;
+
+        Star star = (Star) o;
+
+        return getCommodityId() != null ? getCommodityId().equals(star.getCommodityId()) : star.getCommodityId() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return getCommodityId() != null ? getCommodityId().hashCode() : 0;
+    }
 }
