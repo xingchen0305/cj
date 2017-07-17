@@ -1,44 +1,27 @@
 package com.bupt626.entity;
 
 
-import org.springframework.data.annotation.Id;
+import org.springframework.stereotype.Controller;
 
+import javax.persistence.*;
 import java.util.Set;
 
 /**
- * Created by i-hexiuyu on 2017/7/14.
+ * Created by i-hexiuyu on 2017/7/17.
  */
+@Entity
+@Table(name = "account")
 public class Account {
-
     @Id
-    private long id;
+    @Column(name = "account_name")
     private String accountName;
-    private Integer age;
+
     private String sex;
+    private Integer age;
+    @OneToMany(mappedBy = "account",cascade = CascadeType.ALL)
     private Set<Address> addresses;
+    @OneToMany(mappedBy = "account",cascade = CascadeType.ALL)
     private Set<Star> stars;
-
-
-    public Account() {
-    }
-
-    public Account(String accountName) {
-        this.accountName = accountName;
-    }
-
-    public Account(String accountName, Integer age, String sex) {
-        this.accountName = accountName;
-        this.age = age;
-        this.sex = sex;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getAccountName() {
         return accountName;
@@ -48,20 +31,20 @@ public class Account {
         this.accountName = accountName;
     }
 
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
     public String getSex() {
         return sex;
     }
 
     public void setSex(String sex) {
         this.sex = sex;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
     public Set<Address> getAddresses() {

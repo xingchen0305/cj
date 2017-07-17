@@ -1,6 +1,7 @@
 package com.bupt626.api;
 
 import com.bupt626.entity.Account;
+import com.bupt626.entity.Address;
 import com.bupt626.entity.Star;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,64 +11,82 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 /**
- * Created by i-hexiuyu on 2017/7/14.
+ * Created by i-hexiuyu on 2017/7/17.
  */
-
 @RestController
-@RequestMapping("/account")
 public class AccountController {
-
     @Autowired
-    AccountService accountService;
+    private EntityService entityService;
 
-    /**
-     * 新增，修改
-     *
-     * @param account
-     * @return
-     */
-    @RequestMapping(value = "", method = {RequestMethod.POST, RequestMethod.PUT})
-    public ResponseEntity createOrUpdateAccount(@RequestBody Account account) {
-        try {
-            accountService.saveAccount(account);
-            return ResponseEntity.status(HttpStatus.CREATED).build();
-        } catch (Exception e) {
-            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
+    @GetMapping("/")
+    public ResponseEntity getAccount() throws Exception {
+        String username = "zhangnan";
+        return Optional.ofNullable(entityService.findAccount(username))
+                .map(account -> new ResponseEntity<>(account, HttpStatus.OK))
+                .orElseThrow(() ->new Exception(String.format("can't findAccount %s's account", username)));
     }
 
-    /**
-     * 获取自己的账户信息
-     *
-     * @return
-     */
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public ResponseEntity getOwnAccount() {
-        String username = "张囡";
-        return Optional.ofNullable(accountService.getAccountByUser(username))
-                .map(account -> new ResponseEntity(account, HttpStatus.OK))
-                .orElse(new ResponseEntity("no account with name :" + username, HttpStatus.BAD_REQUEST));
-    }
-
-    @RequestMapping(value = "/star/{commodity_id}", method = RequestMethod.PUT)
-    public ResponseEntity star(@PathVariable("commodity_id") String commodityId) {
-        String username = "hexiuyuaasdfssa";
-        Star star = new Star();
-        star.setCommodity_id(commodityId);
-        star.setStart_time(new Date());
-        Account account = accountService.getAccountByUser(username);
-        if (account == null) {
-            Account newAccount = new Account(username);
-            HashSet<Star> stars = new HashSet<>(Arrays.asList(star));
-            newAccount.setStars(stars);
-        } else {
-            if (account.getStars() == null) {
-                account.setStars(new HashSet<Star>(Arrays.asList(star)));
-            } else {
-                account.getStars().add(star);
-            }
+    @RequestMapping(value = "/", method = {RequestMethod.POST, RequestMethod.PUT})
+    public ResponseEntity crateAccount(@RequestBody Account account){
+        String username = "zhangnan";
+        account.setAccountName(username);
+        if(entityService.findAccount(username)!=null){
+            return new ResponseEntity("account has exist,cant create annother one", HttpStatus.BAD_REQUEST);
         }
-        accountService.saveAccount(account);
+
+        Set<Star> stars = account.getStars();
+        Set<Address> addresses = account.getAddresses();
+        if(stars !=null){
+            stars.forEach(star -> {
+                star.setAccount(account);
+                star.setStarTime(new Date());
+            });
+        }
+        if (addresses != null) {
+            addresses.forEach(address -> address.setAccount(account));
+        }
+        entityService.saveAccount(account);
         return new ResponseEntity(HttpStatus.CREATED);
     }
+
+    @RequestMapping(value = "address", method = RequestMethod.POST)
+    public ResponseEntity addAddress(@RequestBody Address address) {
+        String username = "zhangnan";
+        address.setAccount(entityService.findAccount(username));
+        entityService.saveAddress(address);
+        return new ResponseEntity(HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = "address/{address_id}",method = RequestMethod.DELETE)
+    public ResponseEntity removeAddress(@PathVariable("address_id") Long addressId){
+        String username = "zhangnan";
+        Address address = entityService.findAddress(addressId);
+        if(address!=null){
+            if(address.getAccount().getAccountName().equals(username)){
+                entityService.deleteAddress(addressId);
+            }
+        }
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
+    @RequestMapping(value = "star", method = RequestMethod.POST)
+    public ResponseEntity addStar(@RequestBody Star star) {
+        String username = "zhangnan";
+        star.setAccount(entityService.findAccount(username));
+        entityService.saveStar(star);
+        return new ResponseEntity(HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = "star/{star_id}",method = RequestMethod.DELETE)
+    public ResponseEntity removeStar(@PathVariable("star_id") Long starId){
+        String username = "zhangnan";
+        Star star = entityService.findStar(starId);
+        if(star!=null){
+            if(star.getAccount().getAccountName().equals(username)){
+                entityService.deleteStar(starId);
+            }
+        }
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
 }

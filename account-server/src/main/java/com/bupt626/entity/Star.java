@@ -1,45 +1,57 @@
 package com.bupt626.entity;
 
-import org.springframework.data.annotation.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.annotation.Generated;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
- * Created by i-hexiuyu on 2017/7/14.
+ * Created by i-hexiuyu on 2017/7/17.
  */
+@Table(name = "star")
+@Entity
 public class Star {
-    private Date start_time;
-    private String commodity_id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "commodity_id")
+    private String commodityId;
+    @Column(name = "startime")
+    private Date starTime;
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "account_name")
+    private Account account;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Star)) return false;
-
-        Star star = (Star) o;
-
-        return getCommodity_id() != null ? getCommodity_id().equals(star.getCommodity_id()) : star.getCommodity_id() == null;
+    public Long getId() {
+        return id;
     }
 
-    @Override
-    public int hashCode() {
-        return getCommodity_id() != null ? getCommodity_id().hashCode() : 0;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Date getStart_time() {
-        return start_time;
+    public String getCommodityId() {
+        return commodityId;
     }
 
-    public void setStart_time(Date start_time) {
-        this.start_time = start_time;
+    public void setCommodityId(String commodityId) {
+        this.commodityId = commodityId;
     }
 
-    public String getCommodity_id() {
-        return commodity_id;
+    public Date getStarTime() {
+        return starTime;
     }
 
-    public void setCommodity_id(String commodity_id) {
-        this.commodity_id = commodity_id;
+    public void setStarTime(Date starTime) {
+        this.starTime = starTime;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }
