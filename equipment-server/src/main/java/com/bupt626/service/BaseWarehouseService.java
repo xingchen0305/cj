@@ -13,8 +13,6 @@ import com.bupt626.repository.BaseWarehouseRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.beans.Transient;
-import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
