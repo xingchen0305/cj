@@ -1,0 +1,41 @@
+<div  *ngIf="data" class="selectLocation" >
+  <h3 style="display:block;margin-left:1%;margin-bottom:5%;">
+    组织列表---<small>组织信息管理</small>
+  </h3>
+
+  <select style="width:150px;" class="btn btn-info btn-sm"  (change)="postSuperior($event.target.value)" >
+      <option value="" style="display: none">请选择国家</option>
+    <option *ngFor="let item of data" [value]="item.value" >{{item.name}}</option>
+    </select>
+
+    <select *ngIf="city" style="width:150px;"class="btn btn-info btn-sm" (change)="postSuperior1($event.target.value)" >
+      <option value="" style="display: none">请选择城市</option>
+      <option *ngFor="let item of city" [value]="item.id">{{item.name}}</option>
+    </select>
+
+  <select *ngIf="distract" style="width:150px;"class="btn btn-info btn-sm" (change)="postSuperior2($event.target.value)" >
+    <option value="" style="display: none">请选择区</option>
+    <option *ngFor="let item of distract" [value]="item.id">{{item.name}}</option>
+  </select>
+
+    <select *ngIf="school" style="width:150px;"class="btn btn-info btn-sm"  (change)="postSuperior3($event.target.value)"  >
+      <option value="" style="display: none">请选择学校</option>
+      <option *ngFor="let item of school" [value]="item.id">{{item.name}}</option>
+    </select>
+
+  <select *ngIf="room" style="width:150px;"class="btn btn-info btn-sm"    >
+    <option value="" style="display: none">请选择教室</option>
+    <option *ngFor="let item of room" [value]="item.id">{{item.name}}</option>
+  </select>
+</div>
+
+<br>
+<div class="center">
+
+  <button type="button" class="btn btn-primary btn-sm  " data-toggle="modal" data-target="#exampleModalLong"  [routerLink]="['/addingOrganization']" >
+    新增组织
+  </button>
+
+</div>
+
+

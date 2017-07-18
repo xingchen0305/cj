@@ -19,6 +19,8 @@ import com.bupt626.service.UserClient;
 import org.apache.commons.lang3.StringUtils;
 import org.omg.CORBA.Request;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -114,7 +116,6 @@ public class AssetController extends BaseCommonController {
         }
     }
 
-    //发布图书
     @RequestMapping("/page")
     public String page(Asset entity, int page, int size) {
         int start = (page - 1) * size;

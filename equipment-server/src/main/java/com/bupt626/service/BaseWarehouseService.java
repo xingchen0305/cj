@@ -5,6 +5,7 @@ import com.bupt626.common.base.PageEntity;
 import com.bupt626.domain.Account;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+
 import javax.transaction.Transactional;
 import com.bupt626.domain.BaseWarehouse;
 import com.bupt626.domain.Organization;
@@ -71,5 +72,7 @@ public class BaseWarehouseService extends BasePageService<BaseWarehouse,String> 
             }
         }
     }
+
+
 
 }
