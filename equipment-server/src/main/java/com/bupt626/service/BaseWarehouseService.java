@@ -2,6 +2,7 @@ package com.bupt626.service;
 
 import com.bupt626.common.base.BasePageService;
 import com.bupt626.common.base.PageEntity;
+import com.bupt626.domain.Account;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,6 @@ import com.bupt626.domain.Organization;
 import com.bupt626.repository.BaseWarehouseRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 
 import java.util.List;
 import java.util.Map;
@@ -27,6 +27,9 @@ public class BaseWarehouseService extends BasePageService<BaseWarehouse,String> 
 
     @Autowired
     private OrganizationServiceImpl organizationService;
+
+    @Autowired
+    private UserClient userClient;
 
     public void save(BaseWarehouse entity){
         baseWarehouseRepository.save(entity);
@@ -56,7 +59,9 @@ public class BaseWarehouseService extends BasePageService<BaseWarehouse,String> 
     @Override
     protected void translate(List<BaseWarehouse> list) {
         super.translate(list);
+        Account account = userClient.currentAccount();
         for (BaseWarehouse baseWarehouse:list ) {
+            baseWarehouse.setDisplayName(account.getDisplayName());
             if (StringUtils.isNotBlank(baseWarehouse.getorgId())) {
                 Organization organization = organizationService.findOne(baseWarehouse.getorgId());
                 if (organization != null) {
