@@ -84,8 +84,8 @@ public class AssetController extends BaseCommonController {
         if (StringUtils.isNotBlank(asset.getWarehouse_id())) {
             BaseWarehouse baseWarehouse = baseWarehouseService.findOne(asset.getWarehouse_id());
             if (baseWarehouse != null) {
-                String warehouseName = userClient.currentAccount().getDisplayName();
-                asset.setWarehouse_name(warehouseName);
+//                String warehouseName = userClient.currentAccount().getDisplayName();
+//                asset.setWarehouse_name(warehouseName);
                 asset.setWarehouse_location(baseWarehouse.getLocation());
                 asset.setWarehouse_user_name(baseWarehouse.getUsername());
             }

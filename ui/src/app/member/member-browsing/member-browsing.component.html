@@ -18,7 +18,7 @@
       <label>状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态:</label>
       <select class="select" style="width: 221px;height: 38px"    [(ngModel)]="state" name="state" >
         <option  [value]="1" selected>已发布</option>
-        <option  [value]="0" >未发布</option>
+        <option  [value]="2" >未发布</option>
       </select>
     </div>
     <button type="submit" class="btn btn-outline-primary" (click)="pageChanged3($event)">查询</button>

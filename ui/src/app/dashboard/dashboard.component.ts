@@ -7,7 +7,7 @@ import { DemoService } from '../common/service/demo.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-
+  uploadedFiles: any[] = [];
   constructor(private demoService: DemoService) { }
 
   ngOnInit(): void {
@@ -25,5 +25,14 @@ export class DashboardComponent implements OnInit {
         // this.data = response
       }
     );
+  }
+
+  myUploader(event) {
+    console.log("1");
+    console.log(event);
+    for(let file of event.files) {
+      this.uploadedFiles.push(file);
+
+    }
   }
 }
