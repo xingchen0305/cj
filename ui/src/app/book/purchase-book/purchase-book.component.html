@@ -1,0 +1,38 @@
+<section class="content" style="padding: 0px">
+  <h3 style="display:inline;margin-left:1%;">
+    发布出售---<small>书籍发布信息管理</small>
+  </h3>
+
+<form  #planetform="ngForm"  (ngSubmit)="onSubmit(planetform.value)" style="margin-top: 20px">
+  <div class="form-group">
+    <label for="exampleInputPassword5">作者</label>
+    <input type="text" class="form-control" id="exampleInputPassword5" placeholder="请输入书籍出版社" name="press"    >
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword9">书籍出版社</label>
+    <input type="text" class="form-control" id="exampleInputPassword9" placeholder="请输入书籍出版社" name="press"    >
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword8">书籍原始价格</label>
+    <input type="text" class="form-control" id="exampleInputPassword8" placeholder="请输入价格" name="price"     >
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword7">书籍新旧程度</label>
+    <input type="text" class="form-control" id="exampleInputPassword7" placeholder="请输入新旧程度（几成新）" name="grade"     >
+  </div>
+<div class="form-group">
+  <label for="exampleInputPassword2">售价</label>
+  <input type="text" class="form-control" id="exampleInputPassword2" placeholder="请输入售价" name="location"     >
+</div>
+<div class="form-group">
+  <label for="exampleInputPassword3">添加描述</label>
+  <input type="text" class="form-control" id="exampleInputPassword3" placeholder="请输入对您的物品的描述" name="location"     >
+</div>
+<div class="form-group">
+  <label >地图</label>
+  <p class="help-block">高德地图位置</p>
+</div>
+<button type="submit" class="btn btn-default">确定发布</button>
+<button type="submit" class="btn btn-default">取消</button>
+</form>
+</section>

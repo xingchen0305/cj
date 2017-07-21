@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DemoService } from '../common/service/demo.service';
 import {HttpInterceptor} from "../common/auth/HttpInterceptor";
-import { Http, Request,URLSearchParams, RequestOptionsArgs, Response, RequestOptions, ConnectionBackend, Headers } from '@angular/http';
 import {WarehouseService} from "../common/service/warehouse.service";
+import { Router} from '@angular/router';
 @Component({
   selector: 'app-edit-info',
   templateUrl: './edit-info.component.html',
@@ -14,7 +13,7 @@ export class EditInfoComponent implements OnInit {
   warehouse_id:string;
   data:any ={};
 
-  constructor(private activatedRoute:ActivatedRoute,private warehouseService: WarehouseService,private http: HttpInterceptor) { }
+  constructor(private router:Router,private activatedRoute:ActivatedRoute,private warehouseService: WarehouseService,private http: HttpInterceptor) { }
   ngOnInit() {
     this.warehouse_id=this.activatedRoute.snapshot.params['id'];
     this.getWareHouse(this.warehouse_id);
@@ -32,6 +31,7 @@ export class EditInfoComponent implements OnInit {
     this.warehouseService.editWareHouse(value).subscribe(
       res=> {
         alert(" edit success");
+        this.router.navigateByUrl("/stationBrowsing");
       }
       )
   }

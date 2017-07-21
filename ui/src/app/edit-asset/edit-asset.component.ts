@@ -1,9 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DemoService } from '../common/service/demo.service';
 import {HttpInterceptor} from "../common/auth/HttpInterceptor";
-import { Http, Request,URLSearchParams, RequestOptionsArgs, Response, RequestOptions, ConnectionBackend, Headers } from '@angular/http';
+
 import {AssetService} from "../common/service/asset.service";
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-edit-asset',
@@ -14,7 +14,7 @@ import {AssetService} from "../common/service/asset.service";
 export class EditAssetComponent implements OnInit {
   asset_id:string;
   data:any ={};
-  constructor(private activatedRoute:ActivatedRoute,private assetService:AssetService,private http: HttpInterceptor) { }
+  constructor(private router:Router,private activatedRoute:ActivatedRoute,private assetService:AssetService,private http: HttpInterceptor) { }
 
   ngOnInit() {
     this.asset_id=this.activatedRoute.snapshot.params['id'];
@@ -32,8 +32,9 @@ export class EditAssetComponent implements OnInit {
   onSubmit(value){
     this.assetService.updateAsset(value).subscribe(
       res=>{
-        console.log(res);
-       /* alert(" edit success")*/
+         alert(" edit success")
+        this.router.navigateByUrl("/memberBrowsing");
+
       }
     );
   }
@@ -44,6 +45,7 @@ export class EditAssetComponent implements OnInit {
         console.log(this.data);
         this.data.splice(index,1 );
         console.log(this.data);
+        this.router.navigateByUrl("/stationBrowsing");
       }
     );
 

@@ -7,7 +7,7 @@
   手冊：http://valor-software.com/ngx-bootstrap/#/alerts
   
 ### angular cli
-  使用方法: https://github.com/angular/angular-cli
+  使用方法:
   
 ### scss 学习
   https://www.w3cplus.com/sassguide/

@@ -11,8 +11,8 @@ import com.google.gson.annotations.Expose;
 import org.hibernate.annotations.UpdateTimestamp;
 
 /**
- * @author chzhao
- * @Title: UUIDBasePo.java
+ * @author ycliu
+ * @Title: BaseUuidEntity.java
  * @Description: 基础的PO
  * @date 2017年6月7日 上午10:31:48
  */
@@ -35,12 +35,12 @@ public class BaseUuidEntity implements Serializable{
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     @Column(name= "CREATE_TIME")
-    public Date createTime;
+    private Date createTime;
 
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
     @Column(name= "LAST_UPDATE")
-    public Date lastUpdate;
+    private Date lastUpdate;
 
     public String getId() {
         return id;
