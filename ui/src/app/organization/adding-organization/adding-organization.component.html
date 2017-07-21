@@ -1,0 +1,54 @@
+
+
+<form *ngIf="data" #planetform="ngForm"  (ngSubmit)="onSubmit(planetform.value)">  <!--(ngSubmit)="onSubmit(planetForm.value)"-->
+  <div class="form-group">
+   <!-- <input type="hidden" name="id" [(ngModel)]="data.id">-->
+    <label for="exampleInputEmail1">国家</label>
+    <!-- .在ng2表单中使用ngModel需要注意,必须带有name属性或者使用 [ngModelOptions]=”{standalone: true}”，二选其一-->
+    <!--<input type="text" class="form-control" id="exampleInputEmail1" placeholder="country" name="country"  [(ngModel)]="data.country" >-->
+    <select style="width:150px;" class="btn btn-info btn-sm" id="exampleInputEmail1"  (change)="onChange($event.target.value,1,2)" >
+      <option value="" style="display: none">请选择国家</option>
+      <option *ngFor="let item of selectMap.get(1)" [value]="item.id"  >{{item.name}}</option>
+    </select>
+    <div *ngIf="selectMap.get(1)"><input  [(ngModel)]="contryName" name="newName" type="text"><button (click)="createOrg(contryName,1,-1)">新增</button></div>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputPassword2">城市</label>
+    <select  style="width:150px;"class="btn btn-info btn-sm" (change)="onChange($event.target.value,2,3)" id="exampleInputPassword2">
+      <option value="" style="display: none">请选择城市</option>
+      <option *ngFor="let item of selectMap.get(2)" [value]="item.id">{{item.name}}</option>
+    </select>
+    <div *ngIf="selectMap.get(2)"><input  [(ngModel)]="cityName" name="cityName" type="text"><button (click)="createOrg(cityName,2,currentSelect[1])">新增</button></div>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword3">区</label>
+    <select  style="width:150px;"class="btn btn-info btn-sm" (change)="onChange($event.target.value,3,4)" id="exampleInputPassword3">
+      <option value="" style="display: none">请选择区</option>
+      <option *ngFor="let item of selectMap.get(3)" [value]="item.id">{{item.name}}</option>
+    </select>
+    <div *ngIf="selectMap.get(3)"><input  [(ngModel)]="quName" name="newName" type="text"><button (click)="createOrg(quName,3,currentSelect[2])">新增</button></div>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword4">学校</label>
+    <select style="width:150px;"class="btn btn-info btn-sm"  (change)="onChange($event.target.value,4,5)"  id="exampleInputPassword4">
+      <option value="" style="display: none">请选择学校</option>
+      <option *ngFor="let item of selectMap.get(4)" [value]="item.id">{{item.name}}</option>
+    </select>
+    <div *ngIf="selectMap.get(4)"><input  [(ngModel)]="schoolName"  name="newName" type="text"><button (click)="createOrg(schoolName,4,currentSelect[3])">新增</button></div>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">教室</label>
+    <select style="width:150px;"class="btn btn-info btn-sm"  (change)="currentSelect[5] = $event.target.value;" id="exampleInputPassword1" >
+      <option value="" style="display: none">请选择教室</option>
+      <option *ngFor="let item of selectMap.get(5)" [value]="item.id">{{item.name}}</option>
+    </select>
+    <div *ngIf="selectMap.get(5)"><input  [(ngModel)]="buildingName"  name="newName" type="text"><button (click)="createOrg(buildingName,5,currentSelect[4])">新增</button></div>
+  </div>
+
+  <div class="form-group">
+    <label >地图</label>
+    <p class="help-block">高德地图位置</p>
+  </div>
+
+</form>

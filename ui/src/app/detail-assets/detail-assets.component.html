@@ -1,0 +1,35 @@
+<section class="content" style="padding: 0px">
+  <h3 style="display:inline;margin-left:1%;">
+    仓库列表---<small>仓库信息管理</small>
+  </h3>
+
+  <hr>
+  <table class="table table-hover" *ngIf="data">
+    <tr>
+      <th>
+        <input type="checkbox">
+      </th>
+      <th>资产编号</th>
+      <th>资产所有者</th>
+      <th>资产位置</th>
+
+    </tr>
+    <tr>
+    <tr  >
+      <th >
+        <input type="checkbox">
+      </th>
+      <td>{{data.id}}</td>
+      <td>{{data.warehouse_user_name}}</td>
+      <td>{{data.warehouse_location}}</td>
+    </tr>
+
+  </table>
+
+  <div class="center">
+    <a href="#" >上一页</a>
+    <a href="#" >下一页</a>
+    <a href="#" >首页</a>
+    <a href="#" >末页</a>
+  </div>
+</section>

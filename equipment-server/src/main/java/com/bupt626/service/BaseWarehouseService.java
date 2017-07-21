@@ -2,12 +2,16 @@ package com.bupt626.service;
 
 import com.bupt626.common.base.BasePageService;
 import com.bupt626.common.base.PageEntity;
-import com.bupt626.domain.BaseWarehouse;
-import com.bupt626.repository.BaseWarehouseRepository;
+import com.bupt626.domain.Account;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
+import javax.transaction.Transactional;
+import com.bupt626.domain.BaseWarehouse;
+import com.bupt626.domain.Organization;
+import com.bupt626.repository.BaseWarehouseRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Map;
@@ -20,8 +24,12 @@ import java.util.Map;
 public class BaseWarehouseService extends BasePageService<BaseWarehouse,String> {
     @Autowired
     private BaseWarehouseRepository baseWarehouseRepository;
+
     @Autowired
-    private BaseWarehouseRepository cod;
+    private OrganizationServiceImpl organizationService;
+
+    @Autowired
+    private UserClient userClient;
 
     public void save(BaseWarehouse entity){
         baseWarehouseRepository.save(entity);
@@ -51,7 +59,18 @@ public class BaseWarehouseService extends BasePageService<BaseWarehouse,String> 
     @Override
     protected void translate(List<BaseWarehouse> list) {
         super.translate(list);
+        Account account = userClient.currentAccount();
         for (BaseWarehouse baseWarehouse:list ) {
+            baseWarehouse.setDisplayName(account.getDisplayName());
+            if (StringUtils.isNotBlank(baseWarehouse.getorgId())) {
+                Organization organization = organizationService.findOne(baseWarehouse.getorgId());
+                if (organization != null) {
+                    baseWarehouse.setOrgName(organization.getName());
+                }
+            }
         }
     }
+
+
+
 }
