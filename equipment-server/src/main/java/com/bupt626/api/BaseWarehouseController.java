@@ -1,7 +1,6 @@
-package com.bupt626.controller;
+package com.bupt626.api;
 
 import com.bupt626.common.base.BaseCommonController;
-import com.bupt626.common.base.Constants;
 import com.bupt626.common.base.PageEntity;
 import com.bupt626.common.utils.BeanUtills;
 import com.bupt626.common.utils.DateUtil;
@@ -11,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,7 +29,8 @@ public class BaseWarehouseController extends BaseCommonController {
         return sendSuccessMessage();
     }
     @RequestMapping(value = "/save",method = RequestMethod.POST)
-    public String save(@RequestBody BaseWarehouse entity){
+    public String save(@RequestBody BaseWarehouse entity, Principal user){
+        entity.setUsername(user.getName());
         baseWarehouseService.save(entity);
         return sendSuccessMessage();
     }
@@ -49,7 +50,7 @@ public class BaseWarehouseController extends BaseCommonController {
         BaseWarehouse baseWarehouse = baseWarehouseService.findOne(id);
         return sendSuccessMessage(baseWarehouse);
     }
-    @RequestMapping("/find/{id}")
+    @RequestMapping(value = "/find/{id}",method = RequestMethod.GET)
     public String find(@PathVariable("id") String id){
         BaseWarehouse baseWarehouse = baseWarehouseService.findOne(id);
 //        return sendSuccessMessage(baseWarehouse);
@@ -57,7 +58,8 @@ public class BaseWarehouseController extends BaseCommonController {
     }
 
     @RequestMapping("/page")
-    public String page(BaseWarehouse entity,int page,int size){
+    public String page(BaseWarehouse entity,int page,int size,Principal user){
+        entity.setUsername(user.getName());
         int start = (page - 1) * size;
         PageEntity<BaseWarehouse> pageEntity = new PageEntity<>(start, size,page);
         baseWarehouseService.pageByHql(pageEntity,buildParameter(entity));

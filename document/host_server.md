@@ -29,3 +29,5 @@ ssh root@10.105.242.65
 1. python /data/bupt/login.py
 2. 用户名/密码
 3. python /data/bupt/logout.py
+
+mongodb : `docker run -d -p 27017:27017 -p 28017:28017 -e MONGODB_PASS="xxx" tutum/mongodb`
