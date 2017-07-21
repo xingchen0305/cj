@@ -38,7 +38,7 @@ public class BaseCommonController {
 	public  String sendFailMessage(String message,Object data) {
 		return sendMessage("false", message, data);
 	}
-
+	
 	public  String sendMessage(String status,String message,Object data){
 		Map<String, Object> result = new HashMap<>();
 		result.put("status", status);

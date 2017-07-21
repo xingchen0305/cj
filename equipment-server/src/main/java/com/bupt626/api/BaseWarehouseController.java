@@ -4,10 +4,8 @@ import com.bupt626.common.base.BaseCommonController;
 import com.bupt626.common.base.PageEntity;
 import com.bupt626.common.utils.BeanUtills;
 import com.bupt626.common.utils.DateUtil;
-import com.bupt626.domain.Account;
 import com.bupt626.domain.BaseWarehouse;
 import com.bupt626.service.BaseWarehouseService;
-import com.bupt626.service.UserClient;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,16 +23,14 @@ public class BaseWarehouseController extends BaseCommonController {
     @Autowired
     private BaseWarehouseService baseWarehouseService;
 
-    @Autowired
-    UserClient userClient;
-
     @RequestMapping("/saveOrUpdate")
     public String saveOrUpdate(@RequestBody BaseWarehouse entity){
         baseWarehouseService.save(entity);
         return sendSuccessMessage();
     }
     @RequestMapping(value = "/save",method = RequestMethod.POST)
-    public String save(@RequestBody BaseWarehouse entity){
+    public String save(@RequestBody BaseWarehouse entity, Principal user){
+        entity.setUsername(user.getName());
         baseWarehouseService.save(entity);
         return sendSuccessMessage();
     }
@@ -49,15 +45,12 @@ public class BaseWarehouseController extends BaseCommonController {
             return sendFailMessage();
         }
     }
-    @RequestMapping(value = "/findById",method = RequestMethod.POST )
-    public String findById(String id, Principal user){
-        System.out.println(user.getName());
-        Account account = userClient.currentAccount();
-
+    @RequestMapping(value = "/findById",method = RequestMethod.GET )
+    public String findById(String id){
         BaseWarehouse baseWarehouse = baseWarehouseService.findOne(id);
         return sendSuccessMessage(baseWarehouse);
     }
-    @RequestMapping("/find/{id}")
+    @RequestMapping(value = "/find/{id}",method = RequestMethod.GET)
     public String find(@PathVariable("id") String id){
         BaseWarehouse baseWarehouse = baseWarehouseService.findOne(id);
 //        return sendSuccessMessage(baseWarehouse);
@@ -65,7 +58,8 @@ public class BaseWarehouseController extends BaseCommonController {
     }
 
     @RequestMapping("/page")
-    public String page(BaseWarehouse entity,int page,int size){
+    public String page(BaseWarehouse entity,int page,int size,Principal user){
+        entity.setUsername(user.getName());
         int start = (page - 1) * size;
         PageEntity<BaseWarehouse> pageEntity = new PageEntity<>(start, size,page);
         baseWarehouseService.pageByHql(pageEntity,buildParameter(entity));
@@ -80,16 +74,21 @@ public class BaseWarehouseController extends BaseCommonController {
         if (StringUtils.isNotBlank(entity.getLocation())){
             parameterMap.put("location", entity.getLocation());
         }
+        if (StringUtils.isNotBlank(entity.getUsername())){
+            parameterMap.put("username", entity.getUsername());
+        }
         return parameterMap;
     }
 
     @RequestMapping("/deleteById")
-    public String deleteById(String ids){
-        if (StringUtils.isNotBlank(ids)){
-            baseWarehouseService.deleteById(ids);
-            return sendSuccessMessage();
-        }else {
-            return sendFailMessage();
-        }
+    public String deleteById(String id){
+        baseWarehouseService.deleteById(id);
+        return sendSuccessMessage();
+    }
+
+    @RequestMapping(value = "/find/{id}",method = RequestMethod.DELETE)
+    public String delete(@PathVariable ("id") String id) {
+        baseWarehouseService.deleteById(id);
+        return sendSuccessMessage();
     }
 }

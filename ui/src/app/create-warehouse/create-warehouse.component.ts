@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Request, RequestOptionsArgs, Response, RequestOptions, ConnectionBackend, Headers } from '@angular/http';
 import {HttpInterceptor} from "../common/auth/HttpInterceptor";
-import {warehouse} from "./warehouse";
 import {WarehouseService} from "../common/service/warehouse.service";
+import { Router} from '@angular/router';
+import {OrganizationService} from "../common/service/organization.service";
 
 @Component({
   selector: 'app-create-warehouse',
@@ -11,15 +11,32 @@ import {WarehouseService} from "../common/service/warehouse.service";
 })
 export class CreateWarehouseComponent implements OnInit {
 
-  constructor(private warehouseService: WarehouseService,private http: HttpInterceptor) {
+  constructor(private organizationService: OrganizationService, private router:Router,private warehouseService: WarehouseService,private http: HttpInterceptor) {
   }
   data :any={};
+  index:String='5';
+  warehouse:any=[];
+  location:String;
+  orgId:String;
+  warsehouseInfo:any=[];
+
   ngOnInit() {
+    this.getOrgs();
+  }
+  getOrgs(){
+    this.organizationService.getOrg(this.index).subscribe(
+      (response)=>{
+        this.warehouse = response.json().data;
+        console.log(this.warehouse);
+      }
+    );
   }
   onSubmit(value){
-    this.warehouseService.editWareHouse(value).subscribe(
+    console.log(value);
+    this.warehouseService.addWareHouse(value).subscribe(
       res=> {
         console.log(res);
+        this.router.navigateByUrl("/stationBrowsing");
         /*alert(" edit success")*/}
     )
   }
