@@ -6,6 +6,8 @@ import com.bupt626.domain.BaseWarehouse;
 import com.bupt626.domain.Organization;
 import com.bupt626.service.OrganizationServiceImpl;
 
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.WebResource;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.UrlResource;
@@ -128,5 +130,51 @@ public class OrganizationController {
         }
 
     }
+    @RequestMapping("/upload")
+    public String  upload() throws IOException {
+        String url = "https://img3.doubanio.com/lpic/s1106934.jpg";
+        byte[] btImg = Connection.getImageFromNetByUrl(url);
+
+        //把request强转为多部件请求对象
+      //  MultipartHttpServletRequest req=(MultipartHttpServletRequest) request;
+        //根据文件名称获得文件对象
+      //  CommonsMultipartFile img = (CommonsMultipartFile) req.getFile(fileName);
+        //获取文件上传流
+       // byte[] fbytes = img.getBytes();
+        //文件名在服务器可能有重复
+        /*String newfileName=System.currentTimeMillis()+"";
+        Random r=new Random();
+        for(int i=0;i<5;i++){
+            newfileName+=r.nextInt(100);
+        }*/
+        //获取文件的扩展名
+        String newFileName="ceshi";
+      //  String originalFilename = img.getOriginalFilename();
+      //  String suffix=originalFilename.substring(originalFilename.lastIndexOf("."));
+        String suffix=url.substring(url.lastIndexOf("."));
+        System.out.println("扩展名："+suffix);
+        //创建jesy服务器 进行跨服务器上传
+        Client client=Client.create();
+        //把文件关联到远程服务器
+        WebResource resource = client.resource("http://127.0.0.1:8080/test/"+newFileName+suffix);
+        //上传
+        resource.put(btImg);
+    /* * ajax回调函数所需的参数 * fullPath：图片回显所需的完整路径 */
+        String fullPath="http://10.105.242.65/images/"+newFileName+suffix;
+    //    String result="{\"fullPath\":\""+fullPath+"\"}";
+
+        return fullPath;
+/*
+
+        if (null != btImg && btImg.length > 0) {
+            System.out.println("读取到：" + btImg.length + " 字节");
+            String fileName = "百度.gif";
+            Connection.writeImageToDisk(btImg, fileName);
+        } else {
+            System.out.println("没有从该连接获得内容");
+        }*/
+
+    }
+
 
 }
