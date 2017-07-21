@@ -27,7 +27,6 @@ export class HttpInterceptor extends Http {
 
   constructor(backend: ConnectionBackend, defaultOptions: RequestOptions,
               private _localStorageService: LocalStorageService,
-              private _authWithTokenService: AuthWithTokenService,
               private _router: Router) {
     super(backend, defaultOptions);
   }
@@ -74,17 +73,26 @@ export class HttpInterceptor extends Http {
     return options;
   }
 
+  generateUrlArgsByObj(obj: Object): String {
+    let searchParams = Object.keys(obj).map((key) => {
+      return key + '=' + obj[key];
+    }).join('&');
+    return searchParams;
+  }
+
   intercept(observable: Observable<Response>): Observable<Response> {
     return observable.catch((err, source) => {
       console.log('Http error: ', err, source);
       if (err.status === 401) {
-        this._authWithTokenService.logout();
+        this._localStorageService.clearAuth();
         this._router.navigate(['/login']);
         return Observable.empty();
       } else {
         return Observable.throw(err);
       }
     });
+
+
 
   }
 }

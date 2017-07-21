@@ -11,8 +11,8 @@ import {AuthWithTokenService} from "./auth-with-token.service";
  */
 export function interceptorFactory(xhrBackend: XHRBackend, requestOptions: RequestOptions,
                                    _localStorageService: LocalStorageService,
-                                   _authWithTokenService: AuthWithTokenService, router: Router){
-  return new HttpInterceptor(xhrBackend, requestOptions, _localStorageService, _authWithTokenService, router);
+                                    router: Router){
+  return new HttpInterceptor(xhrBackend, requestOptions, _localStorageService, router);
 }
 
 export function provideHttpInterceptor(): FactoryProvider {
