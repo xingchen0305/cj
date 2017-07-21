@@ -1,4 +1,4 @@
-package com.bupt626.controller;
+package com.bupt626.api;
 
 import com.bupt626.domain.Account;
 import com.bupt626.domain.Demo;
