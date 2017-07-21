@@ -8,7 +8,7 @@ import org.springframework.data.annotation.Id;
  * @Description:
  * @date 2017/07/21 17:28:19
  */
-public class bookInfo {
+public class Book {
 
     @Id
     private String id;
