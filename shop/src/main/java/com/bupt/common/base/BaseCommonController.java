@@ -1,4 +1,4 @@
-package com.bupt.common;
+package com.bupt.common.base;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
