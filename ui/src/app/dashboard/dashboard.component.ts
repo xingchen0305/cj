@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { DemoService } from '../common/service/demo.service';
+import {HttpInterceptor} from "../common/auth/HttpInterceptor";
+import { Observable } from 'rxjs';
+import {UploadService} from "../common/service/upload.service";
+import {Http, Request, RequestOptionsArgs, Response, RequestOptions, ConnectionBackend, Headers} from "@angular/http";
+import {LocalStorageService} from "../common/local-storage.service";
+
 
 @Component({
   selector: 'app-dashboard',
@@ -8,7 +14,8 @@ import { DemoService } from '../common/service/demo.service';
 })
 export class DashboardComponent implements OnInit {
   uploadedFiles: any[] = [];
-  constructor(private demoService: DemoService) { }
+  url:string = "http://10.101.166.144:8755/equipments/upload";
+  constructor(private _localStorageService: LocalStorageService,private http: HttpInterceptor,private demoService: DemoService,private uploadService:UploadService) { }
 
   ngOnInit(): void {
     this.getDemos();
@@ -19,6 +26,7 @@ export class DashboardComponent implements OnInit {
     this.demoService.getDemo().subscribe(
       (response) => {
         this.data=response.json();
+
        // this.data = JSON.stringify(response.json());
         //console.log(this.data);
        // console.log(this.data.id)
@@ -27,12 +35,17 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  myUploader(event) {
-    console.log("1");
-    console.log(event);
-    for(let file of event.files) {
-      this.uploadedFiles.push(file);
+  private onBeforeSend(event) {
+    console.log("before")
+    event.xhr.setRequestHeader("Authorization", "Bearer " + this._localStorageService.getAuth('access_token'));
+  }
 
-    }
+  private onBeforeUpload(event){
+    console.log("add")
+    event.formData.append("name","hxy");
+  }
+
+  onUpload(event) {
+    console.log("onUpload")
   }
 }
