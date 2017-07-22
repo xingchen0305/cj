@@ -41,7 +41,7 @@ import { RentingBookComponent } from './book/renting-book/renting-book.component
 import { OrganizationManagementComponent } from './organization/organization-management/organization-management.component';
 import { AddingOrganizationManagementComponent } from './book/adding-organization-management/adding-organization-management.component';
 import { AddingOrganizationComponent } from './organization/adding-organization/adding-organization.component';
-
+import {ButtonModule, FileUploadModule} from "primeng/primeng";
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,6 +78,9 @@ import { AddingOrganizationComponent } from './organization/adding-organization/
     ModalModule.forRoot(),
     RouterModule.forRoot(routes),
     NgxPaginationModule,
+
+    FileUploadModule,
+    ButtonModule
 
     // app
     // RouterModule.forRoot([
