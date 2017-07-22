@@ -59,6 +59,9 @@ public class BaseWarehouseController extends BaseCommonController {
 
     @RequestMapping("/page")
     public String page(BaseWarehouse entity,int page,int size,Principal user){
+        if(user==null){
+            return "null";
+        }
         entity.setUsername(user.getName());
         int start = (page - 1) * size;
         PageEntity<BaseWarehouse> pageEntity = new PageEntity<>(start, size,page);
