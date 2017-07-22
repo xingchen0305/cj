@@ -68,8 +68,8 @@ public class AssetService extends BasePageService<Asset, String> {
             if(StringUtils.isNotBlank(entity.getWarehouse_id())){
                 BaseWarehouse baseWarehouse=  baseWarehouseService.findOne(entity.getWarehouse_id());
                if(baseWarehouse!=null) {
-                   String warehouseName=userClient.currentAccount().getDisplayName();
-                   entity.setWarehouse_name(warehouseName);
+//                   String warehouseName=userClient.currentAccount().getDisplayName();
+//                   entity.setWarehouse_name(warehouseName);
                    entity.setWarehouse_location(baseWarehouse.getLocation());
                    entity.setWarehouse_user_name(baseWarehouse.getUsername());
                }

@@ -15,13 +15,13 @@ export class AppComponent {
                private _localStorageService: LocalStorageService,
                private router: Router) {
 
-    router.events
-      .filter(event => event instanceof NavigationStart)
-      .subscribe(event => {
-        if (!/\/login|\/reg/.test(event.url)) {
-          this._localStorageService.setLastVisitUrl(event.url);
-        }
-      });
+    // router.events
+    //   .filter(event => event instanceof NavigationStart)
+    //   .subscribe(event => {
+    //     if (!/\/login|\/reg/.test(event.url)) {
+    //       this._localStorageService.setLastVisitUrl(event.url);
+    //     }
+    //   });
 
 
   }
