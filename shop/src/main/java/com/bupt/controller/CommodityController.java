@@ -34,6 +34,13 @@ public class CommodityController extends BaseCommonController {
     public String save(@RequestBody Commodity entity, Principal principal) {
         entity.setOwner(principal.getName());
         String imagePath = ftpService.saveImage(entity.getImageList());
+        String cover = "";
+        if (imagePath.contains(",")){
+             cover = imagePath.split(",")[0];
+        }else {
+            cover = imagePath;
+        }
+        entity.setCover(cover);
         entity.getBook().setImageDetail(imagePath);
         service.save(entity);
         return sendSuccessMessage();

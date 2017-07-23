@@ -61,46 +61,54 @@ public class FTPService {
         }
         return message;
     }
-    private String ftpUpload(List<ByteArrayInputStream> inputStreamList) throws Exception{
+
+    private  FTPClient createConnect(String ip,String port,String userName,String password,String savePath)throws Exception{
         FTPClient ftp = new FTPClient();
-        String path = null;
-        StringBuilder imagePath = new StringBuilder();
+        int reply;
+        ftp.connect(ip, Integer.parseInt(port));//连接FTP服务器
+        ftp.login(userName, password);//登录
+        reply = ftp.getReplyCode();
+        if (!FTPReply.isPositiveCompletion(reply)) {
+            ftp.disconnect();
+            throw new IOException();
+        }
+        ftp.changeWorkingDirectory(savePath);
+        ftp.enterLocalPassiveMode();
+        ftp.setFileType(FTPClient.BINARY_FILE_TYPE);
+        return ftp;
+    }
+    private void  closeConnect(FTPClient ftpClient){
         try {
-            int reply;
-            ftp.connect(FTP_IP, Integer.parseInt(FTP_PORT));//连接FTP服务器
-            ftp.login(FTP_USERNAME, FTP_PASSWORD);//登录
-            reply = ftp.getReplyCode();
-            if (!FTPReply.isPositiveCompletion(reply)) {
-                ftp.disconnect();
-                 throw new IOException();
-            }
-            ftp.changeWorkingDirectory(FTP_IMAGE_PATH);
-            ftp.enterLocalPassiveMode();
-            ftp.setFileType(FTPClient.BINARY_FILE_TYPE);
-            for(ByteArrayInputStream byteArrayInputStream:inputStreamList){
-                String fileName = null;
-                ftp.storeFile(fileName, byteArrayInputStream);//上传图片
-                imagePath.append(FTP_IMAGE_PATH).append(fileName).append(",");
-                byteArrayInputStream.close();
-            }
-            if (imagePath.length() >= 1){
-                path = imagePath.substring(0,imagePath.length()-1);
-            }
-            ftp.logout();
+            ftpClient.logout();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            if (ftp.isConnected()) {
+            if (ftpClient.isConnected()) {
                 try {
-                    ftp.disconnect();
+                    ftpClient.disconnect();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }
+    }
+    private String ftpUpload(List<ByteArrayInputStream> inputStreamList) throws Exception{
+        FTPClient ftp = createConnect(FTP_IP,FTP_PORT,FTP_USERNAME,FTP_PASSWORD,FTP_IMAGE_PATH);
+        String path = null;
+        StringBuilder imagePath = new StringBuilder();
+        for(ByteArrayInputStream byteArrayInputStream:inputStreamList){
+            String fileName = null;
+            ftp.storeFile(fileName, byteArrayInputStream);//上传图片
+            imagePath.append(FTP_IMAGE_PATH).append(fileName).append(",");
+            byteArrayInputStream.close();
+        }
+        if (imagePath.length() >= 1){
+            path = imagePath.substring(0,imagePath.length()-1);
+        }
+        closeConnect(ftp);
         return path;
     }
-    public String saveImage(List<String> imageList){
+    public String saveImage(List<String> imageList)throws Exception{
         String path = null;
         List<ByteArrayInputStream> inputStreams = new ArrayList<>();
         StringBuilder imagePath = new StringBuilder("");
@@ -112,11 +120,7 @@ public class FTPService {
                     inputStreams.add(byteArrayInputStream);
                 }
             }
-            try {
-                path = ftpUpload(inputStreams);
-            }catch (Exception e){
-
-            }
-            return path;
+        path = ftpUpload(inputStreams);
+        return path;
         }
 }
