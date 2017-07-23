@@ -5,10 +5,14 @@ import com.bupt.domain.Book;
 import com.bupt.domain.Commodity;
 import com.bupt.service.BookService;
 import com.bupt.service.CommodityService;
+import com.bupt.service.FTPService;
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import sun.misc.BASE64Decoder;
 
+import java.io.FileInputStream;
 import java.security.Principal;
 import java.util.List;
 
@@ -23,11 +27,13 @@ import java.util.List;
 public class CommodityController extends BaseCommonController {
     @Autowired
     private CommodityService service;
+    @Autowired
+    private FTPService ftpService;
     //添加属性信息
     @RequestMapping( value = "",method = RequestMethod.POST)
     public String save(@RequestBody Commodity entity, Principal principal) {
         entity.setOwner(principal.getName());
-        String imagePath = saveImage(entity.getImageList());
+        String imagePath = ftpService.saveImage(entity.getImageList());
         entity.getBook().setImageDetail(imagePath);
         service.save(entity);
         return sendSuccessMessage();
@@ -65,9 +71,11 @@ public class CommodityController extends BaseCommonController {
     private String saveImage(List<String> imageList){
         String path = null;
         StringBuilder imagePath = new StringBuilder("");
-        for(String image : imageList){
-            System.out.println(image);
-            imagePath.append(image).append(",");
+        for(String imageBase64 : imageList){
+            String[] imageArray = imageBase64.split(",");
+            if (imageArray.length >= 1) {
+                byte[] imageByte = Base64.decodeBase64(imageArray[1]);
+            }
         }
         if (imagePath.length() > 1) {
             path = imagePath.substring(0, imagePath.length() - 1).toString();
