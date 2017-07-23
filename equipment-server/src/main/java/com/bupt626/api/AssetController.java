@@ -137,6 +137,14 @@ public class AssetController extends BaseCommonController {
         }
         return parameterMap;
     }
+
+    @PostMapping("/{asset_id}")
+    private ResponseEntity publish(@PathVariable("asset_id") String id, @RequestParam(name = "publish") boolean publish){
+        Asset asset = assetService.findOne(id);
+        asset.setState(publish == true? AssetStateEnum.PUBLISH.getValue(): AssetStateEnum.UNPUBLISH.getValue());
+        assetService.save(asset);
+        return new ResponseEntity(HttpStatus.OK);
+    }
 }
 
 
