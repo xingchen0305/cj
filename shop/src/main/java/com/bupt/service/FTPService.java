@@ -22,12 +22,13 @@ public class FTPService {
     public static final String FTP_USERNAME = "ftpuser";
     public static final String FTP_PASSWORD = "mengying";
     public static final String FTP_IMAGE_PATH = "/home/ftpuser/www/images";
-    public static boolean uploadFile(String localPath) {
-        boolean message = false;
+    public static final String IMAGE_PATH = "10.05.242.65/images/";
+    public static String uploadFile(String localPath) {
+
         FTPClient ftp = new FTPClient();
+        String fileName = null;
         try {
 //			String localPath = "F:/test.txt";
-            String fileName = null;
             // 对目录的处理
             if (localPath.contains("/")) {
                 fileName = localPath.substring(localPath.lastIndexOf("/") + 1);
@@ -39,15 +40,15 @@ public class FTPService {
             reply = ftp.getReplyCode();
             if (!FTPReply.isPositiveCompletion(reply)) {
                 ftp.disconnect();
-                return message;
+                return "false";
             }
-            ftp.changeWorkingDirectory("/home/ftpuser/www/images");
+            ftp.changeWorkingDirectory(FTP_IMAGE_PATH);
             ftp.enterLocalPassiveMode();
             ftp.setFileType(FTPClient.BINARY_FILE_TYPE);
             ftp.storeFile(fileName, input);//上传图片
             input.close();
             ftp.logout();
-            message = true;
+
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -59,7 +60,8 @@ public class FTPService {
                 }
             }
         }
-        return message;
+        String imagePath = IMAGE_PATH + fileName;
+        return imagePath;
     }
     private String ftpUpload(List<ByteArrayInputStream> inputStreamList) throws Exception{
         FTPClient ftp = new FTPClient();

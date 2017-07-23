@@ -22,8 +22,8 @@ public class FTPController {
     @RequestMapping(value = "/upload",method = RequestMethod.GET)
     public String upload(String localPath) {
         if (StringUtils.isNotBlank(localPath)) {
-            boolean status = FTPService.uploadFile(localPath);
-            return sendSuccessMessage(status);
+            String imagePath = FTPService.uploadFile(localPath);
+            return sendSuccessMessage(imagePath);
         } else {
             return "false";
         }
