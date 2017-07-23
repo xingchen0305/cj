@@ -7,6 +7,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author ycliu
@@ -25,6 +26,7 @@ public class Commodity {
     private String infoId;
     private String businessType;
     private int commodityStatus;
+    private String cover;
 
     //业务出租信息
     private BigDecimal deposit;
@@ -41,6 +43,7 @@ public class Commodity {
     private Date lastUpdate;
 
     private Book book;
+    private List<String> imageList;
 
 
     @Id
@@ -102,6 +105,15 @@ public class Commodity {
 
     public void setCommodityStatus(int commodityStatus) {
         this.commodityStatus = commodityStatus;
+    }
+
+    @Column(name= "C_COVER")
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
     }
 
     //出租信息
@@ -188,5 +200,14 @@ public class Commodity {
 
     public void setBook(Book book) {
         this.book = book;
+    }
+
+    @Transient
+    public List<String> getImageList() {
+        return imageList;
+    }
+
+    public void setImageList(List<String> imageList) {
+        this.imageList = imageList;
     }
 }

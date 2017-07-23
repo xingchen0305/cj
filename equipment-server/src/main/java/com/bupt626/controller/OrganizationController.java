@@ -6,7 +6,7 @@ import com.bupt626.domain.BaseWarehouse;
 import com.bupt626.domain.Organization;
 import com.bupt626.service.OrganizationServiceImpl;
 
-import org.apache.commons.io.FileUtils;
+//import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
