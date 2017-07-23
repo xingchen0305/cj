@@ -62,7 +62,7 @@ export class MemberBrowsingComponent implements OnInit {
     this.warehouseService.getWareHouses(this.searchArgs).subscribe(
       (response) => {
         this.warsehouse = response.json().data.results;
-        console.log(this.warsehouse );
+        console.log(this.warsehouse);
       }
     );
   }
@@ -73,7 +73,7 @@ export class MemberBrowsingComponent implements OnInit {
     this.searchArgs['name'] = this.name;
     this.searchArgs['warehouse_id'] = this.warehouse_id;
     //console.log(this.searchArgs['page']);
-    this.warehouseService.getWareHouses(this.searchArgs).subscribe(
+    this.assetService.getAsset(this.searchArgs).subscribe(
       (response) => {
         this.data = response.json().data.results;
         console.log(this.data);

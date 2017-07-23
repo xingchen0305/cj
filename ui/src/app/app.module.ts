@@ -28,6 +28,7 @@ import { CreateWarehouseComponent } from './create-warehouse/create-warehouse.co
 import {WarehouseService} from "./common/service/warehouse.service";
 import {AssetService} from "./common/service/asset.service";
 import {BookService} from "./common/service/book.service";
+import {UploadService} from "./common/service/upload.service";
 import { EditAssetComponent } from './edit-asset/edit-asset.component';
 import {AuthWithTokenService} from "./common/auth/auth-with-token.service";
 import { SignUpComponent } from './sign-up/sign-up.component';
@@ -41,7 +42,7 @@ import { RentingBookComponent } from './book/renting-book/renting-book.component
 import { OrganizationManagementComponent } from './organization/organization-management/organization-management.component';
 import { AddingOrganizationManagementComponent } from './book/adding-organization-management/adding-organization-management.component';
 import { AddingOrganizationComponent } from './organization/adding-organization/adding-organization.component';
-
+import {ButtonModule, FileUploadModule} from "primeng/primeng";
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,6 +80,9 @@ import { AddingOrganizationComponent } from './organization/adding-organization/
     RouterModule.forRoot(routes),
     NgxPaginationModule,
 
+    FileUploadModule,
+    ButtonModule
+
     // app
     // RouterModule.forRoot([
     //   {
@@ -101,6 +105,7 @@ import { AddingOrganizationComponent } from './organization/adding-organization/
     AssetService,
     AuthWithTokenService,
     BookService,
+    UploadService,
     OrganizationService
   ],
   bootstrap: [AppComponent]
