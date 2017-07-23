@@ -22,7 +22,7 @@ public class FTPService {
     public static final String FTP_USERNAME = "ftpuser";
     public static final String FTP_PASSWORD = "mengying";
     public static final String FTP_IMAGE_PATH = "/home/ftpuser/www/images";
-    public static final String IMAGE_PATH = "10.05.242.65/images/";
+    public static final String IMAGE_PATH = "10.105.242.65/images/";
     public static String uploadFile(String localPath) {
 
         FTPClient ftp = new FTPClient();
