@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by mengying on 2017/7/23.
@@ -99,9 +101,9 @@ public class FTPService {
         String path = null;
         StringBuilder imagePath = new StringBuilder();
         for(ByteArrayInputStream byteArrayInputStream:inputStreamList){
-            String fileName = null;
+            String fileName =  new Date().getTime() + ".jpg";
             ftp.storeFile(fileName, byteArrayInputStream);//上传图片
-            imagePath.append(FTP_IMAGE_PATH).append(fileName).append(",");
+            imagePath.append(IMAGE_PATH).append(fileName).append(",");
             byteArrayInputStream.close();
         }
         if (imagePath.length() >= 1){
@@ -110,7 +112,7 @@ public class FTPService {
         closeConnect(ftp);
         return path;
     }
-    public String saveImage(List<String> imageList)throws Exception{
+    public String saveImage(List<String> imageList){
         String path = null;
         List<ByteArrayInputStream> inputStreams = new ArrayList<>();
         StringBuilder imagePath = new StringBuilder("");
@@ -118,11 +120,15 @@ public class FTPService {
             String[] imageArray = imageBase64.split(",");
             if (imageArray.length >= 1){
                 byte[] imageByte= Base64.decodeBase64(imageArray[1]);
-                    ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(imageByte);
-                    inputStreams.add(byteArrayInputStream);
+                ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(imageByte);
+                inputStreams.add(byteArrayInputStream);
                 }
             }
-        path = ftpUpload(inputStreams);
+            try {
+                path = ftpUpload(inputStreams);
+            }catch (Exception e){
+
+            }
         return path;
         }
 }
