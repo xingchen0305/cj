@@ -5,6 +5,9 @@ import { Observable } from 'rxjs';
 import {UploadService} from "../common/service/upload.service";
 import {Http, Request, RequestOptionsArgs, Response, RequestOptions, ConnectionBackend, Headers} from "@angular/http";
 import {LocalStorageService} from "../common/local-storage.service";
+import { BookService} from '../common/service/book.service';
+import { Router} from '@angular/router';
+
 
 
 @Component({
@@ -15,7 +18,7 @@ import {LocalStorageService} from "../common/local-storage.service";
 export class DashboardComponent implements OnInit {
   uploadedFiles: any[] = [];
   url:string = "http://10.101.166.144:8755/equipments/upload";
-  constructor(private _localStorageService: LocalStorageService,private http: HttpInterceptor,private demoService: DemoService,private uploadService:UploadService) { }
+  constructor(private router:Router,private bookService: BookService,private _localStorageService: LocalStorageService,private http: HttpInterceptor,private demoService: DemoService,private uploadService:UploadService) { }
 
   ngOnInit(): void {
     this.getDemos();
@@ -48,4 +51,16 @@ export class DashboardComponent implements OnInit {
   onUpload(event) {
     console.log("onUpload")
   }
+
+  onSubmit(value){
+    console.log(value);
+    this.bookService.rentBookById(value,1).subscribe(
+      res=> {
+        console.log(res);
+        alert(" edit success")
+ }
+    )
+  }
 }
+
+
