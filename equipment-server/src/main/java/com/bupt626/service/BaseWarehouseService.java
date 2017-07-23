@@ -28,9 +28,6 @@ public class BaseWarehouseService extends BasePageService<BaseWarehouse,String> 
     @Autowired
     private OrganizationServiceImpl organizationService;
 
-    @Autowired
-    private UserClient userClient;
-
     public void save(BaseWarehouse entity){
         baseWarehouseRepository.save(entity);
     }
@@ -59,9 +56,7 @@ public class BaseWarehouseService extends BasePageService<BaseWarehouse,String> 
     @Override
     protected void translate(List<BaseWarehouse> list) {
         super.translate(list);
-        Account account = userClient.currentAccount();
         for (BaseWarehouse baseWarehouse:list ) {
-            baseWarehouse.setDisplayName(account.getDisplayName());
             if (StringUtils.isNotBlank(baseWarehouse.getorgId())) {
                 Organization organization = organizationService.findOne(baseWarehouse.getorgId());
                 if (organization != null) {

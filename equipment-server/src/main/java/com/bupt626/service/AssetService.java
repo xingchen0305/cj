@@ -5,13 +5,11 @@ import com.bupt626.common.base.PageEntity;
 import com.bupt626.common.enums.AssetPropertyEnum;
 import com.bupt626.common.enums.AssetStateEnum;
 import com.bupt626.domain.Asset;
-
 import com.bupt626.domain.AssetType;
 import com.bupt626.domain.BaseWarehouse;
 import com.bupt626.repository.AssetRepository;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,8 +28,7 @@ public class AssetService extends BasePageService<Asset, String> {
     private BaseWarehouseService baseWarehouseService;
     @Autowired
     private AssetTypeService assetTypeService;
-    @Autowired
-    private UserClient userClient;
+
     public void save(Asset entity) {
         assetRepository.save(entity);
     }
