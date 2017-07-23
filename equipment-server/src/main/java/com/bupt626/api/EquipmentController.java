@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by hexiuyu on 2017/1/20.
@@ -60,9 +61,13 @@ public class EquipmentController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
+
+    @PostMapping("/testFile")
+    public void test(@RequestBody Map map) {
+        System.out.println("map");
+    }
+
 
     static class Try{
         String name;
