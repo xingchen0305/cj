@@ -33,7 +33,6 @@
     "primeng": "^4.1.1",
     "rxjs": "^5.4.1",
     "ts-helpers": "^1.1.1",
-    "webpack": "^2.2.0",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
@@ -52,10 +51,12 @@
     "karma-coverage-istanbul-reporter": "^1.2.1",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "karma-remap-istanbul": "^0.2.1",
     "protractor": "~5.1.2",
     "ts-node": "~3.0.4",
     "tslint": "~5.3.2",
     "typescript": "~2.3.3",
-    "karma-remap-istanbul": "^0.2.1"
+    "webpack": "^2.1.0-beta.25",
+    "webpack-dev-server": "^2.1.0-beta.9"
   }
 }

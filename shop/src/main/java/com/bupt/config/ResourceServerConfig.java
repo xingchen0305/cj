@@ -1,4 +1,4 @@
-package com.bupt626.config;
+package com.bupt.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;

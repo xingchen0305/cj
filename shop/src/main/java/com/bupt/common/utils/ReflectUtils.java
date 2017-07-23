@@ -1,4 +1,4 @@
-package com.bupt.common;
+package com.bupt.common.utils;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

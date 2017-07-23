@@ -52,7 +52,8 @@
         <!--<button [routerLink]="['/warehouseOne', item.id]"  class="btn btn-info btn-sm" >查看资产</button>-->
         <button   [routerLink]="['/detailAssets',item.id]"  class="btn btn-primary btn-sm" >查看详情</button>
         <button   [routerLink]="['/editAsset', item.id]"  class="btn btn-primary btn-sm" >修改</button>
-       <button   class="btn btn-danger btn-sm" (click)="delete(item.id, idx)" >删除</button></td>
+       <button   class="btn btn-danger btn-sm" (click)="delete(item.id, idx)" >删除</button>
+        <button  *ngIf="item.stateName=='未发布'" [routerLink]="['/attendanceRecord/booksPublishing',item.id]" class="btn btn-info btn-sm">发布</button></td>
 
     </tr>
 

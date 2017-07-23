@@ -20,18 +20,17 @@ export class AttendanceRecordComponent implements OnInit {
   start:number;
   pageSize:number = 5;
   currentPage:number;
+  state:number=1;
   searchArgs: Object = {
     size: this.pageSize,
     page: 1,
-    type:'book'
+    state:this.state
   };
   pageChanged(event){
     console.log(event);
     this.searchArgs['page'] = event;
-    //console.log(this.searchArgs['page']);
     this.bookService.getBooks(this.searchArgs).subscribe(
       (response) => {
-
         let body = response.json().data;
         console.log(body);
         this.data = body.results;

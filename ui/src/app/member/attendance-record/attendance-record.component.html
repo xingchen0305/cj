@@ -1,10 +1,10 @@
 <section class="content" style="padding: 0px">
 	<h3 style="display:inline;margin-left:1%;">
-         我的书屋---<small>图书信息管理</small>
+         我的发布---<small>发布信息管理</small>
   </h3>
   <form class="form-inline" style="margin:10px;padding: 10px; ">
   <div class="form-group">
-    <label for="exampleInputName9" >书&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:</label>
+    <label for="exampleInputName9" >名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称:</label>
     <input type="text" class="form-control" id="exampleInputName9" placeholder="请输入姓名">
   </div>
   <div class="form-group">
@@ -19,10 +19,8 @@
   <div class="form-group">
     <label for="exampleInputEmail2">状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态:</label>
     <select class="select">
-        <option value ="volvo">Volvo</option>
-        <option value ="saab">Saab</option>
-        <option value="opel">Opel</option>
-        <option value="audi">Audi</option>
+        <option [value]="1">已发布</option>
+        <option [value]="2">未发布</option>
      </select>
   </div>
    <button type="submit" class="btn btn-outline-primary">查询</button>
@@ -33,12 +31,12 @@
   <th>
     <input type="checkbox">
   </th>
-  <th>书籍序号</th>
-  <th>书籍名称</th>
+  <th>资产序号</th>
+  <th>资产名称</th>
   <th>条形码号</th>
   <th>发布状态</th>
   <th>所属仓库</th>
-  <th style="text-align: center">操作</th>
+  <th style="text-align: center">图片</th>
   </tr>
   <tr *ngFor="let item of data | paginate: { itemsPerPage: pageSize, currentPage:currentPage, totalItems: totalResults }; let idx=index">
   <th>
@@ -49,14 +47,16 @@
   <td>{{item.barcode}}</td>
   <td>{{item.stateName}}</td>
   <td>{{item.warehouse_location}}</td>
+    <td>图片</td>
   <!--  [routerLink]="['/editAsset', item.id]"-->
-  <td style="text-align: center"><a [routerLink]="['/attendanceRecord/bookDetail']"  class="btn btn-info btn-sm">查看</a>
+ <!-- <td style="text-align: center"><a [routerLink]="['/attendanceRecord/bookDetail']"  class="btn btn-info btn-sm">查看</a>
     <a *ngIf="item.stateName=='未发布'" [routerLink]="['/attendanceRecord/booksPublishing',item.id]" class="btn btn-info btn-sm">发布</a></td>
- </tr>
+ </tr>-->
 
 </table>
 
   <div class="center" style="margin-top: 20px" >
     <pagination-controls previousLabel="上一页" nextLabel="下一页"(pageChange)="pageChanged($event)"></pagination-controls>
   </div>
+
 </section>
