@@ -1,7 +1,6 @@
 import {Component, OnInit, ViewChild} from "@angular/core";
 import {DemoService} from "../common/service/demo.service";
 import {UploadService} from "../common/service/upload.service";
-import {Http} from "@angular/http";
 import {LocalStorageService} from "../common/local-storage.service";
 import {FileUpload} from "primeng/components/fileupload/fileupload";
 import {HttpInterceptor} from "../common/auth/HttpInterceptor";
@@ -11,6 +10,7 @@ declare let $;
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
+
 })
 export class DashboardComponent implements OnInit {
   uploadedFiles: any[] = [];
@@ -66,6 +66,7 @@ export class DashboardComponent implements OnInit {
     myReader.onloadend = (e) => {
       this.image = myReader.result;
       console.log(this.image);
+      console.log(this.fileUploadModule);
       this.http.post(this.url,this.image).subscribe(()=>{})
     };
     myReader.readAsDataURL(this.fileUploadModule.files[0]);
