@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 
 /**
  * @author ycliu
@@ -26,6 +27,8 @@ public class CommodityController extends BaseCommonController {
     @RequestMapping( value = "",method = RequestMethod.POST)
     public String save(@RequestBody Commodity entity, Principal principal) {
         entity.setOwner(principal.getName());
+        String imagePath = saveImage(entity.getImageList());
+        entity.getBook().setImageDetail(imagePath);
         service.save(entity);
         return sendSuccessMessage();
     }
@@ -57,5 +60,18 @@ public class CommodityController extends BaseCommonController {
             return sendSuccessMessage();
         } else {
             return sendFailMessage();        }
+    }
+
+    private String saveImage(List<String> imageList){
+        String path = null;
+        StringBuilder imagePath = new StringBuilder("");
+        for(String image : imageList){
+            System.out.println(image);
+            imagePath.append(image).append(",");
+        }
+        if (imagePath.length() > 1) {
+            path = imagePath.substring(0, imagePath.length() - 1).toString();
+        }
+        return  path;
     }
 }
