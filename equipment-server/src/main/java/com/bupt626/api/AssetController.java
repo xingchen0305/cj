@@ -1,7 +1,6 @@
 package com.bupt626.api;
 
 import com.bupt626.common.base.BaseCommonController;
-import com.bupt626.common.base.Constants;
 import com.bupt626.common.base.PageEntity;
 import com.bupt626.common.enums.AssetPropertyEnum;
 import com.bupt626.common.enums.AssetStateEnum;
@@ -11,20 +10,15 @@ import com.bupt626.domain.Asset;
 import com.bupt626.domain.AssetType;
 import com.bupt626.domain.BaseWarehouse;
 import com.bupt626.service.AssetService;
-
 import com.bupt626.service.AssetTypeService;
 import com.bupt626.service.BaseWarehouseService;
-
-import com.bupt626.service.UserClient;
 import org.apache.commons.lang3.StringUtils;
-import org.omg.CORBA.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -41,8 +35,7 @@ public class AssetController extends BaseCommonController {
     @Autowired
     private AssetTypeService assetTypeService;
 
-    @Autowired
-    private UserClient userClient;
+
 
     @RequestMapping("/saveOrUpdate")
     public String saveOrUpdate(Asset entity) {
@@ -136,6 +129,14 @@ public class AssetController extends BaseCommonController {
             parameterMap.put("state", entity.getState());
         }
         return parameterMap;
+    }
+
+    @PostMapping("/{asset_id}")
+    private ResponseEntity publish(@PathVariable("asset_id") String id, @RequestParam(name = "publish") boolean publish){
+        Asset asset = assetService.findOne(id);
+        asset.setState(publish == true? AssetStateEnum.PUBLISH.getValue(): AssetStateEnum.UNPUBLISH.getValue());
+        assetService.save(asset);
+        return new ResponseEntity(HttpStatus.OK);
     }
 }
 

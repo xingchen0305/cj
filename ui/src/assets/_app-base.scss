@@ -17,6 +17,8 @@
   transition: left 0.3s ease, padding-left 0.3s ease;
   overflow: hidden;
 
+  .ui-fileupload-choose.ui-fileupload-choose-selected input[type=file] { display: inline !important;}
+
   .content {
     $padding-x: $content-padding-x-md;
     $padding-y: $content-padding-y-md;
@@ -107,3 +109,6 @@
   }
 
 }
+
+
+
