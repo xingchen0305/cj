@@ -33,7 +33,7 @@ export const HomeRootRoutes: Routes = [
       {path:'attendanceRecord',
         children:[
           { path: '', component: AttendanceRecordComponent },
-          { path: 'bookDetail', component: BookDetailComponent }]
+          { path: 'bookDetail/:id', component: BookDetailComponent }]
      /*      { path: 'booksPublishing', component: BooksPublishingComponent }
         ]*/
       },

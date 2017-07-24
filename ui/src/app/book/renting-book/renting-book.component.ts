@@ -9,6 +9,7 @@ import {LocalStorageService} from "../../common/local-storage.service";
 import {FileUpload} from "primeng/components/fileupload/fileupload";
 import {HttpInterceptor} from "../../common/auth/HttpInterceptor";
 import {AssetService} from "../../common/service/asset.service";
+import {PublishingService} from "../../common/service/publishing.service";
 
 
 @Component({
@@ -30,7 +31,7 @@ export class RentingBookComponent implements OnInit {
   images:any[] = new Array<any>();
 
   @ViewChild("myProfile") fileUploadModule:FileUpload;
-  constructor(private assetService:AssetService,private _localStorageService: LocalStorageService,private http: HttpInterceptor,private demoService: DemoService,private uploadService:UploadService,private router:Router,private bookService: BookService,private activatedRoute:ActivatedRoute) { }
+  constructor(private publishingService:PublishingService,private assetService:AssetService,private _localStorageService: LocalStorageService,private http: HttpInterceptor,private demoService: DemoService,private uploadService:UploadService,private router:Router,private bookService: BookService,private activatedRoute:ActivatedRoute) { }
 
   ngOnInit() {
     this.book_id=this.activatedRoute.snapshot.params['id'];
@@ -48,12 +49,12 @@ export class RentingBookComponent implements OnInit {
 
   }
 
-  onSubmit(value){
+  onSubmit(){
     let files:File[] = this.fileUploadModule.files;
-    this.obj['book']=value;
+    console.log(this.data)
+    this.obj['book']=this.data;
     this.obj['businessType'] = this.rent_type;
-    this.readfiles(files, 0, this.obj);
-
+    this.readfiles(files, 0,this.obj);
   }
 
   readfiles(files:File[], index, other:any ){
@@ -69,9 +70,12 @@ export class RentingBookComponent implements OnInit {
             data["imageList"] = this.images;
             data["name"] = this.name;
             console.log("hxy", data);
-            this.http.post(this.url, data).subscribe((res)=>{
+         /*   this.http.post(this.url, data).subscribe((res)=>{
               this.router.navigateByUrl("/attendanceRecord");
-            });
+            });*/
+         this.publishingService.renting(data).subscribe((res)=>{
+           this.router.navigateByUrl("/attendanceRecord");
+         });
           }
         };
       reader.readAsDataURL(this.fileUploadModule.files[index]);

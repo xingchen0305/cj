@@ -43,6 +43,7 @@ import { OrganizationManagementComponent } from './organization/organization-man
 import { AddingOrganizationManagementComponent } from './book/adding-organization-management/adding-organization-management.component';
 import { AddingOrganizationComponent } from './organization/adding-organization/adding-organization.component';
 import {ButtonModule, FileUploadModule} from "primeng/primeng";
+import {PublishingService} from "./common/service/publishing.service";
 @NgModule({
   declarations: [
     AppComponent,
@@ -106,7 +107,8 @@ import {ButtonModule, FileUploadModule} from "primeng/primeng";
     AuthWithTokenService,
     BookService,
     UploadService,
-    OrganizationService
+    OrganizationService,
+    PublishingService
   ],
   bootstrap: [AppComponent]
 })

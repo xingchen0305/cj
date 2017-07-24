@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import {PublishingService} from '../../common/service/publishing.service'
 
 @Component({
   selector: 'app-book-detail',
@@ -6,10 +8,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./book-detail.component.scss']
 })
 export class BookDetailComponent implements OnInit {
-
-  constructor() { }
+  asset_id:string;
+  constructor(private activatedRoute:ActivatedRoute ,private publishingService: PublishingService) {
+    this.asset_id=this.activatedRoute.snapshot.params['id'];
+  }
 
   ngOnInit() {
+    console.log(this.asset_id);
+  }
+  //根据id查询资产详情
+  getAssetDetailById(){
+    this.publishingService.getPublishingById(this.asset_id).subscribe(
+      (res)=>{
+
+      }
+    )
+
   }
 
 }

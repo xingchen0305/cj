@@ -1,8 +1,8 @@
 <section class="content" style="padding: 0px">
-	<h3 style="display:inline;margin-left:1%;">
+	<h3 style="display:inline;margin:1%;">
          我的发布---<small>发布信息管理</small>
   </h3>
-  <form class="form-inline" style="margin:10px;padding: 10px; ">
+ <!-- <form class="form-inline" style="margin:10px;padding: 10px; ">
   <div class="form-group">
     <label for="exampleInputName9" >名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称:</label>
     <input type="text" class="form-control" id="exampleInputName9" placeholder="请输入姓名">
@@ -48,15 +48,43 @@
   <td>{{item.stateName}}</td>
   <td>{{item.warehouse_location}}</td>
     <td>图片</td>
-  <!--  [routerLink]="['/editAsset', item.id]"-->
- <!-- <td style="text-align: center"><a [routerLink]="['/attendanceRecord/bookDetail']"  class="btn btn-info btn-sm">查看</a>
+  &lt;!&ndash;  [routerLink]="['/editAsset', item.id]"&ndash;&gt;
+ &lt;!&ndash; <td style="text-align: center"><a [routerLink]="['/attendanceRecord/bookDetail']"  class="btn btn-info btn-sm">查看</a>
     <a *ngIf="item.stateName=='未发布'" [routerLink]="['/attendanceRecord/booksPublishing',item.id]" class="btn btn-info btn-sm">发布</a></td>
- </tr>-->
+    <a *ngIf="item.stateName=='未发布'" [routerLink]="['/attendanceRecord/booksPublishing',item.id]" class="btn btn-info btn-sm">发布</a></td>
+ </tr>&ndash;&gt;
 
-</table>
-
+</table>-->
+<!--
   <div class="center" style="margin-top: 20px" >
     <pagination-controls previousLabel="上一页" nextLabel="下一页"(pageChange)="pageChanged($event)"></pagination-controls>
+  </div>-->
+
+  <div class="container" *ngIf="data">
+    <div class="row" >
+      <div class="col-md-3" *ngFor="let item of data | paginate: { itemsPerPage: pageSize, currentPage:currentPage, totalItems: totalResults }; let idx=index">
+        <div class="row" style="margin: 30px;float: left" >
+          <div class="">
+            <div class="thumbnail">
+              <a class="btn btn-primary btn-sm" role="button" [routerLink]="['/attendanceRecord/bookDetail', item.id]" >
+              <img src="../../../assets/images/0.jpg" alt="..." style="max-width:200px;max-height:200px;">
+              </a>
+              <div class="caption">
+                <h6>{{item.name}}</h6>
+                <p>50元</p>
+               <!-- <p><a href="#" class="btn btn-primary btn-sm" role="button">购买</a> <a href="#" class="btn btn-default btn-sm" role="button">收藏</a></p>-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
+
+
+
+
+
 
 </section>
