@@ -1,4 +1,4 @@
-package com.bupt.domain;
+package com.bupt626.domain;
 
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +12,9 @@ public class Sender {
     @Autowired
     private AmqpTemplate rabbitTemplate;
 
-    public String  send(int i) {
-        String context = "shop " +i;
-        System.out.println("Sender : " + context);
-        this.rabbitTemplate.convertAndSend("hello", context);
-        return context;
+    public void  send(String id) {
+        System.out.println("Sender : " + id);
+        this.rabbitTemplate.convertAndSend("cancel", id);
+       // return context;
     }
 }
