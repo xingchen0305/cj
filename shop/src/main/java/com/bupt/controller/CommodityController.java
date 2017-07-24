@@ -1,6 +1,7 @@
 package com.bupt.controller;
 
 import com.bupt.common.base.BaseCommonController;
+import com.bupt.common.base.PageEntity;
 import com.bupt.domain.Book;
 import com.bupt.domain.Commodity;
 import com.bupt.service.BookService;
@@ -9,12 +10,18 @@ import com.bupt.service.FTPService;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
+import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 import org.springframework.web.bind.annotation.*;
 import sun.misc.BASE64Decoder;
 
+import javax.xml.soap.Detail;
 import java.io.FileInputStream;
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author ycliu
@@ -31,7 +38,9 @@ public class CommodityController extends BaseCommonController {
     private FTPService ftpService;
     //添加属性信息
     @RequestMapping( value = "",method = RequestMethod.POST)
-    public String save(@RequestBody Commodity entity, Principal principal) {
+    public String save(@RequestBody Commodity entity, Principal principal) throws Exception{
+        OAuth2Authentication oAuth2Authentication = (OAuth2Authentication)principal;
+        OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails)oAuth2Authentication.getDetails();
         entity.setOwner(principal.getName());
         String imagePath = ftpService.saveImage(entity.getImageList());
         String cover = "";
@@ -42,8 +51,13 @@ public class CommodityController extends BaseCommonController {
         }
         entity.setCover(cover);
         entity.getBook().setImageDetail(imagePath);
-        service.save(entity);
-        return sendSuccessMessage();
+        String token = details.getTokenType() + " " + details.getTokenValue();
+        boolean result = service.save(entity,token);
+        if (result){
+            return sendSuccessMessage();
+        }else {
+            return sendFailMessage("资产错误，发布失败");
+        }
     }
 
     //更新属性信息
@@ -88,5 +102,26 @@ public class CommodityController extends BaseCommonController {
             path = imagePath.substring(0, imagePath.length() - 1).toString();
         }
         return  path;
+    }
+
+    @RequestMapping("/page")
+    public String page( Commodity entity,int page,int size) {
+        int start=(page-1)*size;
+        PageEntity<Commodity> pageEntity = new PageEntity<>(start,size,page);
+        service.pageByHql(pageEntity, buildParameter(entity));
+        return sendSuccessMessage(pageEntity);
+    }
+    private Map<String, Object> buildParameter(Commodity entity) {
+        Map<String, Object> parameterMap = new HashMap<>();
+        if (StringUtils.isNotBlank(entity.getName())) {
+            parameterMap.put("name", entity.getName());
+        }
+        if (StringUtils.isNotBlank(entity.getOwner())) {
+            parameterMap.put("owner", entity.getOwner());
+        }
+        if (StringUtils.isNotBlank(entity.getBusinessType())){
+            parameterMap.put("businessType", entity.getBusinessType());
+        }
+        return parameterMap;
     }
 }
