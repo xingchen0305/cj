@@ -1,6 +1,6 @@
 package com.bupt.service;
 
-import com.bupt.common.BeanUtills;
+import com.bupt.common.utils.BeanUtills;
 import com.bupt.domain.Book;
 import com.bupt.repository.BookRepository;
 import org.apache.commons.lang3.StringUtils;

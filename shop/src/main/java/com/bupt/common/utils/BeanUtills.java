@@ -1,4 +1,4 @@
-package com.bupt.common;
+package com.bupt.common.utils;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeansException;
