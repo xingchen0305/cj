@@ -6,38 +6,38 @@
 <form  #planetform="ngForm"  (ngSubmit)="onSubmit(planetform.value)" style="margin-top: 20px">
   <div class="form-group">
     <label for="exampleInputPassword5">书名</label>
-    <input type="text" class="form-control" id="exampleInputPassword5" placeholder="请输入书籍出版社" name="author"    [(ngModel)]="data.author" >
+    <input type="text" class="form-control" id="exampleInputPassword5" placeholder="请输入书籍名称" name="title"    [(ngModel)]="data.title" >
   </div>
-<!--  <input type="text" ngModel="obj.price">
-  <input type="text" ngModel = "obj.rent">
-  <input type="text" ngModel = "obj.rent">
-
-  <input type="text" ngModel="book.name">
-  <input type="text" ngModel="book.name">
-  <input type="text" ngModel="book.name">
-  <input type="text" ngModel="book.name">
-
-  obj['book']=book;
-  post(obj)-->
-
+  <div class="form-group">
+    <label for="exampleInputPassword15">出版社</label>
+    <input type="text" class="form-control" id="exampleInputPassword15" placeholder="请输入书籍出版社" name="publisher"    [(ngModel)]="data.publisher" >
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword4">作者</label>
+    <input type="text" class="form-control" id="exampleInputPassword4" placeholder="请输入书籍作者" name="author"    [(ngModel)]="data.author" >
+  </div>
 
 
   <div class="form-group">
-    <label for="exampleInputPassword9">书籍出版社</label>
-    <input type="text" class="form-control" id="exampleInputPassword9" placeholder="请输入书籍出版社" name="press"    [(ngModel)]="data.press" >
+    <label for="exampleInputPassword9">书籍押金</label>
+    <input type="text" class="form-control" id="exampleInputPassword9" placeholder="请输入书籍所需押金" name="deposit"    [(ngModel)]="obj.deposit" >
   </div>
 
   <div class="form-group">
   <!--  <input type="hidden" name="id" [(ngModel)]="data.id">-->
-    <label for="exampleInputPassword8">书籍价格</label>
-    <input type="text" class="form-control" id="exampleInputPassword8" placeholder="请输入价格" name="price"   [(ngModel)]="obj.price"   >
+    <label for="exampleInputPassword8">书籍租金</label>
+    <input type="text" class="form-control" id="exampleInputPassword8" placeholder="请输入价格" name="rent"   [(ngModel)]="obj.rent"   >
   </div>
-  <div class="form-group">
+<!--  <div class="form-group">
     <label for="exampleInputPassword7">书籍新旧程度</label>
-    <input type="text" class="form-control" id="exampleInputPassword7" placeholder="请输入新旧程度（几成新）" name="grade"  [(ngModel)]="data.grade"    >
+    <input type="text" class="form-control" id="exampleInputPassword7" placeholder="请输入新旧程度（几成新）" name="grade"  [(ngModel)]="obj.grade"    >
+  </div>-->
+  <div class="form-group">
+    <label for="exampleInputPassword17">书籍新违约金</label>
+    <input type="text" class="form-control" id="exampleInputPassword17" placeholder="请输入违约金" name="gdamages"  [(ngModel)]="obj.damages"    >
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword12">文件上传</label>
+    <label >文件上传</label>
     <p-fileUpload #myProfile name="file"  multiple="multiple"  url={{url}} uploadLabel="true"
                   customUpload="true"
                   chooseLabel="选择上传的图片"

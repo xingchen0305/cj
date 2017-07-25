@@ -41,17 +41,22 @@
     </tr>
 
   </table>-->
-  <div class="row" style="position: relative;">
+  <div class="row" style="position: relative;" *ngIf="data">
     <div class="col-xs-6 col-md-3">
       <a href="#" class="thumbnail">
-        <img src="../../../assets/images/0.jpg" alt="..." style="max-width:500px;max-height:500px;">
+        <img src="http://{{data.cover}}"alt="..." style="width:350px;height:350px;">
+        <!--{{data.cover}}-->
       </a>
     </div>
-    <div style="position: absolute;left: 600px; ">
-      <table class="table table-hover" >
+    <div style="position: absolute;left: 600px; " >
+      <table class="table table-hover"  >
         <tr>
           <th>书籍名称</th>
-          <td>javaweb</td>
+          <td>{{data.name}}</td>
+        </tr>
+        <tr>
+          <th>出售方式</th>
+          <td>{{data.businessType}}</td>
         </tr>
         <tr>
           <th>转卖价</th>
@@ -62,15 +67,14 @@
           <td>非全新</td>
         </tr>
         <tr>
-          <th>所在地</th>
-          <td>天津</td>
-        </tr>
-        <tr>
-          <th>联系方式</th>
-          <td>1881235678</td>
+          <th>联系人</th>
+          <td>{{data.owner}}</td>
         </tr>
         <tr>
           <th>交易方式</th>
+          <th >
+            <input type="checkbox">
+          </th>
           <td>在线交易</td>
         </tr>
         <tr>

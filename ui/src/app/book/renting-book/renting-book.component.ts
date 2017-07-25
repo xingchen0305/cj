@@ -70,9 +70,6 @@ export class RentingBookComponent implements OnInit {
             data["imageList"] = this.images;
             data["name"] = this.name;
             console.log("hxy", data);
-         /*   this.http.post(this.url, data).subscribe((res)=>{
-              this.router.navigateByUrl("/attendanceRecord");
-            });*/
          this.publishingService.renting(data).subscribe((res)=>{
            this.router.navigateByUrl("/attendanceRecord");
          });
