@@ -9,14 +9,17 @@ import com.bupt.domain.Commodity;
 import com.bupt.domain.Rent;
 import com.bupt.repository.CommodityRepository;
 import com.bupt.repository.RentRepository;
+import com.sun.jndi.toolkit.url.Uri;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.InputStream;
+import java.net.URI;
 import java.util.*;
 
 /**
@@ -32,16 +35,20 @@ public class CommodityService extends BasePageService<Commodity, String> {
     private BookService bookService;
     @Value("${equipment-server-url}")
     private String url;
+    @Autowired
+    private RestTemplate restTemplate;
 
     public Boolean save(Commodity entity,String token) throws Exception{
         if (StringUtils.isNotBlank(entity.getAssetId())){
-            PropertiesUtil props = new PropertiesUtil();
-            Map<String,String> paraem = new HashMap<>();
-            paraem.put("publish","true");
-            Map<String,String> header = new HashMap<>();
-            header.put("Authorization",token);
-            String code = HttpUtil.doPost( url + "/asset/" + entity.getAssetId(),paraem,header);
-            if (!"200".equals(code)){
+            try{
+                URI targetUrl= UriComponentsBuilder.fromUriString("http://" + url)  // Build the base link
+                        .path("/asset/" + entity.getAssetId())
+                        .queryParam("publish", true)                                // Add one or more query params
+                        .build()                                                 // Build the URL
+                        .encode()                                                // Encode any URI items that need to be encoded
+                        .toUri();
+                restTemplate.postForObject(targetUrl, null, String.class);
+            }catch (Exception e){
                 return false;
             }
         }

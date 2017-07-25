@@ -14,10 +14,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 import sun.misc.BASE64Decoder;
 
 import javax.xml.soap.Detail;
 import java.io.FileInputStream;
+import java.net.URI;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
@@ -36,6 +39,8 @@ public class CommodityController extends BaseCommonController {
     private CommodityService service;
     @Autowired
     private FTPService ftpService;
+    @Autowired
+    private RestTemplate restTemplate;
     //添加属性信息
     @RequestMapping( value = "",method = RequestMethod.POST)
     public String save(@RequestBody Commodity entity, Principal principal) throws Exception{
