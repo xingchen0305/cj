@@ -3,7 +3,7 @@
  */
 export const BASE_URI = 'http://10.105.242.74:8755';
 /*export const BASE_URI = 'http://10.101.166.144:8755';*/
-export const BOOK_URI = 'http://localhost:8756';
+export const BOOK_URI = 'http://10.101.166.144:8756';
 export const EQUIPMENT_URI = BASE_URI;
 
 

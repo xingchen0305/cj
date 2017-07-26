@@ -23,7 +23,7 @@ export class BookDetailComponent implements OnInit {
     this.publishingService.getPublishingById(this.asset_id).subscribe(
       (res)=>{
         this.data=res.json().data;
-        console.log(this.data.cover)
+        console.log(this.data)
 
       }
     )

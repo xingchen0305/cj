@@ -24,9 +24,9 @@ export class RentingBookComponent implements OnInit {
   purchase_type: number= 1;
   rent_type: number= 2;
   uploadedFiles: any[] = [];
-/*  url:string = "http://10.101.166.144:8755/equipments/testFile";*/
-  url:string = "http://10.101.164.137:8756/commodity";
-  name: string;
+ /* url:string = "http://10.101.164.137:8756/commodity";*/
+  url:string ="http://10.101.166.144:8756/commodity";
+    name: string;
   image:any;
   images:any[] = new Array<any>();
 
@@ -46,13 +46,13 @@ export class RentingBookComponent implements OnInit {
         console.log(this.name);
       }
     );
-
   }
-
+/*书籍发布功能*/
   onSubmit(){
     let files:File[] = this.fileUploadModule.files;
     console.log(this.data)
     this.obj['book']=this.data;
+    this.obj['assetId']=this.book_id;
     this.obj['businessType'] = this.rent_type;
     this.readfiles(files, 0,this.obj);
   }
