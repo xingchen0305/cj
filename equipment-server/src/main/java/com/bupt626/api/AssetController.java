@@ -9,6 +9,7 @@ import com.bupt626.common.utils.DateUtil;
 import com.bupt626.domain.Asset;
 import com.bupt626.domain.AssetType;
 import com.bupt626.domain.BaseWarehouse;
+import com.bupt626.domain.Sender;
 import com.bupt626.service.AssetService;
 import com.bupt626.service.AssetTypeService;
 import com.bupt626.service.BaseWarehouseService;
@@ -34,7 +35,8 @@ public class AssetController extends BaseCommonController {
     private BaseWarehouseService baseWarehouseService;
     @Autowired
     private AssetTypeService assetTypeService;
-
+    @Autowired
+    private Sender sender;
 
 
     @RequestMapping("/saveOrUpdate")
@@ -134,7 +136,12 @@ public class AssetController extends BaseCommonController {
     @PostMapping("/{asset_id}")
     private ResponseEntity publish(@PathVariable("asset_id") String id, @RequestParam(name = "publish") boolean publish){
         Asset asset = assetService.findOne(id);
-        asset.setState(publish == true? AssetStateEnum.PUBLISH.getValue(): AssetStateEnum.UNPUBLISH.getValue());
+        if(publish == true)
+        asset.setState(AssetStateEnum.PUBLISH.getValue());
+        else{
+            asset.setState(AssetStateEnum.UNPUBLISH.getValue());
+            sender.send(id);
+        }
         assetService.save(asset);
         return new ResponseEntity(HttpStatus.OK);
     }
