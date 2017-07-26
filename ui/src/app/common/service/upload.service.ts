@@ -17,7 +17,7 @@ export class UploadService{
   bookUrl:string=BOOK_URI+'/book';
   constructor(private http: HttpInterceptor) { }
   /*
-   * 获取书籍表
+   * 上传图片方法
    * */
   /*  getAsset(): Observable<any> {
    return this.http.get(this.assetUrl+'/page?start=0');

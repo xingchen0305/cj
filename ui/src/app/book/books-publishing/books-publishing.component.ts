@@ -10,6 +10,7 @@ import { Router} from '@angular/router';
 })
 export class BooksPublishingComponent implements OnInit {
   book_id:string;
+  book_type:number;
   purchase_type: number= 1;
   rent_type: number= 2;
   constructor(private router:Router,private bookService: BookService,private activatedRoute:ActivatedRoute) { }

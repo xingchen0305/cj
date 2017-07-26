@@ -42,6 +42,7 @@ export class MemberBrowsingComponent implements OnInit {
       }
     )
   }
+
   pageChanged(event){
     this.searchArgs['page'] = event;
     this.assetService.getAsset(this.searchArgs).subscribe(
@@ -56,7 +57,6 @@ export class MemberBrowsingComponent implements OnInit {
   }
 
   pageChanged2(event){
-
     this.searchArgs['page'] = event;
     //console.log(this.searchArgs['page']);
     this.warehouseService.getWareHouses(this.searchArgs).subscribe(

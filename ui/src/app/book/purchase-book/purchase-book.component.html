@@ -1,39 +1,50 @@
 <section class="content" style="padding: 0px">
   <h3 style="display:inline;margin-left:1%;">
-    发布出售---<small>书籍发布信息管理</small>
+    发布出售---<small>发布信息管理</small>
   </h3>
 
-<form  #planetform="ngForm"  (ngSubmit)="onSubmit(planetform.value)" style="margin-top: 20px">
-  <div class="form-group">
-    <label for="exampleInputPassword5">作者</label>
-    <input type="text" class="form-control" id="exampleInputPassword5" placeholder="请输入书籍出版社" name="press"    >
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword9">书籍出版社</label>
-    <input type="text" class="form-control" id="exampleInputPassword9" placeholder="请输入书籍出版社" name="press"    >
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword8">书籍原始价格</label>
-    <input type="text" class="form-control" id="exampleInputPassword8" placeholder="请输入价格" name="price"     >
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword7">书籍新旧程度</label>
-    <input type="text" class="form-control" id="exampleInputPassword7" placeholder="请输入新旧程度（几成新）" name="grade"     >
-  </div>
-<div class="form-group">
-  <label for="exampleInputPassword2">售价</label>
-  <input type="text" class="form-control" id="exampleInputPassword2" placeholder="请输入售价" name="location"     >
-</div>
-  <p-fileUpload name="myfile[]" url="./upload.php"></p-fileUpload>
-<div class="form-group">
-  <label for="exampleInputPassword3">添加描述</label>
-  <input type="text" class="form-control" id="exampleInputPassword3" placeholder="请输入对您的物品的描述" name="location"     >
-</div>
-<div class="form-group">
-  <label >地图</label>
-  <p class="help-block">高德地图位置</p>
-</div>
-<button type="submit" class="btn btn-default">确定发布</button>
-<button type="submit" class="btn btn-default">取消</button>
-</form>
+  <form  #planetform="ngForm"  (ngSubmit)="onSubmit(planetform.value)" style="margin-top: 20px">
+    <div class="form-group">
+      <label for="exampleInputPassword22">名称</label>
+      <input type="text" class="form-control" id="exampleInputPassword22" placeholder="请输入名称" name="name"    [(ngModel)]="data.name" >
+    </div>
+<!--    <div class="form-group">
+      <label for="exampleInputPassword33">作者</label>
+      <input type="text" class="form-control" id="exampleInputPassword33" placeholder="请输入书籍作者" name="author"    [(ngModel)]="data.author" >
+    </div>-->
+    <div class="form-group">
+      <label for="exampleInputPassword11">所在地</label>
+      <input type="text" class="form-control" id="exampleInputPassword11" placeholder="请输入所在地" name="location"    [(ngModel)]="obj.location" >
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword9">联系方式</label>
+      <input type="text" class="form-control" id="exampleInputPassword" placeholder="请输入联系方式" name="phone"    [(ngModel)]="obj.phone" >
+    </div>
+
+    <div class="form-group">
+      <!--  <input type="hidden" name="id" [(ngModel)]="data.id">-->
+      <label for="exampleInputPassword8">转卖价格</label>
+      <input type="text" class="form-control" id="exampleInputPassword8" placeholder="请输入价格" name="price"   [(ngModel)]="obj.price"   >
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword7">成色</label>
+      <input type="text" class="form-control" id="exampleInputPassword7" placeholder="请输入新旧程度（几成新）" name="grade"  [(ngModel)]="data.grade"    >
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword12">文件上传</label>
+      <p-fileUpload #myProfile name="file"  multiple="multiple"  url={{url}} uploadLabel="true"
+                    customUpload="true"
+                    chooseLabel="选择上传的图片"
+                    accept="image/*"
+                    showCancelButton={{showUpload}}
+                    (onBeforeSend) = "onBeforeSend($event)" (onBeforeUpload)="onBeforeUpload($event)"></p-fileUpload>
+    </div>
+
+    <div class="form-group">
+      <label >地图</label>
+      <p class="help-block">高德地图位置</p>
+    </div>
+    <button type="submit" class="btn btn-default" (click)="onSubmit()">确定发布</button>
+    <!--<button type="submit" class="btn btn-default">取消</button>-->
+  </form>
 </section>

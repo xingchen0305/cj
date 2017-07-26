@@ -1,6 +1,6 @@
 <section class="content" style="padding: 0px">
   <h3 style="display:inline;margin-left:1%;">
-    书籍发布---<small>书籍发布信息管理</small>
+    资产发布---<small>资产发布信息管理</small>
   </h3>
 
   <form  #planetform="ngForm"  (ngSubmit)="onSubmit(planetform.value)">  <!--(ngSubmit)="onSubmit(planetForm.value)"-->
@@ -11,11 +11,6 @@
           发布类型 <span class="caret"></span>
         </button>
         <ul *dropdownMenu class="dropdown-menu" role="menu">
-          <!--<li role="menuitem"><a class="dropdown-item"  [routerLink]="['/attendanceRecord/booksPublishing/renting',book_id]" (click)="book_type=1">出租</a></li>-->
-          <!--<li role="menuitem"><a class="dropdown-item" [routerLink]="['/attendanceRecord/booksPublishing/purchase',book_id]" (click)="book_type=2">出售</a></li>-->
-          <!--<li role="menuitem"><a class="dropdown-item" href="#" (click)="book_type=3">以物易物</a></li>-->
-
-
           <li role="menuitem"><a class="dropdown-item"   (click)="book_type=1">出租</a></li>
           <li role="menuitem"><a class="dropdown-item"  (click)="book_type=2">出售</a></li>
           <li role="menuitem"><a class="dropdown-item" href="#" (click)="book_type=3">以物易物</a></li>
