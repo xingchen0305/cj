@@ -18,6 +18,17 @@ public class Star {
     private String commodityId;
     @Column(name = "startime")
     private Date starTime;
+    @Column(name = "state")
+    private String state;
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "account_name")
