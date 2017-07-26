@@ -1,15 +1,18 @@
-<div>
-  <p>
-  dashboard works!
-  </p>
-  <button class="btn-info">Button</button>
-  <alert type="success">
-    <strong>Well done!</strong> You successfully read this important alert message.
-  </alert>
+<div  style="width:100%;height:100%;position: fixed;margin:0;padding:0">
+  <h4>欢迎登陆资产管理系统</h4>
+  <h3 class="first">图片上传</h3>
+  <!--<p-fileUpload #myProfile name="file"  multiple="multiple"  url={{url}} uploadLabel="true"-->
+                <!--customUpload="true" (uploadHandler)="myUploader($event)"-->
+                 <!--showCancelButton={{showUpload}}-->
+                <!--(onBeforeSend) = "onBeforeSend($event)" (onBeforeUpload)="onBeforeUpload($event)"></p-fileUpload>-->
+  <!--<img src="assets/images/5.png" alt="..." class="img-circle img-responsive" style="width:80%;height:75%;">-->
+  <form>
+    姓名：<input type="text" name="name" [(ngModel)]="name">
+    <p-fileUpload #myProfile name="file"  multiple="multiple"  url={{url}} uploadLabel="true"
+                  customUpload="true"
+                  showCancelButton={{showUpload}}
+                  (onBeforeSend) = "onBeforeSend($event)" (onBeforeUpload)="onBeforeUpload($event)"></p-fileUpload>
+    <button (click) = onSubmit()>提交</button>
+  </form>
 
-  <button (click)="getToken()">Service Demo</button>
-
-  <p *ngIf="data">
-    {{data.id}}
-  </p>
 </div>

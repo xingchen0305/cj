@@ -11,10 +11,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.annotation.Order;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -41,7 +43,7 @@ import java.security.KeyPair;
  * After you launch the app, you can seek a bearer token like this:
  *
  * <pre>
- *     curl localhost:9999/uaa/controller/token -d "grant_type=password&scope=read&username=hexiuyu&password=123456" -u bupt-client:bupt626
+ *     curl localhost:9999/uaa/api/token -d "grant_type=password&scope=read&username=hexiuyu&password=123456" -u bupt-client:bupt626
  * </pre>
  *
  * <ul>
@@ -80,11 +82,17 @@ public class AuthServerApplication {
 		private AuthenticationManager authenticationManager;
 
 		@Override
+		public void configure(WebSecurity web) throws Exception {
+			web.ignoring().antMatchers(HttpMethod.POST, "/user");
+		}
+
+		@Override
 		protected void configure(HttpSecurity http) throws Exception {
 			http
+					.csrf().disable()
 					.formLogin().loginPage("/login").permitAll()
 					.and()
-					.requestMatchers().antMatchers("/login", "/controller/authorize", "/controller/confirm_access")
+					.requestMatchers().antMatchers("/login", "/api/authorize", "/api/confirm_access")
 					.and()
 					.authorizeRequests().anyRequest().authenticated();
 		}

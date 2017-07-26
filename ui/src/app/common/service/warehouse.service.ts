@@ -5,8 +5,6 @@ import {Observable} from "rxjs/Observable";
 /**
  * Created by Administrator on 2017/6/17 0017.
  */
-
-
 @Injectable()
 export class WarehouseService{
   warehouseUrl: string = EQUIPMENT_URI + '/baseWarehouse';
@@ -16,9 +14,10 @@ export class WarehouseService{
    *  获取仓库列表
    * @returns {Observable<Response>}
    */
-  getWareHouses(): Observable<any> {
-    return this.http.get(this.warehouseUrl+'/page?start=0');
+  getWareHouses(searchObj:Object): Observable<any> {
+    return this.http.get(this.warehouseUrl+'/page?'+ this.http.generateUrlArgsByObj(searchObj));
   }
+
 
   /**
    *  根据id 查看仓库信息
@@ -36,6 +35,14 @@ export class WarehouseService{
    */
   editWareHouse(wareHouseData){
     return this.http.post(this.warehouseUrl +"/saveOrUpdate", wareHouseData);
+  }
+  /**
+   *  新增
+   * @param wareHouseData
+   * @returns {Observable<Response>}
+   */
+  addWareHouse(wareHouseData){
+    return this.http.post(this.warehouseUrl +"/save", wareHouseData);
   }
 
 

@@ -1,6 +1,6 @@
 package com.bupt.repository;
 
-import com.bupt.domain.Authorization;
+
 import com.bupt.domain.CentralLibrary;
 import org.springframework.data.jpa.repository.JpaRepository;
 

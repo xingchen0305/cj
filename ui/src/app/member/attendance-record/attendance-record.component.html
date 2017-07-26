@@ -1,11 +1,11 @@
 <section class="content" style="padding: 0px">
-	<h3 style="display:inline;margin-left:1%;">
-         我的书架---<small>图书信息管理</small>
+	<h3 style="display:inline;margin:1%;">
+         我的发布---<small>发布信息管理</small>
   </h3>
-  <form class="form-inline" style="margin:10px;padding: 10px; ">
+ <!-- <form class="form-inline" style="margin:10px;padding: 10px; ">
   <div class="form-group">
-    <label for="exampleInputName2" >书&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:</label>
-    <input type="text" class="form-control" id="exampleInputName2" placeholder="请输入姓名">
+    <label for="exampleInputName9" >名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称:</label>
+    <input type="text" class="form-control" id="exampleInputName9" placeholder="请输入姓名">
   </div>
   <div class="form-group">
       <label for="exampleInputEmail2">所属仓库:</label>
@@ -19,98 +19,72 @@
   <div class="form-group">
     <label for="exampleInputEmail2">状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态:</label>
     <select class="select">
-        <option value ="volvo">Volvo</option>
-        <option value ="saab">Saab</option>
-        <option value="opel">Opel</option>
-        <option value="audi">Audi</option>
+        <option [value]="1">已发布</option>
+        <option [value]="2">未发布</option>
      </select>
   </div>
    <button type="submit" class="btn btn-outline-primary">查询</button>
 </form>
 <hr>
-<table class="table table-hover">
-  <tr>
+<table class="table table-hover" *ngIf="data">
+  <tr >
   <th>
     <input type="checkbox">
   </th>
-  <th>书籍编码</th>
-  <th>书籍名称</th>
+  <th>资产序号</th>
+  <th>资产名称</th>
   <th>条形码号</th>
   <th>发布状态</th>
   <th>所属仓库</th>
-  <th style="text-align: center">操作</th>
+  <th style="text-align: center">图片</th>
   </tr>
-  <tr>
+  <tr *ngFor="let item of data | paginate: { itemsPerPage: pageSize, currentPage:currentPage, totalItems: totalResults }; let idx=index">
   <th>
     <input type="checkbox">
   </th>
-  <td>1</td>
-  <td>javaWeb</td>
-  <td>123456</td>
-  <td>已发布</td>
-  <td>626</td>
-  <td style="text-align: center"><a routerLink="/" class="btn btn-info btn-sm">查看</a>
-    <a routerLink="/" class="btn btn-info btn-sm">发布</a></td>
- </tr>
-  <tr>
-  <th>
-    <input type="checkbox">
-  </th>
-  <td>2</td>
-  <td>SSH教程</td>
-  <td>987654</td>
-  <td>未发布</td>
-  <td>413</td>
-  <td style="text-align: center"><a routerLink="/" class="btn btn-info btn-sm">查看</a>
-  <a routerLink="/" class="btn btn-info btn-sm">发布</a></td>
-  </tr>
-</table>
-<div class="center">
-  <!-- Button trigger modal -->
-<button class="btn btn-primary" (click)="lgModal.show()">新增书籍</button>
+  <td>{{(currentPage-1)*pageSize + idx+1}}</td>
+  <td>{{item.name}}</td>
+  <td>{{item.barcode}}</td>
+  <td>{{item.stateName}}</td>
+  <td>{{item.warehouse_location}}</td>
+    <td>图片</td>
+  &lt;!&ndash;  [routerLink]="['/editAsset', item.id]"&ndash;&gt;
+ &lt;!&ndash; <td style="text-align: center"><a [routerLink]="['/attendanceRecord/bookDetail']"  class="btn btn-info btn-sm">查看</a>
+    <a *ngIf="item.stateName=='未发布'" [routerLink]="['/attendanceRecord/booksPublishing',item.id]" class="btn btn-info btn-sm">发布</a></td>
+    <a *ngIf="item.stateName=='未发布'" [routerLink]="['/attendanceRecord/booksPublishing',item.id]" class="btn btn-info btn-sm">发布</a></td>
+ </tr>&ndash;&gt;
 
-<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title pull-left">新增书籍信息</h4>
-        <button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+</table>-->
+<!--
+  <div class="center" style="margin-top: 20px" >
+    <pagination-controls previousLabel="上一页" nextLabel="下一页"(pageChange)="pageChanged($event)"></pagination-controls>
+  </div>-->
+
+  <div class="container" *ngIf="data">
+    <div class="row" >
+      <div class="col-md-3"  *ngFor="let item of data | paginate: { itemsPerPage: pageSize, currentPage:currentPage, totalItems: totalResults }; let idx=index">
+        <div class="row" style="margin: 50px;display: inline-block;clear: left" >
+          <div class="">
+            <div class="thumbnail" >
+              <a class="btn btn-primary btn-sm" role="button" [routerLink]="['/attendanceRecord/bookDetail', item.id]" >
+              <img src="http://{{item.cover}}"alt="..." style="width:100px;height:100px;">
+              </a>
+              <div class="caption">
+                <h6>{{item.name}}</h6>
+                <p>出租</p>
+               <!-- <p><a href="#" class="btn btn-primary btn-sm" role="button">购买</a> <a href="#" class="btn btn-default btn-sm" role="button">收藏</a></p>-->
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="modal-body">
-        <form class="form-inline">
-          <div class="form-group">
-            <label for="exampleInputName2">书籍名称</label>
-            <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputEmail2">书籍条形码</label>
-            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputEmail2">书籍位置</label>
-            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputEmail2">书籍条形码</label>
-            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputEmail2">书籍条形码</label>
-            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
-          </div>
-          <button type="submit" class="btn btn-default">Send invitation</button>
-        </form>
-      </div>
+
     </div>
   </div>
-</div>
-</div>
-<div class="center">
-  <a href="#" >上一页</a>
-  <a href="#" >下一页</a>
-  <a href="#" >首页</a>
-  <a href="#" >末页</a>
-</div>
+
+
+
+
+
+
 </section>

@@ -1,32 +1,27 @@
-<section class="content" style="padding: 0px">
+<section class="content" style="padding: 0px" *ngIf="data">
   <h3 style="display:inline;margin-left:1%;">
     总资产列表---
     <small>资产信息管理</small>
   </h3>
-  <form class="form-inline" style="margin:10px;padding: 10px;  ">
+  <form class="form-inline" style="margin:10px;padding: 10px;  " *ngIf="data" >
     <div class="form-group">
       <label for="exampleInputName2">物品名称:</label>
-      <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+      <input type="text" class="form-control" id="exampleInputName2" name="name" placeholder="请输入物品名称" [(ngModel)]="name">
     </div>
     <div class="form-group">
       <label>所属仓库:</label>
-      <select class="select" style="width: 221px;height: 38px">
-        <option value="volvo">Volvo</option>
-        <option value="saab">Saab</option>
-        <option value="opel">Opel</option>
-        <option value="audi">Audi</option>
+      <select class="select" style="width: 221px;height: 38px" [(ngModel)]="warehouse_id" name="warsehousename" >
+        <option  *ngFor="let item of warsehouse"  [value]="item.name" >{{item.location}}</option>
       </select>
     </div>
     <div class="form-group">
       <label>状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态:</label>
-      <select class="select" style="width: 221px;height: 38px">
-        <option value="volvo">Volvo</option>
-        <option value="saab">Saab</option>
-        <option value="opel">Opel</option>
-        <option value="audi">Audi</option>
+      <select class="select" style="width: 221px;height: 38px"    [(ngModel)]="state" name="state" >
+        <option  [value]="1" selected>已发布</option>
+        <option  [value]="2" >未发布</option>
       </select>
     </div>
-    <button type="submit" class="btn btn-outline-primary">查询</button>
+    <button type="submit" class="btn btn-outline-primary" (click)="pageChanged3($event)">查询</button>
 
   </form>
   <hr>
@@ -35,39 +30,41 @@
       <th>
         <input type="checkbox">
       </th>
-      <th>编号</th>
+      <th>序号</th>
       <th>物品姓名</th>
-      <th>属性</th>
+      <th>类型</th>
       <th>数量</th>
       <th>所属仓库</th>
       <th>状态</th>
       <th style="text-align: center">操作</th>
     </tr>
-    <tr *ngFor="let item of data; let idx=index">
+    <tr *ngFor="let item of data | paginate: { itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalResults }; let idx=index" >
       <th>
         <input type="checkbox">
       </th>
-      <td>{{item.id}}</td>
+      <td>{{(currentPage-1)*pageSize + idx+1}}</td>
       <td>{{item.name}}</td>
       <td>{{item.type}}</td>
       <td>{{item.count}}</td>
-      <td>{{item.location}}</td>
-      <td>{{item.state}}</td>
+      <td>{{item.warehouse_location}}</td>
+      <td>{{item.stateName}}</td>
       <td style="text-align: center">
         <!--<button [routerLink]="['/warehouseOne', item.id]"  class="btn btn-info btn-sm" >查看资产</button>-->
+        <button   [routerLink]="['/detailAssets',item.id]"  class="btn btn-primary btn-sm" >查看详情</button>
         <button   [routerLink]="['/editAsset', item.id]"  class="btn btn-primary btn-sm" >修改</button>
-       <button   class="btn btn-danger btn-sm" (click)="delete(item.id, idx)" >删除</button></td>
+       <button   class="btn btn-danger btn-sm" (click)="delete(item.id, idx)" >删除</button>
+        <button  *ngIf="item.stateName=='未发布'" [routerLink]="['/attendanceRecord/booksPublishing',item.id]" class="btn btn-info btn-sm">发布</button></td>
 
     </tr>
 
   </table>
   <div class="center">
+    <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModalLong"  [routerLink]="['/newAsset']" >
+      新增资产
+    </button>
 
   </div>
-  <div class="center">
-    <a href="#">上一页</a>
-    <a href="#">下一页</a>
-    <a href="#">首页</a>
-    <a href="#">末页</a>
+  <div class="center" style="margin-top: 20px" >
+    <pagination-controls previousLabel="上一页" nextLabel="下一页"(pageChange)="pageChanged($event)"></pagination-controls>
   </div>
 </section>

@@ -1,0 +1,25 @@
+$primary-color: #009fe5;
+$main-bg-color: #666666;
+$border: 1px solid $primary-color;
+
+input[type="text"].form-control,
+input[type="password"].form-control {
+  background: transparent;
+  color: lighten($primary-color, 50%);
+  border: $border;
+  border-radius: 20px;
+  &:hover, &:focus {
+    border-color: lighten($primary-color, 20%);
+  }
+  &.disabled, &:disabled {
+    opacity: .5;
+    background: $main-bg-color;
+  }
+}
+.form-content {
+  padding: 0 60px;
+}
+
+.text-sm.form-group {
+  font-size: 12px;
+}

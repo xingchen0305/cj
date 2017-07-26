@@ -1,0 +1,126 @@
+<section class="content" style="padding: 0px">
+  <h3 style="display:inline;margin-left:1%;">
+    资产详情---<small>资产详情信息管理</small>
+  </h3>
+<!--  <table class="table table-hover" >
+    <tr>
+      <th>
+        <input type="checkbox">
+      </th>
+      <th>书籍序号</th>
+      <th>书籍名称</th>
+      <th>条形码</th>
+
+
+      &lt;!&ndash;<th style="text-align: center">操作</th>&ndash;&gt;
+    </tr>
+    <tr>
+    <tr >
+      <th >
+        <input type="checkbox">
+      </th>
+      <td>1</td>
+      <td>java</td>
+      <td>626</td>
+    </tr>
+    <tr >
+      <th >
+        <input type="checkbox">
+      </th>
+      <td>2</td>
+      <td>javaWeb</td>
+      <td>626</td>
+    </tr>
+    <tr >
+      <th >
+        <input type="checkbox">
+      </th>
+      <td>3</td>
+      <td>ssh</td>
+      <td>626</td>
+    </tr>
+
+  </table>-->
+  <div class="row" style="position: relative;" *ngIf="data">
+    <div class="col-xs-6 col-md-3">
+      <a href="#" class="thumbnail">
+        <img src="http://{{data.cover}}"alt="..." style="width:350px;height:350px;">
+        <!--{{data.cover}}-->
+      </a>
+    </div>
+    <div style="position: absolute;left: 600px; " >
+      <table class="table table-hover"  >
+        <tr>
+          <th>书籍名称</th>
+          <td>{{data.name}}</td>
+        </tr>
+        <tr>
+          <th>出售方式</th>
+          <td>出租</td>
+        </tr>
+        <tr>
+          <th>作者</th>
+          <td>{{data.book.author}}</td>
+        </tr>
+        <tr>
+          <th>押金</th>
+          <td>{{data.deposit}}元</td>
+        </tr>
+        <tr>
+          <th>租金</th>
+          <td>{{data.rent}}元</td>
+        </tr>
+        <tr>
+          <th>违约金</th>
+          <td>{{data.damages}}元</td>
+        </tr>
+        <tr>
+          <th>联系人</th>
+          <td>{{data.owner}}</td>
+        </tr>
+        <tr>
+          <th>交易方式</th>
+          <th >
+            <input type="checkbox">
+          </th>
+          <td>在线交易</td>
+        </tr>
+        <tr>
+          <th>
+            <p><a href="#" class="btn btn-primary btn-sm" role="button">分享</a> <a href="#" class="btn btn-default btn-sm" role="button">收藏</a></p>
+          </th>
+        </tr>
+        <tr>
+       <!-- <tr >
+          <th >
+            <input type="checkbox">
+          </th>
+          <td>1</td>
+          <td>java</td>
+          <td>626</td>
+        </tr>
+        <tr >
+          <th >
+            <input type="checkbox">
+          </th>
+          <td>2</td>
+          <td>javaWeb</td>
+          <td>626</td>
+        </tr>
+        <tr >
+          <th >
+            <input type="checkbox">
+          </th>
+          <td>3</td>
+          <td>ssh</td>
+          <td>626</td>
+        </tr>-->
+
+      </table>-
+    </div>
+
+  </div>
+
+
+
+</section>

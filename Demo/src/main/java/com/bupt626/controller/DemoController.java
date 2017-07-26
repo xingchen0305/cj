@@ -1,4 +1,4 @@
-package com.bupt626.controller;
+package com.bupt626.api;
 
 import com.bupt626.domain.Account;
 import com.bupt626.domain.Demo;
@@ -52,7 +52,7 @@ public class DemoController {
      */
 
     @RequestMapping("testdemos")
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     public List<Demo> getDemos(){
         OAuth2AccessToken accessToken = oauth2ClientContext.getAccessToken();
         return demoService.findAllDemo();
